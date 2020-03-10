@@ -29,20 +29,6 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;}
 
-.videoWrapper {
-	position: relative;
-	padding-bottom: 56.25%; /* 16:9 */
-	padding-top: 25px;
-	height: 0;
-}
-.videoWrapper iframe {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-}
-
 body {
 	line-height: 1;
 }
@@ -2042,7 +2028,7 @@ input, select, textarea {
 				opacity: 1;
 			}
 
-			.features section:nth-child(1) .icon {
+			.features section:nth-child(1) .icon, .features section:nth-child(1) .animate {
 				-moz-transition-delay: 0.15s;
 				-webkit-transition-delay: 0.15s;
 				-ms-transition-delay: 0.15s;
@@ -2182,7 +2168,7 @@ input, select, textarea {
 				transition-delay: 3s;
 			}
 
-		.features.inactive section .icon {
+		.features.inactive section .icon,.features.inactive section .animate {
 			-moz-transform: scale(0.5);
 			-webkit-transform: scale(0.5);
 			-ms-transform: scale(0.5);
@@ -2217,7 +2203,6 @@ input, select, textarea {
 			span.fab.major{
 				left: 0.62em;
 				top: .8em;
-				font-size: 2.5em;
 			}
 			.features section .icon {
 				left: 1.5em;
@@ -2232,11 +2217,18 @@ input, select, textarea {
 				padding: 2em 1.5em 0.1em 1.5em ;
 			}
 
-				.features section .icon {
-					left: 0;
-					position: relative;
-					top: 0;
-				}
+			span.fab.major {
+				left: 0;
+				position: relative;
+				top: 0;
+				margin: 0 0 .5em 0;
+			}
+
+			.features section .icon {
+				left: 0;
+				position: relative;
+				top: 0;
+			}
 
 		}
 
@@ -2537,6 +2529,21 @@ input, select, textarea {
 
 		.icon.brands:before {
 			font-family: 'Font Awesome 5 Brands';
+		}
+
+		.fab.animate {
+			-moz-transition: opacity 0.5s ease, -moz-transform 0.5s ease;
+	    -webkit-transition: opacity 0.5s ease, -webkit-transform 0.5s ease;
+	    -ms-transition: opacity 0.5s ease, -ms-transform 0.5s ease;
+	    transition: opacity 0.5s ease, transform 0.5s ease;
+	    -moz-transition-delay: 1s;
+	    -webkit-transition-delay: 1s;
+	    -ms-transition-delay: 1s;
+	    transition-delay: 1s;
+	    -moz-transform: scale(1);
+	    -webkit-transform: scale(1);
+	    -ms-transform: scale(1);
+	    transform: scale(1);
 		}
 
 		.fab.major{
@@ -3024,7 +3031,7 @@ input, select, textarea {
 		-webkit-flex-direction: row;
 		-ms-flex-direction: row;
 		flex-direction: row;
-		min-height: 100vh;
+		min-height: 22.5em;
 	}
 
 		body.is-ie .spotlights > section {
