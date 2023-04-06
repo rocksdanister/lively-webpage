@@ -85,7 +85,7 @@ function setPause(val) {
   isPaused = val;
 }
 
-function filePicker() {
+function openFilePicker() {
   document.getElementById("filePicker").click();
 }
 
