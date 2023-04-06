@@ -103,7 +103,14 @@
                 oninput="setProperty('u_zoom',this.value)"
               />
               <br />
-              <button class="fluent-button" onclick="filePicker()">Change background</button>
+              <div class="dropdown">
+                <button class="dropbtn">Change background</button>
+                <div class="dropdown-content">
+                  <a onclick="setTexture('u_tex0', 'media/mountain.jpg')">Moutain</a>
+                  <a onclick="setTexture('u_tex0', 'media/Forest.jpg')">Forest</a>
+                </div>
+              </div>
+              <!-- <button class="fluent-button" onclick="filePicker()">Change background</button> -->
               <div>
                 <input
                   type="checkbox"

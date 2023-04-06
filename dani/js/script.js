@@ -42,6 +42,44 @@ function setProperty(property, value) {
   material.uniforms[property].value = value;
 }
 
+function setTexture(texName, value) {
+  let ext = getExtension(value);
+  disposeVideoElement(videoElement);
+  material.uniforms[texName].value?.dispose();
+
+  //check if resolution variable of format "texName_resolution" present.
+  let texResolutionName = null;
+  for (var key in material.uniforms) {
+    if (key.includes(texName + "_resolution")) {
+      texResolutionName = key;
+      break;
+    }
+  }
+
+  if (ext == "jpg" || ext == "jpeg" || ext == "png") {
+    new THREE.TextureLoader().load(value, function (tex) {
+      material.uniforms[texName].value = tex;
+      if (texResolutionName != null)
+        material.uniforms[texResolutionName].value = new THREE.Vector2(tex.image.width, tex.image.height);
+    });
+  } else if (ext == "webm" || ext == "mp4") {
+    videoElement = createVideoElement(value);
+    let videoTexture = new THREE.VideoTexture(videoElement);
+    videoElement.addEventListener(
+      "loadedmetadata",
+      function (e) {
+        if (texResolutionName != null)
+          material.uniforms[texResolutionName].value = new THREE.Vector2(
+            videoTexture.image.videoWidth,
+            videoTexture.image.videoHeight
+          );
+      },
+      false
+    );
+    material.uniforms.u_tex0.value = videoTexture;
+  }
+}
+
 //Pause rendering
 function setPause(val) {
   isPaused = val;
@@ -84,7 +122,7 @@ async function setScene(name, geometry = quad) {
           fragmentShader: await (await fetch("shaders/rain.frag")).text(),
         });
 
-        new THREE.TextureLoader().load("media/image.jpg", function (tex) {
+        new THREE.TextureLoader().load("media/mountain.jpg", function (tex) {
           material.uniforms.u_tex0_resolution.value = new THREE.Vector2(tex.image.width, tex.image.height);
           material.uniforms.u_tex0.value = tex;
         });
