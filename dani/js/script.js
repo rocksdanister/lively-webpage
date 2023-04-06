@@ -109,8 +109,8 @@ async function setScene(name, geometry = quad) {
             u_brightness: { value: 0.8, type: "f" },
             u_normal: { value: 0.5, type: "f" },
             u_zoom: { value: 2.61, type: "f" },
-            u_blur_intensity: { value: 0.5, type: "f" },
-            u_blur_iterations: { value: 16, type: "i" },
+            //u_blur_intensity: { value: 0.5, type: "f" },
+            //u_blur_iterations: { value: 16, type: "i" },
             u_panning: { value: false, type: "b" },
             u_post_processing: { value: true, type: "b" },
             u_lightning: { value: false, type: "b" },
@@ -136,7 +136,6 @@ async function setScene(name, geometry = quad) {
 
           container.style.transform = `translateX(${x}px) translateY(${y}px) scale(1.09)`;
         }
-        //createRainGui();
       }
       break;
     case "synthwave":
@@ -230,33 +229,6 @@ function setDebugMenu(val) {
       .name("Switch Background");
     gui.show();
   }
-}
-
-function createRainGui() {
-  let rain = gui.addFolder("Rain");
-  let bg = gui.addFolder("Background");
-  rain.add(material.uniforms.u_intensity, "value", 0, 1, 0.01).name("Intensity");
-  rain.add(material.uniforms.u_speed, "value", 0, 10, 0.01).name("Speed");
-  rain.add(material.uniforms.u_brightness, "value", 0, 1, 0.01).name("Brightness");
-  rain.add(material.uniforms.u_normal, "value", 0, 3, 0.01).name("Normal");
-  rain.add(material.uniforms.u_zoom, "value", 0.1, 3.0, 0.01).name("Zoom");
-  rain.add(material.uniforms.u_lightning, "value").name("Lightning");
-  bg.add(
-    {
-      picker: function () {
-        document.getElementById("filePicker").click();
-      },
-    },
-    "picker"
-  ).name("Change Background");
-  bg.add(material.uniforms.u_blur_iterations, "value", 1, 64, 1).name("Blur Quality");
-  bg.add(material.uniforms.u_blur_intensity, "value", 0, 10, 0.01).name("Blur");
-  bg.add(settings, "parallaxVal", 0, 5, 1).name("Parallax");
-  bg.add(material.uniforms.u_texture_fill, "value").name("Scale to Fill");
-  bg.add(material.uniforms.u_panning, "value").name("Panning");
-  bg.add(material.uniforms.u_post_processing, "value").name("Post Processing");
-  //rain.open();
-  //bg.open();
 }
 
 document.getElementById("filePicker").addEventListener("change", function () {
