@@ -1,2 +1,2 @@
 # lively-webpage
-lively wallpaper system (github.com/rocksdanister/lively) git page.
+Lively (github.com/rocksdanister/lively) webpage development.
