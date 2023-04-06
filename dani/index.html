@@ -6,7 +6,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;500;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles/style.css" />
   </head>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <body>
     <!-- background -->
     <div id="container" class="container"></div>
@@ -24,15 +23,10 @@
       <div class="ui_app">
         <!-- app wallpaper library -->
         <div id="ui_app_library">
-          <img src="assets/app.png" class="appImg"/>
+          <img src="assets/app.png" class="appImg" />
           <ul id="wallpapers" class="wallpapers">
             <li id="rain" class="library">
-              <img
-                src="assets/rain_preview.jpg"
-                style="outline: 2.5px solid #a425a0"
-                width="600"
-                height="400"
-              />
+              <img src="assets/rain_preview.jpg" style="outline: 2.5px solid #a425a0" width="600" height="400" />
               <div class="desc">Rain</div>
             </li>
 
@@ -49,7 +43,7 @@
             <h1>It's Magic</h1>
             <h2>Anything is possible, go on try it..</h2>
           </div>
-          <img src="assets/app_dialog.png" class="appImg"/>
+          <img src="assets/app_dialog.png" class="appImg" />
           <div id="ui_app_customise_controls">
             <div id="ui_app_customise_controls_test" style="display: none">
               <input style="background-size: 40% 100%" type="range" min="0" max="1" value="0.4" step="0.01" />
@@ -72,7 +66,7 @@
             </div>
 
             <div id="ui_app_customise_controls_rain">
-              <p style="margin-bottom: 0px;">Intensity</p>
+              <p style="margin-bottom: 0px">Intensity</p>
               <input
                 style="background-size: 40% 100%"
                 type="range"
@@ -82,7 +76,7 @@
                 step="0.01"
                 oninput="setProperty('u_intensity',this.value)"
               />
-              <p style="margin-bottom: 0px;">Speed</p>
+              <p style="margin-bottom: 0px">Speed</p>
               <input
                 style="background-size: 2.5% 100%"
                 type="range"
@@ -92,7 +86,7 @@
                 step="0.01"
                 oninput="setProperty('u_speed',this.value)"
               />
-              <p style="margin-bottom: 0px;">Zoom</p>
+              <p style="margin-bottom: 0px">Zoom</p>
               <input
                 style="background-size: 87% 100%"
                 type="range"
@@ -113,15 +107,15 @@
               </div>
               <!-- <button class="fluent-button" onclick="openFilePicker()">Change background</button> -->
               <div>
-                <input
-                  type="checkbox"
-                  unchecked
-                  onchange="setProperty('u_lightning',this.checked ? true : false)"
-                />
+                <input type="checkbox" unchecked onchange="setProperty('u_lightning',this.checked ? true : false)" />
                 <label>Lightning</label>
               </div>
               <div>
-                <input type="checkbox" checked onchange="setProperty('u_post_processing',this.checked ? true : false)" />
+                <input
+                  type="checkbox"
+                  checked
+                  onchange="setProperty('u_post_processing',this.checked ? true : false)"
+                />
                 <label>Post processing</label>
               </div>
             </div>
@@ -167,8 +161,9 @@
 
     <!-- download -->
   </body>
-  <script src="js/three.min.js"></script>
-  <script src="js/dat.gui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.151.3/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
   <script src="js/script.js"></script>
   <script src="js/index.js"></script>
 </html>
