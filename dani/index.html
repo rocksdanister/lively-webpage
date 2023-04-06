@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <body>
+    <!-- background -->
+    <div id="container" class="container"></div>
+    <input id="filePicker" type="file" accept=".jpg, .jpeg, .png, .mp4, .webm" style="visibility: hidden" />
+
+    <!-- home -->
+    <div style="min-height: 1600px">
+      <div class="heading">
+        <img src="assets/logo.png" width="125" class="logo" />
+        <h1>Lively Wallpaper</h1>
+        <h2>Animated desktop wallpapers, bring your desktop to life!</h2>
+        <button class="acrylic-button"><span>Download</span></button>
+      </div>
+      <!-- ui -->
+      <div class="ui_app">
+        <!-- app wallpaper library -->
+        <div id="ui_app_library">
+          <img src="assets/app.png" class="appImg"/>
+          <ul id="wallpapers" class="wallpapers">
+            <li id="rain" class="library">
+              <img
+                src="assets/rain_preview.jpg"
+                style="outline: 2.5px solid #a425a0"
+                width="600"
+                height="400"
+              />
+              <div class="desc">Rain</div>
+            </li>
+
+            <li id="clouds" class="library">
+              <img src="assets/clouds_preview.jpg" width="600" height="400" />
+              <div class="desc">Cloud</div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- app wallpaper customise -->
+        <div id="ui_app_customise">
+          <div id="ui_app_customize_heading" style="position: absolute; top: -175px; left: 15px; opacity: 0">
+            <h1>It's Magic</h1>
+            <h2>Anything is possible, go on try it..</h2>
+          </div>
+          <img src="assets/app_dialog.png" class="appImg"/>
+          <div id="ui_app_customise_controls">
+            <div id="ui_app_customise_controls_test" style="display: none">
+              <input style="background-size: 40% 100%" type="range" min="0" max="1" value="0.4" step="0.01" />
+              <br />
+              <div class="dropdown">
+                <button class="dropbtn">Dropdown</button>
+                <div class="dropdown-content">
+                  <a>Link 1</a>
+                  <a>Link 2</a>
+                  <a>Link 3</a>
+                </div>
+              </div>
+              <br />
+              <button class="fluent-button">Click Me</button>
+              <br />
+              <div>
+                <input type="checkbox" name="vox" checked />
+                <label>Check</label>
+              </div>
+            </div>
+
+            <div id="ui_app_customise_controls_rain">
+              <p style="margin-bottom: 0px;">Intensity</p>
+              <input
+                style="background-size: 40% 100%"
+                type="range"
+                min="0"
+                max="1"
+                value="0.4"
+                step="0.01"
+                oninput="setProperty('u_intensity',this.value)"
+              />
+              <p style="margin-bottom: 0px;">Speed</p>
+              <input
+                style="background-size: 2.5% 100%"
+                type="range"
+                min="0"
+                max="10"
+                value="0.25"
+                step="0.01"
+                oninput="setProperty('u_speed',this.value)"
+              />
+              <p style="margin-bottom: 0px;">Zoom</p>
+              <input
+                style="background-size: 87% 100%"
+                type="range"
+                min="0.1"
+                max="3"
+                value="2.61"
+                step="0.01"
+                oninput="setProperty('u_zoom',this.value)"
+              />
+              <br />
+              <button class="fluent-button" onclick="filePicker()">Change background</button>
+              <div>
+                <input
+                  type="checkbox"
+                  unchecked
+                  onchange="setProperty('u_lightning',this.checked ? true : false)"
+                />
+                <label>Lightning</label>
+              </div>
+              <div>
+                <input type="checkbox" checked onchange="setProperty('u_post_processing',this.checked ? true : false)" />
+                <label>Post processing</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- features -->
+    <div style="transform: scale(1.09); background-color: #5e42a6; padding: 100px 0px 100px 0px">
+      <div class="post-container">
+        <div class="post-thumb-left">
+          <img width="125" height="125" src="assets/github-mark-white.svg" style="border-radius: 5px" />
+        </div>
+        <div class="post-content">
+          <h2>Open Source</h2>
+          <p>Free and Open Source Software (FOSS) made by the community for the community.</p>
+        </div>
+      </div>
+
+      <div class="post-container">
+        <div class="post-thumb-right">
+          <img width="125" height="125" src="assets/github-mark-white.svg" style="border-radius: 5px" />
+        </div>
+        <div class="post-content">
+          <h2>Performance</h2>
+          <p>Wallpaper stops when you are doing something important like work or gaming.</p>
+        </div>
+      </div>
+
+      <div class="post-container">
+        <div class="post-thumb-left">
+          <img width="125" height="125" src="assets/github-mark-white.svg" style="border-radius: 5px" />
+        </div>
+        <div class="post-content">
+          <h2>API</h2>
+          <p>Create interactive webpage wallpapers using helpers.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- gallery -->
+
+    <!-- download -->
+  </body>
+  <script src="js/three.min.js"></script>
+  <script src="js/dat.gui.min.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/index.js"></script>
+</html>
