@@ -1,7 +1,5 @@
 const container = document.getElementById("container");
 let clock = new THREE.Clock();
-const gui = new dat.GUI();
-setDebugMenu(false);
 
 const defaultFps = 24;
 let isPaused = false;
@@ -211,25 +209,6 @@ function render() {
 }
 
 init();
-
-function setDebugMenu(val) {
-  if (!val) {
-    gui.hide();
-  } else {
-    let index = 0;
-    gui
-      .add(
-        {
-          next: function () {
-            setScene(["rain", "clouds", "synthwave"][(index = index + 1 > 2 ? 0 : index + 1)]);
-          },
-        },
-        "next"
-      )
-      .name("Switch Background");
-    gui.show();
-  }
-}
 
 document.getElementById("filePicker").addEventListener("change", function () {
   if (this.files[0] === undefined) return;
