@@ -15,6 +15,7 @@ ul.onclick = function (event) {
     if (img == null) return;
   }
 
+  //update customise controls
   img.style.outline = "2.5px solid #a425a0";
   $("#ui-app-customise-controls-rain").css("display", "none");
   $("#ui-app-customise-controls-test").css("display", "none");

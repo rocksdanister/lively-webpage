@@ -3,6 +3,7 @@ let clock = new THREE.Clock();
 
 const defaultFps = 24;
 let isPaused = false;
+let currentScene = null;
 let scene, camera, renderer, material;
 let settings = { fps: defaultFps, parallaxVal: 1 };
 const quad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2, 1, 1));
@@ -88,6 +89,8 @@ function openFilePicker() {
 }
 
 async function setScene(name, geometry = quad) {
+  if (name == currentScene) return;
+
   showTransition();
 
   material?.uniforms?.u_tex0?.value?.dispose();
@@ -169,6 +172,7 @@ async function setScene(name, geometry = quad) {
       }
       break;
   }
+  currentScene = name;
   geometry.material = material;
 }
 
