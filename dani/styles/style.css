@@ -43,7 +43,8 @@ label {
 }
 
 .heading {
-  margin-top: 150px;
+  display: flex;
+  justify-content: center;
   text-align: center;
 }
 
@@ -52,7 +53,7 @@ label {
   position: fixed;
   right: 0;
   transform: scale(1.09);
-  z-index: -1;
+  z-index: -10;
   opacity: 0.8;
 }
 
@@ -125,16 +126,14 @@ li.library {
   font-style: normal;
   font-size: 14px;
   margin: 5px;
-
   float: left;
   width: 180px;
 }
 
 li.library img:hover {
-  /* transform: scale(1.1);
+  transform: scale(1.05);
   transition: 0.5s;
-  cursor: default; */
-  opacity: 0.75;
+  filter: brightness(1.2);
   cursor: pointer;
 }
 
@@ -142,11 +141,15 @@ li.library img {
   width: 100%;
   height: auto;
   border-radius: 5px;
+  box-shadow: 2px 2px 18px rgba(0, 0, 0, 0.4);
 }
 
 div.desc {
+  color: white;
   padding: 0px;
   text-align: left;
+  margin: -25px 0 0 5px;
+  text-shadow: 1px 1px 2px rgb(0, 0, 0);
 }
 
 .acrylic-button {
@@ -154,13 +157,9 @@ div.desc {
   backdrop-filter: blur(5px);
   background-color: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 6px;
-  bottom: 10px;
+  border-radius: 5px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
   cursor: pointer;
-  gap: 5px;
-  left: 10px;
-  margin-bottom: 25px;
   padding: 10px 20px;
   text-decoration: none;
   transition: background-color 400ms, border-color 400ms;
@@ -180,8 +179,9 @@ div.desc {
 
 .acrylic-button > span {
   color: white;
-  font-family: "Rubik", sans-serif;
-  font-weight: 500;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
 }
 
 /*slider*/
