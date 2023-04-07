@@ -162,11 +162,14 @@ div.desc {
 
 #ui-app-library {
   position: absolute;
-  z-index: 10;
+  z-index: 1;
 }
 
 #ui-app-customise {
   position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 2;
 }
 
 #ui-app-customise-controls {
@@ -182,8 +185,12 @@ div.desc {
   filter: drop-shadow(10px 5px 7.5px rgba(0, 0, 0, 0.5));
 }
 
-.appImg {
-  filter: drop-shadow(10px 5px 10px rgba(0, 0, 0, 0.5));
+.ui-app-img {
+  filter: drop-shadow(5px 0px 10px rgba(0, 0, 0, 0.5));
+}
+
+.ui-app-dialog-img {
+  filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.5));
 }
 
 @-moz-keyframes spin {
