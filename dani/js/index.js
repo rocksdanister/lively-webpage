@@ -43,21 +43,17 @@ $(window).scroll(function () {
 
   $(".heading").css("opacity", alpha);
   $(".ui-app").css("margin-top", marginTop);
-  $("#ui-app-library").css("filter", `brightness(${1 - (1 - alpha)/4})`);
+  $("#ui-app-library").css("filter", `brightness(${1 - (1 - alpha) / 4})`);
   $("#ui-app-customize-heading").css("opacity", 1 - alpha);
   $("#ui-app-customise").css("opacity", 1 - alpha);
 
-  if(alpha == 0)
-  {
+  if (alpha == 0) {
     $("#ui-app-library").css("pointer-events", "none");
     $("#ui-app-customise").css("pointer-events", "auto");
-  }
-  else
-  {
+  } else {
     $("#ui-app-library").css("pointer-events", "auto");
     $("#ui-app-customise").css("pointer-events", "none");
   }
-
 });
 
 //helpers
@@ -65,7 +61,6 @@ function hasClass(element, className) {
   return (" " + element.className + " ").indexOf(" " + className + " ") > -1;
 }
 
-function scrollToElement(id)
-{
+function scrollToElement(id) {
   document.getElementById(id).scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
 }

@@ -41,14 +41,15 @@
         </div>
 
         <!-- app wallpaper customise -->
-        <div id="ui-app-customise" >
+        <div id="ui-app-customise">
           <div id="ui-app-customize-heading" style="position: absolute; top: -175px; left: 15px; opacity: 0">
             <h1>It's Magic</h1>
             <h2>Anything is possible, go on try it..</h2>
           </div>
-          <img src="assets/app_dialog.png" class="ui-app-dialog-img"/>
+          <img src="assets/app_dialog.png" class="ui-app-dialog-img" />
           <div id="ui-app-customise-controls">
             <div id="ui-app-customise-controls-test" style="display: none">
+              <p class="slider-label">Size</p>
               <input style="background-size: 40% 100%" type="range" min="0" max="1" value="0.4" step="0.01" />
               <br />
               <div class="dropdown">
@@ -64,12 +65,12 @@
               <br />
               <div>
                 <input type="checkbox" name="vox" checked />
-                <label>Check</label>
+                <label class="checkbox-label">Check</label>
               </div>
             </div>
 
             <div id="ui-app-customise-controls-rain">
-              <p style="margin-bottom: 0px">Intensity</p>
+              <p class="slider-label">Intensity</p>
               <input
                 style="background-size: 40% 100%"
                 type="range"
@@ -79,7 +80,7 @@
                 step="0.01"
                 oninput="setProperty('u_intensity',this.value)"
               />
-              <p style="margin-bottom: 0px">Speed</p>
+              <p class="slider-label">Speed</p>
               <input
                 style="background-size: 2.5% 100%"
                 type="range"
@@ -89,7 +90,7 @@
                 step="0.01"
                 oninput="setProperty('u_speed',this.value)"
               />
-              <p style="margin-bottom: 0px">Zoom</p>
+              <p class="slider-label">Size</p>
               <input
                 style="background-size: 87% 100%"
                 type="range"
@@ -111,7 +112,7 @@
               <!-- <button class="fluent-button" onclick="openFilePicker()">Change background</button> -->
               <div>
                 <input type="checkbox" unchecked onchange="setProperty('u_lightning',this.checked ? true : false)" />
-                <label>Lightning</label>
+                <label class="checkbox-label">Lightning</label>
               </div>
               <div>
                 <input
@@ -119,7 +120,7 @@
                   checked
                   onchange="setProperty('u_post_processing',this.checked ? true : false)"
                 />
-                <label>Post processing</label>
+                <label class="checkbox-label">Post processing</label>
               </div>
             </div>
           </div>
@@ -161,12 +162,10 @@
     </div>
 
     <!-- gallery -->
-    <div id="page-gallery"> </div>
-
+    <div id="page-gallery"></div>
 
     <!-- download -->
-    <div id="page-download">
-
+    <div id="page-download"></div>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.151.3/three.min.js"></script>
