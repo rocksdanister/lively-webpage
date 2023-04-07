@@ -12,7 +12,7 @@
     <input id="filePicker" type="file" accept=".jpg, .jpeg, .png, .mp4, .webm" style="visibility: hidden" />
 
     <!-- home -->
-    <div style="min-height: 1600px">
+    <div id="page-home">
       <div class="heading">
         <div>
           <img src="assets/logo.png" width="125" class="logo" />
@@ -22,9 +22,9 @@
         </div>
       </div>
       <!-- ui -->
-      <div class="ui_app">
+      <div class="ui-app">
         <!-- app wallpaper library -->
-        <div id="ui_app_library">
+        <div id="ui-app-library">
           <img src="assets/app.png" class="appImg" />
           <ul id="wallpapers" class="wallpapers">
             <li id="rain" class="library">
@@ -40,14 +40,14 @@
         </div>
 
         <!-- app wallpaper customise -->
-        <div id="ui_app_customise">
-          <div id="ui_app_customize_heading" style="position: absolute; top: -175px; left: 15px; opacity: 0">
+        <div id="ui-app-customise">
+          <div id="ui-app-customize-heading" style="position: absolute; top: -175px; left: 15px; opacity: 0">
             <h1>It's Magic</h1>
             <h2>Anything is possible, go on try it..</h2>
           </div>
           <img src="assets/app_dialog.png" class="appImg" />
-          <div id="ui_app_customise_controls">
-            <div id="ui_app_customise_controls_test" style="display: none">
+          <div id="ui-app-customise-controls">
+            <div id="ui-app-customise-controls-test" style="display: none">
               <input style="background-size: 40% 100%" type="range" min="0" max="1" value="0.4" step="0.01" />
               <br />
               <div class="dropdown">
@@ -67,7 +67,7 @@
               </div>
             </div>
 
-            <div id="ui_app_customise_controls_rain">
+            <div id="ui-app-customise-controls-rain">
               <p style="margin-bottom: 0px">Intensity</p>
               <input
                 style="background-size: 40% 100%"
@@ -127,7 +127,7 @@
     </div>
 
     <!-- features -->
-    <div style="transform: scale(1.09); background-color: #5e42a6; padding: 100px 0px 100px 0px">
+    <div id="page-features">
       <div class="post-container">
         <div class="post-thumb-left">
           <img width="125" height="125" src="assets/github-mark-white.svg" style="border-radius: 5px" />
@@ -139,12 +139,12 @@
       </div>
 
       <div class="post-container">
-        <div class="post-thumb-right">
+        <div class="post-thumb-left">
           <img width="125" height="125" src="assets/github-mark-white.svg" style="border-radius: 5px" />
         </div>
         <div class="post-content">
-          <h2>Performance</h2>
-          <p>Wallpaper stops when you are doing something important like work or gaming.</p>
+          <h2>API</h2>
+          <p>Create interactive webpage wallpapers using helpers.</p>
         </div>
       </div>
 
@@ -160,8 +160,12 @@
     </div>
 
     <!-- gallery -->
+    <div id="page-gallery"> </div>
+
 
     <!-- download -->
+    <div id="page-download">
+
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.151.3/three.min.js"></script>

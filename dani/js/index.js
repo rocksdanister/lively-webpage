@@ -15,14 +15,14 @@ ul.onclick = function (event) {
   }
 
   img.style.outline = "2.5px solid #a425a0";
-  $("#ui_app_customise_controls_rain").css("display", "none");
-  $("#ui_app_customise_controls_test").css("display", "none");
+  $("#ui-app-customise-controls-rain").css("display", "none");
+  $("#ui-app-customise-controls-test").css("display", "none");
   if (img.parentElement.id == "rain") {
     setScene("rain");
-    $("#ui_app_customise_controls_rain").css("display", "inline");
+    $("#ui-app-customise-controls-rain").css("display", "inline");
   } else if (img.parentElement.id == "clouds") {
     setScene("clouds");
-    $("#ui_app_customise_controls_test").css("display", "inline");
+    $("#ui-app-customise-controls-test").css("display", "inline");
   }
 };
 
@@ -38,19 +38,19 @@ $(window).scroll(function () {
   // Opacity of frame
   var alpha = 1 - percentage;
 
-  $(".ui_app").css("margin-top", marginTop);
-  $("#ui_app_customize_heading").css("opacity", 1 - alpha);
-  $("#ui_app_library").css("opacity", alpha);
-  $("#ui_app_customise").css("opacity", 1 - alpha);
+  $(".ui-app").css("margin-top", marginTop);
+  $("#ui-app-customize-heading").css("opacity", 1 - alpha);
+  $("#ui-app-library").css("opacity", alpha);
+  $("#ui-app-customise").css("opacity", 1 - alpha);
   $(".heading").css("opacity", alpha);
 
   if(alpha == 0)
   {
-    $("#ui_app_library").css("visibility", "collapse");
+    $("#ui-app-library").css("visibility", "collapse");
   }
   else
   {
-    $("#ui_app_library").css("visibility", "visible");
+    $("#ui-app-library").css("visibility", "visible");
   }
 
 });
