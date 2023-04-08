@@ -19,12 +19,20 @@ ul.onclick = function (event) {
   img.style.outline = "2.5px solid #a425a0";
   $("#ui-app-customise-controls-rain").css("display", "none");
   $("#ui-app-customise-controls-test").css("display", "none");
-  if (img.parentElement.id == "rain") {
-    setScene("rain");
-    $("#ui-app-customise-controls-rain").css("display", "inline");
-  } else if (img.parentElement.id == "clouds") {
-    setScene("clouds");
-    $("#ui-app-customise-controls-test").css("display", "inline");
+  $("#ui-app-customise-controls-snow").css("display", "none");
+  switch (img.parentElement.id) {
+    case "rain":
+      setScene("rain");
+      $("#ui-app-customise-controls-rain").css("display", "inline");
+      break;
+    case "clouds":
+      setScene("clouds");
+      $("#ui-app-customise-controls-test").css("display", "inline");
+      break;
+    case "snow":
+      setScene("snow");
+      $("#ui-app-customise-controls-snow").css("display", "inline");
+      break;
   }
 };
 

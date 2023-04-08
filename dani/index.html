@@ -33,6 +33,11 @@
               <div class="desc">Rain</div>
             </li>
 
+            <li id="snow" class="library">
+              <img src="assets/snow_preview.jpg" width="600" height="400" />
+              <div class="desc">Snow</div>
+            </li>
+
             <li id="clouds" class="library">
               <img src="assets/clouds_preview.jpg" width="600" height="400" />
               <div class="desc">Cloud</div>
@@ -123,6 +128,67 @@
                 <label class="checkbox-label">Post processing</label>
               </div>
             </div>
+
+            <div id="ui-app-customise-controls-snow" style="display: none">
+              <p class="slider-label">Layers</p>
+              <input
+                style="background-size: 25% 100%"
+                type="range"
+                min="0"
+                max="200"
+                value="50"
+                step="1"
+                oninput="setProperty('u_layers',this.value)"
+              />
+              <p class="slider-label">Depth</p>
+              <input
+                style="background-size: 2.5% 100%"
+                type="range"
+                min="0"
+                max="2"
+                value="0.05"
+                step="0.01"
+                oninput="setProperty('u_depth',this.value)"
+              />
+              <p class="slider-label">Width</p>
+              <input
+                style="background-size: 2.5% 100%"
+                type="range"
+                min="0"
+                max="2"
+                value="0.03"
+                step="0.01"
+                oninput="setProperty('u_width',this.value)"
+              />
+              <p class="slider-label">Speed</p>
+              <input
+                style="background-size: 3% 100%"
+                type="range"
+                min="0"
+                max="2"
+                value="0.06"
+                step="0.01"
+                oninput="setProperty('u_speed',this.value)"
+              />
+              <br />
+              <div class="dropdown">
+                <button class="dropbtn">Change background</button>
+                <div class="dropdown-content">
+                  <a onclick="setTexture('u_tex0', 'media/mountain.jpg')">Moutain.jpg</a>
+                  <a onclick="setTexture('u_tex0', 'media/forest.jpg')">Forest.jpg</a>
+                  <a onclick="openFilePicker()">Custom</a>
+                </div>
+              </div>
+              <div>
+                <input
+                  type="checkbox"
+                  checked
+                  onchange="setProperty('u_post_processing',this.checked ? true : false)"
+                />
+                <label class="checkbox-label">Post processing</label>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -169,6 +235,7 @@
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.151.3/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
   <script src="js/controls.js"></script>
   <script src="js/script.js"></script>
   <script src="js/index.js"></script>

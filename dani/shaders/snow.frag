@@ -12,30 +12,33 @@ uniform vec4 u_mouse;
 uniform vec2 u_resolution;
 uniform sampler2D u_tex0;
 uniform vec2 u_tex0_resolution;
+uniform int u_layers;
+uniform float u_depth;
+uniform float u_width;
+uniform float u_speed;
+uniform bool u_post_processing;
 
-#define LIGHT_SNOW // Comment this out for a blizzard
-
-#ifdef LIGHT_SNOW
-	#define LAYERS 50
-	#define DEPTH .5
-	#define WIDTH .3
-	#define SPEED .6
-#else // BLIZZARD
-	#define LAYERS 200
-	#define DEPTH .1
-	#define WIDTH .8
-	#define SPEED 1.5
-#endif
+// #ifdef LIGHT_SNOW
+// 	#define LAYERS 50
+// 	#define DEPTH .5
+// 	#define WIDTH .3
+// 	#define SPEED .6
+// #else // BLIZZARD
+// 	#define LAYERS 200
+// 	#define DEPTH .1
+// 	#define WIDTH .8
+// 	#define SPEED 1.5
+// #endif
 
 void main() {
     const mat3 p = mat3(13.323122, 23.5112, 21.71123, 21.1212, 28.7312, 11.9312, 21.8112, 14.7212, 61.3934);
     vec2 uv = u_mouse.xy / u_resolution.xy + vec2(1., u_resolution.y / u_resolution.x) * gl_FragCoord.xy / u_resolution.xy;
     vec3 acc = vec3(0.0);
     float dof = 5. * sin(u_time * .1);
-    for(int i = 0; i < LAYERS; i++) {
+    for(int i = 0; i < u_layers; i++) {
         float fi = float(i);
-        vec2 q = uv * (1. + fi * DEPTH);
-        q += vec2(q.y * (WIDTH * mod(fi * 7.238917, 1.) - WIDTH * .5), SPEED * u_time / (1. + fi * DEPTH * .03));
+        vec2 q = uv * (1. + fi * u_depth);
+        q += vec2(q.y * (u_width * mod(fi * 7.238917, 1.) - u_width * .5), u_speed * u_time / (1. + fi * u_depth * .03));
         vec3 n = vec3(floor(q), 31.189 + fi);
         vec3 m = floor(n) * .00001 + fract(n);
         vec3 mp = (31415.9 + m) / fract(p * m);
@@ -44,7 +47,7 @@ void main() {
         s += .01 * abs(2. * fract(10. * q.yx) - 1.);
         float d = .6 * max(s.x - s.y, s.x + s.y) + max(s.x, s.y) - .01;
         float edge = .005 + .05 * min(.5 * abs(fi - 5. - dof), 1.);
-        acc += vec3(smoothstep(edge, -edge, d) * (r.x / (1. + .02 * fi * DEPTH)));
+        acc += vec3(smoothstep(edge, -edge, d) * (r.x / (1. + .02 * fi * u_depth)));
     }
 
     //uniform texture scaling
@@ -58,6 +61,10 @@ void main() {
         scaleY = textureAspect / screenAspect;
     UV = vec2(scaleX, scaleY) * (UV - 0.5) + 0.5;
     vec3 col = texture2D(u_tex0, UV).rgb;
+
+    if(u_post_processing) {
+        col *= mix(vec3(1.), vec3(.8, .9, 1.3), 0.5); //subtle color shift
+    }
 
     gl_FragColor = vec4(vec3(acc) + col, 1.0);
 }

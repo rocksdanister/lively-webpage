@@ -1,5 +1,7 @@
 const container = document.getElementById("container");
 let clock = new THREE.Clock();
+const gui = new dat.GUI();
+gui.hide();
 
 const defaultFps = 24;
 let isPaused = false;
@@ -35,6 +37,7 @@ async function init() {
   //await setScene("synthwave");
 
   render(); //since init is async
+  //debugMenu();
 }
 
 //Example: setProperty("u_intensity", 0.5);
@@ -92,7 +95,7 @@ function openFilePicker() {
 async function setScene(name, geometry = quad) {
   if (name == currentScene) return;
 
-  showTransition();
+  showTransition(); //start async transition
 
   material?.uniforms?.u_tex0?.value?.dispose();
   material?.dispose();
@@ -141,10 +144,20 @@ async function setScene(name, geometry = quad) {
       break;
     case "snow":
       {
+        // #define LAYERS 50
+        // #define DEPTH .5
+        // #define WIDTH .3
+        // #define SPEED .6
+
         material = new THREE.ShaderMaterial({
           uniforms: {
             u_tex0: { type: "t" },
             u_time: { value: 0, type: "f" },
+            u_depth: { value: 0.5, type: "f" },
+            u_width: { value: 0.3, type: "f" },
+            u_speed: { value: 0.6, type: "f" },
+            u_layers: { value: 50, type: "i" },
+            u_post_processing: { value: true, type: "b" },
             u_mouse: { value: new THREE.Vector4(), type: "v4" },
             u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
             u_tex0_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
@@ -158,7 +171,7 @@ async function setScene(name, geometry = quad) {
           material.uniforms.u_tex0.value = tex;
         });
       }
-      break;  
+      break;
     case "clouds":
       {
         material = new THREE.ShaderMaterial({
@@ -290,4 +303,20 @@ function disposeVideoElement(video) {
     video.removeAttribute("src"); // empty source
     video.load();
   }
+}
+
+//debug
+function debugMenu() {
+  try {
+    debugSnow();
+  } catch (ex) {
+    console.log(ex);
+  }
+}
+
+function debugSnow() {
+  gui.add(material.uniforms.u_layers, "value", 0, 200, 1).name("Layers");
+  gui.add(material.uniforms.u_depth, "value", 0, 10, 0.01).name("Depth");
+  gui.add(material.uniforms.u_width, "value", 0, 10, 0.01).name("Width");
+  gui.add(material.uniforms.u_speed, "value", 0, 10, 0.01).name("Speed");
 }
