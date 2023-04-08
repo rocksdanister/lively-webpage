@@ -21,7 +21,6 @@ uniform float u_zoom;
 uniform bool u_panning;
 uniform bool u_post_processing;
 uniform bool u_lightning;
-uniform bool u_texture_fill;
 
 #define S(a, b, t) smoothstep(a, b, t)
 //#define USE_POST_PROCESSING
@@ -129,16 +128,15 @@ void main() {
     vec2 UV = gl_FragCoord.xy / u_resolution.xy;//-.5;
     float T = u_time;
 
-    if(u_texture_fill) {
-        float screenAspect = u_resolution.x / u_resolution.y;
-        float textureAspect = u_tex0_resolution.x / u_tex0_resolution.y;
-        float scaleX = 1., scaleY = 1.;
-        if(textureAspect > screenAspect )
-            scaleX = screenAspect / textureAspect;
-        else
-            scaleY = textureAspect / screenAspect;
-        UV = vec2(scaleX, scaleY) * (UV - 0.5) + 0.5;
-    }
+    //uniform texture scaling
+    float screenAspect = u_resolution.x / u_resolution.y;
+    float textureAspect = u_tex0_resolution.x / u_tex0_resolution.y;
+    float scaleX = 1., scaleY = 1.;
+    if(textureAspect > screenAspect)
+        scaleX = screenAspect / textureAspect;
+    else
+        scaleY = textureAspect / screenAspect;
+    UV = vec2(scaleX, scaleY) * (UV - 0.5) + 0.5;
 
     float t = T * .2 * u_speed;
 

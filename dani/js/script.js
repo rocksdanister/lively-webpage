@@ -30,6 +30,7 @@ async function init() {
   scene.add(quad);
 
   await setScene("rain");
+  //await setScene("snow");
   //await setScene("clouds");
   //await setScene("synthwave");
 
@@ -115,7 +116,6 @@ async function setScene(name, geometry = quad) {
             u_panning: { value: false, type: "b" },
             u_post_processing: { value: true, type: "b" },
             u_lightning: { value: false, type: "b" },
-            u_texture_fill: { value: true, type: "b" },
             u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
             u_tex0_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
           },
@@ -139,18 +139,26 @@ async function setScene(name, geometry = quad) {
         }
       }
       break;
-    case "synthwave":
+    case "snow":
       {
         material = new THREE.ShaderMaterial({
           uniforms: {
+            u_tex0: { type: "t" },
             u_time: { value: 0, type: "f" },
+            u_mouse: { value: new THREE.Vector4(), type: "v4" },
             u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
+            u_tex0_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
           },
           vertexShader: vertexShader,
-          fragmentShader: await (await fetch("shaders/synthwave.frag")).text(),
+          fragmentShader: await (await fetch("shaders/snow.frag")).text(),
+        });
+
+        new THREE.TextureLoader().load("media/mountain.jpg", function (tex) {
+          material.uniforms.u_tex0_resolution.value = new THREE.Vector2(tex.image.width, tex.image.height);
+          material.uniforms.u_tex0.value = tex;
         });
       }
-      break;
+      break;  
     case "clouds":
       {
         material = new THREE.ShaderMaterial({
@@ -169,6 +177,18 @@ async function setScene(name, geometry = quad) {
           material.uniforms.u_mouse.value.z = 1;
           material.uniforms.u_mouse.value.w = 1;
         }
+      }
+      break;
+    case "synthwave":
+      {
+        material = new THREE.ShaderMaterial({
+          uniforms: {
+            u_time: { value: 0, type: "f" },
+            u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
+          },
+          vertexShader: vertexShader,
+          fragmentShader: await (await fetch("shaders/synthwave.frag")).text(),
+        });
       }
       break;
   }
