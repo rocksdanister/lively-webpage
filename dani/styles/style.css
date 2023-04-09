@@ -79,7 +79,7 @@ label {
   transform: translate3d(0, 0, 0);
   background-color: #5e42a6;
   padding: 100px 0px 100px 0px;
-  min-height: 600px;
+  min-height: 500px;
   text-align: center;
 }
 
@@ -97,7 +97,7 @@ label {
   transform: scale(1);
   background-color: #5e42a6;
   padding: 100px;
-  min-height: 400px;
+  min-height: 300px;
   text-align: center;
 }
 
@@ -211,23 +211,26 @@ li.card {
   font-family: "Inter";
   font-style: normal;
   font-size: 14px;
-  margin: 25px;
+  margin: 10px;
   float: left;
-  width: 360px;
+  width: 368px;
+  height: 207px;
+  border-radius: 10px;
+  background-color: #a425a0;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
 }
 
-li.card img:hover {
+li.card:hover {
   transform: scale(1.05);
-  transition: 0.5s;
-  filter: brightness(1.2);
-  cursor: pointer;
+  transition: 0.5s ease;
+  filter: brightness(1.1);
 }
 
 li.card img {
-  width: 100%;
-  height: auto;
-  border-radius: 5px;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+  position: relative;
+  width: 25%;
+  padding: 10px;
+  margin: 0% 35% 0% 35%;
 }
 
 li.card div {
@@ -235,8 +238,18 @@ li.card div {
   color: white;
   padding: 0px;
   text-align: left;
-  margin: -25px 0 0 5px;
+  text-align: center;
   text-shadow: 1px 1px 2px rgb(0, 0, 0);
+}
+
+li.card p {
+  text-align: center;
+  font-size: 14px;
+  padding: 0px 5px;
+}
+
+.white-filter {
+  filter: invert(100%) sepia(31%) saturate(0%) hue-rotate(148deg) brightness(110%) contrast(101%);
 }
 
 .logo {
@@ -251,7 +264,7 @@ li.card div {
   border-radius: 10px;
   width: 290px;
   height: 100px;
-  font-size: 50px
+  font-size: 50px;
 }
 
 .download-button a {
