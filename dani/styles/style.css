@@ -244,11 +244,20 @@ li.card p {
 }
 
 .download-button {
+  margin-top: 10px;
   background-color: black;
   border-radius: 10px;
   width: 290px;
-  height: 100px;
+  height: 105px;
   font-size: 50px;
+  transition: 0.25s;
+  transform: translateY(0px);
+}
+
+.download-button:hover {
+  cursor: pointer;
+  transform: translateY(-5px);
+  transition: 0.25s;
 }
 
 .download-button a {
