@@ -10,6 +10,7 @@ precision highp float;
 uniform float u_time;
 uniform vec4 u_mouse;
 uniform vec2 u_resolution;
+uniform float u_brightness;
 
 mat2 rot(in float a){float c = cos(a), s = sin(a);return mat2(c,s,-s,c);}
 const mat3 m3 = mat3(0.33338, 0.56034, -0.71817, -0.87887, 0.32651, -0.15323, 0.15162, 0.69596, 0.61339)*1.93;
@@ -133,5 +134,5 @@ void main()
 
     col *= pow( 16.0*q.x*q.y*(1.0-q.x)*(1.0-q.y), 0.12)*0.7+0.3; //Vign
     
-	gl_FragColor = vec4( col, 1.0 );
+	gl_FragColor = vec4( col * u_brightness, 1.0 );
 }

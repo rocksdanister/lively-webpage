@@ -42,7 +42,11 @@ async function init() {
 
 //Example: setProperty("u_intensity", 0.5);
 function setProperty(property, value) {
-  material.uniforms[property].value = value;
+  try {
+    material.uniforms[property].value = value;
+  } catch (ex) {
+    console.log(`Property not found ${ex}`);
+  }
 }
 
 function setTexture(texName, value) {
@@ -111,7 +115,7 @@ async function setScene(name, geometry = quad) {
             u_time: { value: 0, type: "f" },
             u_intensity: { value: 0.4, type: "f" },
             u_speed: { value: 0.25, type: "f" },
-            u_brightness: { value: 0.8, type: "f" },
+            u_brightness: { value: 0.75, type: "f" },
             u_normal: { value: 0.5, type: "f" },
             u_zoom: { value: 2.61, type: "f" },
             //u_blur_intensity: { value: 0.5, type: "f" },
@@ -157,6 +161,7 @@ async function setScene(name, geometry = quad) {
             u_width: { value: 0.3, type: "f" },
             u_speed: { value: 0.6, type: "f" },
             u_layers: { value: 50, type: "i" },
+            u_brightness: { value: 0.75, type: "f" },
             u_post_processing: { value: true, type: "b" },
             u_mouse: { value: new THREE.Vector4(), type: "v4" },
             u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
@@ -177,6 +182,7 @@ async function setScene(name, geometry = quad) {
         material = new THREE.ShaderMaterial({
           uniforms: {
             u_time: { value: 0, type: "f" },
+            u_brightness: { value: 0.75, type: "f" },
             u_mouse: { value: new THREE.Vector4(), type: "v4" },
             u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
           },
@@ -197,6 +203,7 @@ async function setScene(name, geometry = quad) {
         material = new THREE.ShaderMaterial({
           uniforms: {
             u_time: { value: 0, type: "f" },
+            u_brightness: { value: 0.75, type: "f" },
             u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
           },
           vertexShader: vertexShader,

@@ -54,6 +54,7 @@ $(window).scroll(function () {
   $("#ui-app-library").css("filter", `brightness(${1 - (1 - alpha) / 4})`);
   $("#ui-app-customize-heading").css("opacity", 1 - alpha);
   $("#ui-app-customise").css("opacity", 1 - alpha);
+  setProperty('u_brightness', 0.75 + (1 - alpha) / 8)
 
   if (alpha == 0) {
     $("#ui-app-library").css("pointer-events", "none");

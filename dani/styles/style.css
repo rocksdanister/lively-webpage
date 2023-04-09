@@ -1,10 +1,15 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Inter";
+  font-family: 'Noto Sans', sans-serif;
   font-style: normal;
   font-size: 24px;
   background-color: #252526;
+  /* background: url(../assets/temp_background.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; */
 }
 
 /* threejs background */
@@ -13,12 +18,9 @@ body {
   right: 0;
   transform: scale(1.09);
   z-index: -10;
-  opacity: 0.8;
 }
 
 h1 {
-  font-family: "Inter";
-  font-style: normal;
   font-size: 48px;
   font-weight: 700;
   color: white;
@@ -27,8 +29,6 @@ h1 {
 }
 
 h2 {
-  font-family: "Inter";
-  font-style: normal;
   font-size: 24px;
   font-weight: 400;
   color: white;
@@ -37,36 +37,24 @@ h2 {
 }
 
 h4 {
-  font-family: "Inter";
-  font-style: normal;
   font-size: 17px;
-  font-weight: 400;
   color: white;
   text-shadow: 5px 5px 10px #111111;
   animation: fade-in 2s ease;
 }
 
 p {
-  font-family: "Inter";
-  font-style: normal;
   font-size: 17px;
-  font-weight: 400;
   color: rgb(175, 175, 175);
 }
 
 a {
-  font-family: "Inter";
-  font-style: normal;
   font-size: 14px;
-  font-weight: 400;
   color: rgb(175, 175, 175);
 }
 
 label {
-  font-family: "Inter";
-  font-style: normal;
   font-size: 14px;
-  font-weight: 400;
   color: rgb(175, 175, 175);
 }
 
@@ -168,8 +156,6 @@ label {
 }
 
 li.library {
-  font-family: "Inter";
-  font-style: normal;
   font-size: 14px;
   margin: 5px;
   float: left;
@@ -208,8 +194,6 @@ li.library div {
 }
 
 li.card {
-  font-family: "Inter";
-  font-style: normal;
   font-size: 14px;
   margin: 10px;
   float: left;
@@ -308,5 +292,8 @@ li.card p {
 @media screen and (max-width: 768px) {
   .ui-app {
     display: none !important;
+  }
+  #page-home {
+    min-height: 800px;
   }
 }

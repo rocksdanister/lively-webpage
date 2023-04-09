@@ -10,6 +10,7 @@ precision highp float;
 
 uniform float u_time;
 uniform vec2 u_resolution;
+uniform float u_brightness;
 
 // License: WTFPL, author: sam hocevar, found: https://stackoverflow.com/a/17897228/418488
 const vec4 hsv2rgb_K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
@@ -299,5 +300,5 @@ void main() {
     col = effect(p, q);
     col *= smoothstep(0.0, 4.0, u_time);
     col = postProcess(col, q);
-    gl_FragColor = vec4(col, 1.0);
+    gl_FragColor = vec4(col * u_brightness, 1.0);
 }

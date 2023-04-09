@@ -17,6 +17,7 @@ uniform float u_depth;
 uniform float u_width;
 uniform float u_speed;
 uniform bool u_post_processing;
+uniform float u_brightness;
 
 // #ifdef LIGHT_SNOW
 // 	#define LAYERS 50
@@ -66,5 +67,5 @@ void main() {
         col *= mix(vec3(1.), vec3(.8, .9, 1.3), 0.5); //subtle color shift
     }
 
-    gl_FragColor = vec4(vec3(acc) + col, 1.0);
+    gl_FragColor = vec4((vec3(acc) + col)*u_brightness, 1.0);
 }
