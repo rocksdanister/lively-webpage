@@ -1,6 +1,6 @@
 body {
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
   font-family: "Inter";
   font-style: normal;
   font-size: 24px;
@@ -36,10 +36,28 @@ h2 {
   animation: fade-in 2s ease;
 }
 
+h4 {
+  font-family: "Inter";
+  font-style: normal;
+  font-size: 17px;
+  font-weight: 400;
+  color: white;
+  text-shadow: 5px 5px 10px #111111;
+  animation: fade-in 2s ease;
+}
+
 p {
   font-family: "Inter";
   font-style: normal;
   font-size: 17px;
+  font-weight: 400;
+  color: rgb(175, 175, 175);
+}
+
+a {
+  font-family: "Inter";
+  font-style: normal;
+  font-size: 14px;
   font-weight: 400;
   color: rgb(175, 175, 175);
 }
@@ -58,30 +76,33 @@ label {
 
 /* https://stackoverflow.com/questions/35681829/transformscale-breaking-my-z-index-order */
 #page-features {
-  transform: translate3d(0,0,0);
+  transform: translate3d(0, 0, 0);
   background-color: #5e42a6;
   padding: 100px 0px 100px 0px;
   min-height: 600px;
+  text-align: center;
 }
 
 #page-gallery {
-  transform: translate3d(0,0,0);
-  transform: scale(1.0);
+  transform: translate3d(0, 0, 0);
+  transform: scale(1);
   background-color: #a425a0;
   padding: 100px 0px 100px 0px;
   min-height: 600px;
+  text-align: center;
 }
 
 #page-download {
-  transform: translate3d(0,0,0);
-  transform: scale(1.0);
+  transform: translate3d(0, 0, 0);
+  transform: scale(1);
   background-color: #5e42a6;
-  padding: 100px 0px 100px 0px;
-  min-height: 600px;
+  padding: 100px;
+  min-height: 400px;
+  text-align: center;
 }
 
 #footer {
-  transform: translate3d(0,0,0);
+  transform: translate3d(0, 0, 0);
   background-color: #493382;
   padding: 25px;
   min-height: 100px;
@@ -169,39 +190,53 @@ li.library img {
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
 }
 
-div.desc {
+li.library div {
   position: relative;
   color: white;
   padding: 0px;
   text-align: left;
   margin: -25px 0 0 5px;
-  text-shadow: 1px 1px 2px rgb(0, 0, 0); 
+  text-shadow: 1px 1px 2px rgb(0, 0, 0);
 }
 
 /* features */
-.post-container {
-  margin: 50px auto;
-  width: 50%;
-  overflow: auto;
-  max-width: 850px;
+.cards {
+  list-style-type: none;
+  animation: zoom-in 1.5s ease;
+  display: inline-block;
+  text-align: left;
 }
 
-.post-thumb-left {
-  margin-right: 25px;
+li.card {
+  font-family: "Inter";
+  font-style: normal;
+  font-size: 14px;
+  margin: 25px;
   float: left;
+  width: 360px;
 }
 
-.post-thumb-right {
-  margin-left: 25px;
-  float: right;
+li.card img:hover {
+  transform: scale(1.05);
+  transition: 0.5s;
+  filter: brightness(1.2);
+  cursor: pointer;
 }
 
-.post-thumb img {
-  display: block;
+li.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
 }
 
-.post-content {
-  margin-left: 0px;
+li.card div {
+  position: relative;
+  color: white;
+  padding: 0px;
+  text-align: left;
+  margin: -25px 0 0 5px;
+  text-shadow: 1px 1px 2px rgb(0, 0, 0);
 }
 
 .logo {
@@ -209,6 +244,18 @@ div.desc {
   -moz-animation: spin 14s linear infinite;
   animation: spin 14s linear infinite; */
   filter: drop-shadow(10px 5px 7.5px rgba(0, 0, 0, 0.5));
+}
+
+.download-button {
+  background-color: black;
+  border-radius: 10px;
+  width: 290px;
+  height: 100px;
+  font-size: 50px
+}
+
+.download-button a {
+  text-decoration: none;
 }
 
 @-moz-keyframes spin {

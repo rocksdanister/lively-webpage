@@ -70,5 +70,5 @@ function hasClass(element, className) {
 }
 
 function scrollToElement(id) {
-  document.getElementById(id).scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+  document.getElementById(id).scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
 }

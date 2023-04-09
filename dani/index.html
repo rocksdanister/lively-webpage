@@ -31,17 +31,17 @@
           <ul id="wallpapers" class="wallpapers">
             <li id="rain" class="library">
               <img src="assets/rain_preview.jpg" style="outline: 2.5px solid #a425a0" width="600" height="400" />
-              <div class="desc">Rain</div>
+              <div>Rain</div>
             </li>
 
             <li id="snow" class="library">
               <img src="assets/snow_preview.jpg" width="600" height="400" />
-              <div class="desc">Snow</div>
+              <div>Snow</div>
             </li>
 
             <li id="clouds" class="library">
               <img src="assets/clouds_preview.jpg" width="600" height="400" />
-              <div class="desc">Cloud</div>
+              <div>Cloud</div>
             </li>
           </ul>
         </div>
@@ -196,48 +196,60 @@
 
     <!-- features -->
     <div id="page-features">
-      <div class="post-container">
-        <div class="post-thumb-left">
-          <img width="125" height="125" src="assets/github-mark-white.svg" style="border-radius: 5px" />
-        </div>
-        <div class="post-content">
-          <h2>Open Source</h2>
-          <p>Free and Open Source Software (FOSS) made by the community for the community.</p>
-        </div>
-      </div>
+      <h1>Features</h1>
+      <p>Desc</p>
+      <ul class="cards">
+        <li id="rain" class="card">
+          <img src="assets/rain_preview.jpg" />
+          <div>Rain</div>
+        </li>
 
-      <div class="post-container">
-        <div class="post-thumb-left">
-          <img width="125" height="125" src="assets/github-mark-white.svg" style="border-radius: 5px" />
-        </div>
-        <div class="post-content">
-          <h2>API</h2>
-          <p>Create interactive webpage wallpapers using helpers.</p>
-        </div>
-      </div>
+        <li id="snow" class="card">
+          <img src="assets/snow_preview.jpg" />
+          <div>Snow</div>
+        </li>
 
-      <div class="post-container">
-        <div class="post-thumb-left">
-          <img width="125" height="125" src="assets/github-mark-white.svg" style="border-radius: 5px" />
-        </div>
-        <div class="post-content">
-          <h2>API</h2>
-          <p>Create interactive webpage wallpapers using helpers.</p>
-        </div>
-      </div>
+        <li id="clouds" class="card">
+          <img src="assets/clouds_preview.jpg" />
+          <div>Cloud</div>
+        </li>
+
+        <li id="clouds" class="card">
+          <img src="assets/clouds_preview.jpg" />
+          <div>Cloud</div>
+        </li>
+
+      </ul>
     </div>
 
     <!-- gallery -->
-    <div id="page-gallery"></div>
+    <div id="page-gallery">
+      <h1>Gallery</h1>
+      <p>Desc</p>
+    </div>
 
     <!-- download -->
     <div id="page-download">
-      <h2>Download</h2>
-      <ms-store-badge productid="9NTM2QC6QWS7" size="large" theme="dark"></ms-store-badge>
+      <h1>Ready to get started?</h1>
+      <div>
+        <ms-store-badge productid="9NTM2QC6QWS7" size="large" theme="dark"></ms-store-badge>
+      </div>
+      <div>
+        <button class="download-button">
+          <a href="https://github.com/rocksdanister/lively/releases/download/v2.0.6.1/lively_setup_x86_full_v2061.exe">
+            <i class="fas fa-download"></i>
+            <h2>Installer</h2>
+          </a>
+        </button>
+      </div>
     </div>
 
     <div id="footer">
-      <p>Design by Rocksdanister | Attribution</p>
+      <div style="text-align: center">
+        <img src="https://avatars.githubusercontent.com/rocksdanister" style="width: 125px; border-radius: 50%" />
+        <h4>Dani John</h4>
+        <p>I make fun software and stuff</p>
+      </div>
     </div>
   </body>
   <script type="module" src="https://get.microsoft.com/badge/ms-store-badge.bundled.js"></script>
