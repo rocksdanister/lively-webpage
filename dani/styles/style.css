@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Noto Sans", sans-serif; /*Similar to Segoe UI*/
   font-style: normal;
   font-size: 24px;
   background-color: #252526;
@@ -253,6 +253,20 @@ li.card p {
 
 .download-button a {
   text-decoration: none;
+}
+
+.download-button h1 {
+  display: inline-block;
+  font-size: 38px !important;
+  vertical-align: top;
+  margin-left: 5px;
+}
+
+.download-button img {
+  width: 65px;
+  margin-top: 10px;
+  margin-left: -30px;
+  vertical-align: top;
 }
 
 @-moz-keyframes spin {
