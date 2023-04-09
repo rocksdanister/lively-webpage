@@ -1,9 +1,19 @@
 body {
+  margin:0;
+  padding:0;
   font-family: "Inter";
   font-style: normal;
   font-size: 24px;
   background-color: #252526;
-  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+/* threejs background */
+.container {
+  position: fixed;
+  right: 0;
+  transform: scale(1.09);
+  z-index: -10;
+  opacity: 0.8;
 }
 
 h1 {
@@ -46,66 +56,86 @@ label {
   min-height: 1600px;
 }
 
+/* https://stackoverflow.com/questions/35681829/transformscale-breaking-my-z-index-order */
 #page-features {
-  transform: scale(1.09);
+  transform: translate3d(0,0,0);
   background-color: #5e42a6;
   padding: 100px 0px 100px 0px;
   min-height: 600px;
 }
 
 #page-gallery {
-  transform: scale(1.09);
+  transform: translate3d(0,0,0);
+  transform: scale(1.0);
   background-color: #a425a0;
   padding: 100px 0px 100px 0px;
   min-height: 600px;
 }
 
 #page-download {
-  transform: scale(1.09);
+  transform: translate3d(0,0,0);
+  transform: scale(1.0);
   background-color: #5e42a6;
   padding: 100px 0px 100px 0px;
   min-height: 600px;
+}
+
+#footer {
+  transform: translate3d(0,0,0);
+  background-color: #493382;
+  padding: 25px;
+  min-height: 100px;
+}
+
+#footer p {
+  font-size: 12px;
+  color: rgb(150, 150, 150);
 }
 
 .heading {
   display: flex;
   justify-content: center;
   text-align: center;
+  user-select: none;
 }
 
-/* threejs background */
-.container {
+/* app ui */
+.ui-app {
+  animation: zoom-in 1.5s ease;
   position: fixed;
-  right: 0;
-  transform: scale(1.09);
-  z-index: -10;
-  opacity: 0.8;
+  width: 798px;
+  height: 709px;
+  top: 50%;
+  left: 50%;
+  margin-top: 100px;
+  margin-left: -399px; /* Negative half of width. */
+  user-select: none;
 }
 
-/* features */
-.post-container {
-  margin: 50px auto;
-  width: 50%;
-  overflow: auto;
-  max-width: 850px;
+#ui-app-library {
+  position: absolute;
+  z-index: 1;
 }
 
-.post-thumb-left {
-  margin-right: 25px;
-  float: left;
+#ui-app-customise {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 2;
 }
 
-.post-thumb-right {
-  margin-left: 25px;
-  float: right;
+#ui-app-customise-controls {
+  position: absolute;
+  left: 300px;
+  top: 125px;
 }
 
-.post-thumb img {
-  display: block;
+.ui-app-img {
+  filter: drop-shadow(5px 0px 10px rgba(0, 0, 0, 0.5));
 }
 
-.post-content {
-  margin-left: 0px;
+.ui-app-dialog-img {
+  filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.5));
 }
 
 .wallpapers {
@@ -148,35 +178,30 @@ div.desc {
   text-shadow: 1px 1px 2px rgb(0, 0, 0); 
 }
 
-/* app ui */
-.ui-app {
-  animation: zoom-in 1.5s ease;
-  position: fixed;
-  width: 798px;
-  height: 709px;
-  top: 50%;
-  left: 50%;
-  margin-top: 100px;
-  margin-left: -399px; /* Negative half of width. */
-  user-select: none;
+/* features */
+.post-container {
+  margin: 50px auto;
+  width: 50%;
+  overflow: auto;
+  max-width: 850px;
 }
 
-#ui-app-library {
-  position: absolute;
-  z-index: 1;
+.post-thumb-left {
+  margin-right: 25px;
+  float: left;
 }
 
-#ui-app-customise {
-  position: absolute;
-  pointer-events: none;
-  opacity: 0;
-  z-index: 2;
+.post-thumb-right {
+  margin-left: 25px;
+  float: right;
 }
 
-#ui-app-customise-controls {
-  position: absolute;
-  left: 300px;
-  top: 125px;
+.post-thumb img {
+  display: block;
+}
+
+.post-content {
+  margin-left: 0px;
 }
 
 .logo {
@@ -184,14 +209,6 @@ div.desc {
   -moz-animation: spin 14s linear infinite;
   animation: spin 14s linear infinite; */
   filter: drop-shadow(10px 5px 7.5px rgba(0, 0, 0, 0.5));
-}
-
-.ui-app-img {
-  filter: drop-shadow(5px 0px 10px rgba(0, 0, 0, 0.5));
-}
-
-.ui-app-dialog-img {
-  filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.5));
 }
 
 @-moz-keyframes spin {

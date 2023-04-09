@@ -1,7 +1,7 @@
 //app ui
 var ul = document.getElementById("wallpapers");
 ul.onclick = function (event) {
-  let lis = document.getElementById("wallpapers").getElementsByTagName("IMG");
+  let lis = ul.getElementsByTagName("IMG");
   for (let i = 0; i <= lis.length - 1; i++) {
     lis[i].style.outline = "";
   }
