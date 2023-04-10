@@ -24,22 +24,26 @@ h1 {
   font-size: 48px;
   font-weight: 700;
   color: white;
-  text-shadow: 5px 5px 10px #111111;
   animation: fade-in 2s ease;
 }
 
 h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: white;
+  animation: fade-in 2s ease;
+}
+
+h3 {
   font-size: 24px;
   font-weight: 400;
   color: white;
-  text-shadow: 5px 5px 10px #111111;
   animation: fade-in 2s ease;
 }
 
 h4 {
   font-size: 17px;
   color: white;
-  text-shadow: 5px 5px 10px #111111;
   animation: fade-in 2s ease;
 }
 
@@ -60,6 +64,14 @@ label {
 
 #page-home {
   min-height: 1600px;
+}
+
+#page-home h1 {
+  text-shadow: 5px 5px 10px #111111;
+}
+
+#page-home h3 {
+  text-shadow: 5px 5px 10px #111111;
 }
 
 /* https://stackoverflow.com/questions/35681829/transformscale-breaking-my-z-index-order */
@@ -225,7 +237,6 @@ li.card div {
   padding: 0px;
   text-align: left;
   text-align: center;
-  text-shadow: 1px 1px 2px rgb(0, 0, 0);
 }
 
 li.card p {
@@ -243,6 +254,7 @@ li.card p {
   -moz-animation: spin 14s linear infinite;
   animation: spin 14s linear infinite; */
   filter: drop-shadow(10px 5px 7.5px rgba(0, 0, 0, 0.5));
+  animation: zoom-in 2s ease;
 }
 
 .download-button {
