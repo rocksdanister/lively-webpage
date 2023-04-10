@@ -37,6 +37,7 @@ async function init() {
   //await setScene("synthwave");
 
   render(); //since init is async
+  setVisible();
   //debugMenu();
 }
 
@@ -90,6 +91,13 @@ function setTexture(texName, value) {
 //Pause rendering
 function setPause(val) {
   isPaused = val;
+}
+
+async function setVisible() {
+  for (let val = 0; val < 1; val += 0.1) {
+    container.style.opacity = val;
+    await new Promise((r) => setTimeout(r, 75));
+  }
 }
 
 function openFilePicker() {
