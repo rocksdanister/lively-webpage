@@ -54,7 +54,7 @@ $(window).scroll(function () {
   $("#ui-app-library").css("filter", `brightness(${1 - (1 - alpha) / 4})`);
   $("#ui-app-customize-heading").css("opacity", 1 - alpha);
   $("#ui-app-customise").css("opacity", 1 - alpha);
-  setProperty('u_brightness', 0.75 + (1 - alpha) / 8)
+  setProperty("u_brightness", 0.75 + (1 - alpha) / 8);
 
   if (alpha == 0) {
     $("#ui-app-library").css("pointer-events", "none");
@@ -62,6 +62,29 @@ $(window).scroll(function () {
   } else {
     $("#ui-app-library").css("pointer-events", "auto");
     $("#ui-app-customise").css("pointer-events", "none");
+  }
+});
+
+//pause threejs
+//ref: https://stackoverflow.com/questions/21561480/trigger-event-when-user-scroll-to-specific-element-with-jquery
+var element_position = $("#page-gallery").offset().top;
+var screen_height = $(window).height();
+var activation_offset = 0.5; //determines how far up the the page the element needs to be before triggering the function
+var activation_point = element_position - screen_height * activation_offset;
+var max_scroll_height = $("body").height() - screen_height - 5; //-5 for a little bit of buffer
+
+//does something when user scrolls to it OR
+//does it when user has reached the bottom of the page and hasn't triggered the function yet
+$(window).on("scroll", function () {
+  var y_scroll_pos = window.pageYOffset;
+
+  var element_in_view = y_scroll_pos > activation_point;
+  var has_reached_bottom_of_page = max_scroll_height <= y_scroll_pos && !element_in_view;
+
+  if (element_in_view || has_reached_bottom_of_page) {
+    setPause(true);
+  } else {
+    setPause(false);
   }
 });
 
