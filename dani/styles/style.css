@@ -4,7 +4,6 @@ body {
   font-family: "Noto Sans", sans-serif; /*Similar to Segoe UI*/
   font-style: normal;
   font-size: 24px;
-  background-color: #252526;
   background: url(../assets/temp_background.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;

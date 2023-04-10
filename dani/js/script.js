@@ -37,7 +37,7 @@ async function init() {
   //await setScene("synthwave");
 
   render(); //since init is async
-  setVisible();
+  //setVisible(); //texture not loaded yet
   //debugMenu();
 }
 
@@ -141,6 +141,8 @@ async function setScene(name, geometry = quad) {
         new THREE.TextureLoader().load("media/mountain.jpg", function (tex) {
           material.uniforms.u_tex0_resolution.value = new THREE.Vector2(tex.image.width, tex.image.height);
           material.uniforms.u_tex0.value = tex;
+
+          if (container.style.opacity == 0 ) setVisible();
         });
 
         this.onmousemove = parallax;
