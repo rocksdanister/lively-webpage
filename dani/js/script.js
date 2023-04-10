@@ -158,19 +158,14 @@ async function setScene(name, geometry = quad) {
       break;
     case "snow":
       {
-        // #define LAYERS 50
-        // #define DEPTH .5
-        // #define WIDTH .3
-        // #define SPEED .6
-
         material = new THREE.ShaderMaterial({
           uniforms: {
             u_tex0: { type: "t" },
             u_time: { value: 0, type: "f" },
-            u_depth: { value: 0.5, type: "f" },
+            u_depth: { value: 1.0, type: "f" },
             u_width: { value: 0.3, type: "f" },
             u_speed: { value: 0.6, type: "f" },
-            u_layers: { value: 50, type: "i" },
+            u_layers: { value: 25, type: "i" },
             u_brightness: { value: 0.75, type: "f" },
             u_post_processing: { value: true, type: "b" },
             u_mouse: { value: new THREE.Vector4(), type: "v4" },
