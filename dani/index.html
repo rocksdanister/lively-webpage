@@ -18,6 +18,33 @@
     <div id="container" class="container"></div>
     <input id="filePicker" type="file" accept=".jpg, .jpeg, .png, .mp4, .webm" style="visibility: hidden" />
 
+    <!-- navigation -->
+    <div class="nav">
+      <div>
+        <img src="assets/logo.png" alt="Logo" />
+        <h4>Lively Wallpaper</h4>
+      </div>
+      <div>
+        <ul>
+          <li>
+            <a text="Home" class="active">Home</a>
+          </li>
+          <li>
+            <a text="Magic" onClick="scrollToElement('page-home');">Magic</a>
+          </li>
+          <li>
+            <a text="Features" onClick="scrollToElement('page-features');">Features</a>
+          </li>
+          <li>
+            <a text="Gallery" onClick="scrollToElement('page-gallery');">Gallery</a>
+          </li>
+          <li>
+            <a text="Download" onClick="scrollToElement('page-download');">Download</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
     <!-- home -->
     <div id="page-home">
       <div class="heading">
