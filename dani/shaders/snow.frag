@@ -7,6 +7,7 @@ precision highp float;
 #endif
 
 varying vec2 vUv;
+uniform bool u_blur;
 uniform float u_time;
 uniform vec4 u_mouse;
 uniform vec2 u_resolution;
@@ -30,6 +31,10 @@ uniform float u_brightness;
 // 	#define WIDTH .8
 // 	#define SPEED 1.5
 // #endif
+
+float rand(vec2 co) {
+    return fract(sin(dot(co, vec2(12.9898, 78.233))) * 43758.5453);
+}
 
 void main() {
     const mat3 p = mat3(13.323122, 23.5112, 21.71123, 21.1212, 28.7312, 11.9312, 21.8112, 14.7212, 61.3934);
@@ -61,11 +66,12 @@ void main() {
     else
         scaleY = textureAspect / screenAspect;
     UV = vec2(scaleX, scaleY) * (UV - 0.5) + 0.5;
-    vec3 col = texture2D(u_tex0, UV).rgb;
+    float blurIntensity = u_blur ? 0.5/100. : 0.;
+    vec3 col = texture2D(u_tex0, UV + blurIntensity * (rand(UV) - 0.5)).rgb;
 
     if(u_post_processing) {
         col *= mix(vec3(1.), vec3(.8, .9, 1.3), 0.5); //subtle color shift
     }
 
-    gl_FragColor = vec4((vec3(acc) + col)*u_brightness, 1.0);
+    gl_FragColor = vec4((vec3(acc) + col) * u_brightness, 1.0);
 }

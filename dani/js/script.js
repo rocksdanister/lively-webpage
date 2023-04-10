@@ -50,7 +50,7 @@ function setProperty(property, value) {
   }
 }
 
-function setTexture(texName, value) {
+function setTexture(texName, value, isBlur = false) {
   let ext = getExtension(value);
   disposeVideoElement(videoElement);
   material.uniforms[texName].value?.dispose();
@@ -85,6 +85,7 @@ function setTexture(texName, value) {
       false
     );
     material.uniforms.u_tex0.value = videoTexture;
+    material.uniforms.u_blur.value = isBlur;
   }
 }
 
@@ -121,13 +122,12 @@ async function setScene(name, geometry = quad) {
           uniforms: {
             u_tex0: { type: "t" },
             u_time: { value: 0, type: "f" },
+            u_blur: { value: false, type: "b" },
             u_intensity: { value: 0.4, type: "f" },
             u_speed: { value: 0.25, type: "f" },
             u_brightness: { value: 0.75, type: "f" },
             u_normal: { value: 0.5, type: "f" },
             u_zoom: { value: 2.61, type: "f" },
-            //u_blur_intensity: { value: 0.5, type: "f" },
-            //u_blur_iterations: { value: 16, type: "i" },
             u_panning: { value: false, type: "b" },
             u_post_processing: { value: true, type: "b" },
             u_lightning: { value: false, type: "b" },
@@ -142,7 +142,7 @@ async function setScene(name, geometry = quad) {
           material.uniforms.u_tex0_resolution.value = new THREE.Vector2(tex.image.width, tex.image.height);
           material.uniforms.u_tex0.value = tex;
 
-          if (container.style.opacity == 0 ) setVisible();
+          if (container.style.opacity == 0) setVisible();
         });
 
         this.onmousemove = parallax;
@@ -166,6 +166,7 @@ async function setScene(name, geometry = quad) {
             u_width: { value: 0.3, type: "f" },
             u_speed: { value: 0.6, type: "f" },
             u_layers: { value: 25, type: "i" },
+            u_blur: { value: false, type: "b" },
             u_brightness: { value: 0.75, type: "f" },
             u_post_processing: { value: true, type: "b" },
             u_mouse: { value: new THREE.Vector4(), type: "v4" },
@@ -288,6 +289,8 @@ document.getElementById("filePicker").addEventListener("change", function () {
     );
     material.uniforms.u_tex0.value = videoTexture;
   }
+  //always blur user image
+  material.uniforms.u_blur.value = true;
 });
 
 //helpers

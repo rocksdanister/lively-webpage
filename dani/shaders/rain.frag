@@ -7,6 +7,7 @@ precision highp float;
 #endif
 
 varying vec2 vUv;
+uniform bool u_blur;
 uniform sampler2D u_tex0;
 uniform vec2 u_tex0_resolution;
 uniform float u_time;
@@ -16,8 +17,6 @@ uniform float u_intensity;
 uniform float u_normal;
 uniform float u_brightness;
 uniform float u_zoom;
-//uniform float u_blur_intensity;
-//uniform int u_blur_iterations;
 uniform bool u_panning;
 uniform bool u_post_processing;
 uniform bool u_lightning;
@@ -162,22 +161,20 @@ void main() {
     vec3 col = texture2D(u_tex0, UV + n).rgb;
     vec4 texCoord = vec4(UV.x + n.x, UV.y + n.y, 0, 1.0 * 25. * 0.01 / 7.);
 
-    // if(u_blur_iterations != 1) {
-    //     float blur = u_blur_intensity;
-    //     blur *= 0.01;
-    //     float a = N21(gl_FragCoord.xy) * 6.2831;
-    //     for(int m = 0; m < 64; m++) {
-    //         if(m > u_blur_iterations)
-    //             break;
-    //         vec2 offs = vec2(sin(a), cos(a)) * blur;
-    //         float d = fract(sin((float(m) + 1.) * 546.) * 5424.);
-    //         d = sqrt(d);
-    //         offs *= d;
-    //         col += texture2D(u_tex0, texCoord.xy + vec2(offs.x, offs.y)).xyz;
-    //         a++;
-    //     }
-    //     col /= float(u_blur_iterations);
-    // }
+    if(u_blur) {
+        float blur = 0.4 * 0.01;
+        int blurIterations = 16;
+        float a = N21(gl_FragCoord.xy) * 6.2831;
+        for(int m = 0; m < blurIterations; m++) {
+            vec2 offs = vec2(sin(a), cos(a)) * blur;
+            float d = fract(sin((float(m) + 1.) * 546.) * 5424.);
+            d = sqrt(d);
+            offs *= d;
+            col += texture2D(u_tex0, texCoord.xy + vec2(offs.x, offs.y)).xyz;
+            a++;
+        }
+        col /= float(blurIterations);
+    }
 
     t = (T + 3.) * .5;			// make time sync with first lightnoing
     if(u_post_processing) {
