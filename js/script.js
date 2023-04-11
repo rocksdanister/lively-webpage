@@ -37,10 +37,6 @@ async function init() {
   scene.add(quad);
 
   await setScene("rain");
-  //await setScene("snow");
-  //await setScene("clouds");
-  //await setScene("synthwave");
-
   render(); //since init is async
   //debugMenu();
 }
@@ -139,11 +135,7 @@ async function setScene(name, geometry = quad) {
         new THREE.TextureLoader().load("media/rain_mountain.jpg", function (tex) {
           material.uniforms.u_tex0_resolution.value = new THREE.Vector2(tex.image.width, tex.image.height);
           material.uniforms.u_tex0.value = tex;
-
-          if (!sceneLoaded) {
-            sceneLoaded = true;
-            document.dispatchEvent(sceneLoadedEvent);
-          }
+          fireSceneLoaded();
         });
 
         this.onmousemove = parallax;
@@ -181,6 +173,7 @@ async function setScene(name, geometry = quad) {
         new THREE.TextureLoader().load("media/snow_landscape.jpg", function (tex) {
           material.uniforms.u_tex0_resolution.value = new THREE.Vector2(tex.image.width, tex.image.height);
           material.uniforms.u_tex0.value = tex;
+          fireSceneLoaded();
         });
       }
       break;
@@ -203,6 +196,7 @@ async function setScene(name, geometry = quad) {
           material.uniforms.u_mouse.value.z = 1;
           material.uniforms.u_mouse.value.w = 1;
         }
+        fireSceneLoaded();
       }
       break;
     case "synthwave":
@@ -216,8 +210,21 @@ async function setScene(name, geometry = quad) {
           vertexShader: vertexShader,
           fragmentShader: await (await fetch("shaders/synthwave.frag")).text(),
         });
+        fireSceneLoaded();
       }
       break;
+    case "impulse": {
+      material = new THREE.ShaderMaterial({
+        uniforms: {
+          u_time: { value: 0, type: "f" },
+          u_brightness: { value: 0.75, type: "f" },
+          u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
+        },
+        vertexShader: vertexShader,
+        fragmentShader: await (await fetch("shaders/impulse.frag")).text(),
+      });
+      fireSceneLoaded();
+    }
   }
   geometry.material = material;
   document.dispatchEvent(sceneChanged);
@@ -239,6 +246,13 @@ async function showTransition() {
 
   texture.dispose();
   scene.remove(quad);
+}
+
+function fireSceneLoaded() {
+  if (!sceneLoaded) {
+    sceneLoaded = true;
+    document.dispatchEvent(sceneLoadedEvent);
+  }
 }
 
 window.addEventListener("resize", function (e) {

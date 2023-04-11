@@ -1,4 +1,4 @@
-//CC0 - Synthwave canyon
+//CC0 - Synthwave canyon by mrange
 //https://www.shadertoy.com/view/slcXW8
 
 #ifdef GL_ES
