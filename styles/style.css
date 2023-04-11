@@ -133,6 +133,26 @@ label {
   user-select: none;
 }
 
+#ui-app-titlebar {
+  position: absolute;
+  display: block;
+  z-index: 1;
+  left: 0px;
+  top: 0px;
+}
+
+#ui-app-titlebar img {
+  padding: 15px 0px 0px 30px;
+  width: 20px;
+}
+
+#ui-app-titlebar a {
+  font-size: 12px;
+  color: black;
+  top: -5px;
+  position: relative;
+}
+
 #ui-app-library {
   position: absolute;
   z-index: 1;
