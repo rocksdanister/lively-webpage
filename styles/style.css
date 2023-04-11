@@ -9,7 +9,7 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-    overflow-x: hidden; /* Hide horizontal scrollbar */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
 }
 
 /* threejs background */
@@ -205,7 +205,7 @@ li.library div {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
 }
 
 li.card {
@@ -477,5 +477,36 @@ li.card p {
   }
   #page-home {
     min-height: 800px;
+  }
+}
+
+.indeterminate-progress-bar {
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 1);
+  background-color: #d1d5db;
+  height: 5px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 100;
+}
+
+.indeterminate-progress-bar__progress {
+  background-color: #5e42a6;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  width: 50%;
+
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-name: indeterminate-progress-bar;
+}
+
+@keyframes indeterminate-progress-bar {
+  from {
+    left: -50%;
+  }
+  to {
+    left: 100%;
   }
 }

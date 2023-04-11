@@ -3,6 +3,10 @@ let clock = new THREE.Clock();
 const gui = new dat.GUI();
 gui.hide();
 
+//custom events
+let sceneLoaded = false;
+const sceneLoadedEvent = new Event("sceneLoaded");
+
 const defaultFps = 24;
 let isPaused = false;
 let currentScene = null;
@@ -37,7 +41,6 @@ async function init() {
   //await setScene("synthwave");
 
   render(); //since init is async
-  //setVisible(); //texture not loaded yet
   //debugMenu();
 }
 
@@ -94,13 +97,6 @@ function setPause(val) {
   isPaused = val;
 }
 
-async function setVisible() {
-  for (let val = 0; val < 1; val += 0.1) {
-    container.style.opacity = val;
-    await new Promise((r) => setTimeout(r, 75));
-  }
-}
-
 function openFilePicker() {
   document.getElementById("filePicker").click();
 }
@@ -142,7 +138,10 @@ async function setScene(name, geometry = quad) {
           material.uniforms.u_tex0_resolution.value = new THREE.Vector2(tex.image.width, tex.image.height);
           material.uniforms.u_tex0.value = tex;
 
-          if (container.style.opacity == 0) setVisible();
+          if (!sceneLoaded) {
+            sceneLoaded = true;
+            document.dispatchEvent(sceneLoadedEvent);
+          }
         });
 
         this.onmousemove = parallax;
