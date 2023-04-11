@@ -6,6 +6,7 @@ gui.hide();
 //custom events
 let sceneLoaded = false;
 const sceneLoadedEvent = new Event("sceneLoaded");
+const sceneChanged = new Event("sceneChanged");
 
 const defaultFps = 24;
 let isPaused = false;
@@ -103,6 +104,7 @@ function openFilePicker() {
 
 async function setScene(name, geometry = quad) {
   if (name == currentScene) return;
+  currentScene = name;
 
   showTransition(); //start async transition
 
@@ -134,7 +136,7 @@ async function setScene(name, geometry = quad) {
           fragmentShader: await (await fetch("shaders/rain.frag")).text(),
         });
 
-        new THREE.TextureLoader().load("media/mountain.jpg", function (tex) {
+        new THREE.TextureLoader().load("media/rain_mountain.jpg", function (tex) {
           material.uniforms.u_tex0_resolution.value = new THREE.Vector2(tex.image.width, tex.image.height);
           material.uniforms.u_tex0.value = tex;
 
@@ -176,7 +178,7 @@ async function setScene(name, geometry = quad) {
           fragmentShader: await (await fetch("shaders/snow.frag")).text(),
         });
 
-        new THREE.TextureLoader().load("media/mountain.jpg", function (tex) {
+        new THREE.TextureLoader().load("media/snow_landscape.jpg", function (tex) {
           material.uniforms.u_tex0_resolution.value = new THREE.Vector2(tex.image.width, tex.image.height);
           material.uniforms.u_tex0.value = tex;
         });
@@ -217,8 +219,8 @@ async function setScene(name, geometry = quad) {
       }
       break;
   }
-  currentScene = name;
   geometry.material = material;
+  document.dispatchEvent(sceneChanged);
 }
 
 async function showTransition() {
