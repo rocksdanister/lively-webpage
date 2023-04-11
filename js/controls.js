@@ -1,4 +1,6 @@
-//slider behaviour
+//fluent design controls (controls.css)
+
+//slider
 const rangeInputs = document.querySelectorAll('input[type="range"]');
 
 function handleInputChange(e) {
