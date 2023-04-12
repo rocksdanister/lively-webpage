@@ -20,6 +20,7 @@ ul.onclick = function (event) {
   $("#ui-app-customise-controls-rain").css("display", "none");
   $("#ui-app-customise-controls-test").css("display", "none");
   $("#ui-app-customise-controls-snow").css("display", "none");
+  $("#ui-app-customise-controls-synthwave").css("display", "none");
   switch (img.parentElement.id) {
     case "rain":
       setScene("rain");
@@ -32,6 +33,10 @@ ul.onclick = function (event) {
     case "snow":
       setScene("snow");
       $("#ui-app-customise-controls-snow").css("display", "inline");
+      break;
+    case "synthwave":
+      setScene("synthwave");
+      $("#ui-app-customise-controls-synthwave").css("display", "inline");
       break;
   }
 };

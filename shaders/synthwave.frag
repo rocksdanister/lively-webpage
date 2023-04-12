@@ -6,11 +6,18 @@ precision highp float;
 #endif
 
 #define PI 3.141592654
-//#define CRT_EFFECT
 
 uniform float u_time;
 uniform vec2 u_resolution;
 uniform float u_brightness;
+uniform float u_sun;
+uniform float u_plane;
+uniform float u_draw;
+uniform bool u_crt_effect;
+
+float time() {
+    return 1000. + u_time / 4.;
+}
 
 // License: WTFPL, author: sam hocevar, found: https://stackoverflow.com/a/17897228/418488
 const vec4 hsv2rgb_K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
@@ -82,14 +89,15 @@ float hash(vec2 p) {
 
 // License: MIT, author: Inigo Quilez, found: https://iquilezles.org/www/index.htm
 vec3 postProcess(vec3 col, vec2 q) {
-#ifdef CRT_EFFECT  
-    col *= 1.5 * smoothstep(-2.0, 1.0, sin(0.5 * PI * q.y * u_resolution.y));
-#endif  
-    col = clamp(col, 0.0, 1.0);
-    col = pow(col, vec3(1.0 / 2.2));
-    col = col * 0.6 + 0.4 * col * col * (3.0 - 2.0 * col);
-    col = mix(col, vec3(dot(col, vec3(0.33))), -0.4);
-    col *= 0.5 + 0.5 * pow(19.0 * q.x * q.y * (1.0 - q.x) * (1.0 - q.y), 0.7);
+    if(u_crt_effect) {
+        col *= 1.5 * smoothstep(-2.0, 1.0, sin(0.5 * PI * q.y * u_resolution.y));
+    } else {
+        col = clamp(col, 0.0, 1.0);
+        col = pow(col, vec3(1.0 / 2.2));
+        col = col * 0.6 + 0.4 * col * col * (3.0 - 2.0 * col);
+        col = mix(col, vec3(dot(col, vec3(0.33))), -0.4);
+        col *= 0.5 + 0.5 * pow(19.0 * q.x * q.y * (1.0 - q.x) * (1.0 - q.y), 0.7);
+    }
     return col;
 }
 
@@ -162,7 +170,7 @@ vec4 plane(vec3 ro, vec3 rd, vec3 pp, vec3 off, float aa, float n) {
     float d = p.y - he;
     float t = smoothstep(aa, -aa, d);
 
-    vec3 hsv = vec3(fract(0.7 + 0.125 * sin(0.6 * pp.z)), 0.5, smoothstep(aa, -aa, abs(d) - aa));
+    vec3 hsv = vec3(fract(u_plane + 0.125 * sin(0.6 * pp.z)), 0.5, smoothstep(aa, -aa, abs(d) - aa));
     float g = exp(-90. * max(abs(d), 0.0));
     hsv.z += g;
     hsv.z += (he * he - pp.y - 0.125) * 0.5;
@@ -199,7 +207,7 @@ vec3 skyColor(vec3 ro, vec3 rd) {
 
     vec2 p = rd.xy * 2.0;
     p.y -= 0.25;
-    vec3 sunCol = mix(vec3(1.0, 1.0, 0.0), vec3(1.0, 0.0, 1.0), clamp((0.85 - p.y) * 0.75, 0.0, 1.0));
+    vec3 sunCol = mix(vec3(1.0, 1.0, 0.0), vec3(1.0, 0.0, u_sun), clamp((0.85 - p.y) * 0.75, 0.0, 1.0));
     vec3 glareCol = sqrt(sunCol);
     float ss = smoothstep(-1.05, 0.0, p.y);
     vec3 glow = mix(vec3(1.0, 0.7, 0.6).zyx, glareCol, ss);
@@ -226,10 +234,10 @@ vec3 color(vec3 ww, vec3 uu, vec3 vv, vec3 ro, vec2 p) {
     vec3 nrd = normalize(np.x * uu + np.y * vv + rdd * ww);
 
     const float planeDist = 1.0 - 0.5;
-    const float furthest = 24.;
-    const float fadeFrom = max(furthest - 2., 0.);
+    float furthest = 24. * u_draw;
+    float fadeFrom = max(furthest - 2., 0.);
 
-    const float fadeDist = planeDist * float(furthest - fadeFrom);
+    float fadeDist = planeDist * float(furthest - fadeFrom);
     float nz = floor(ro.z / planeDist);
 
     vec3 skyCol = skyColor(ro, rd);
@@ -278,7 +286,7 @@ vec3 color(vec3 ww, vec3 uu, vec3 vv, vec3 ro, vec2 p) {
 }
 
 vec3 effect(vec2 p, vec2 q) {
-    float tm = u_time * 0.25;
+    float tm = time() * 0.25;
     vec3 ro = offset(tm);
     vec3 dro = doffset(tm);
     vec3 ddro = ddoffset(tm);
@@ -298,7 +306,7 @@ void main() {
     p.x *= u_resolution.x / u_resolution.y;
     vec3 col = vec3(0.0);
     col = effect(p, q);
-    col *= smoothstep(0.0, 4.0, u_time);
+    col *= smoothstep(0.0, 4.0, time());
     col = postProcess(col, q);
     gl_FragColor = vec4(col * u_brightness, 1.0);
 }

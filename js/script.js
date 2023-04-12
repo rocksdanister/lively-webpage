@@ -205,6 +205,10 @@ async function setScene(name, geometry = quad) {
           uniforms: {
             u_time: { value: 0, type: "f" },
             u_brightness: { value: 0.75, type: "f" },
+            u_crt_effect: { value: false, type: "b" },
+            u_draw: { value: 1, type: "f" },
+            u_sun: { value: 0.5, type: "f" },
+            u_plane: { value: 0.7, type: "f" },
             u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
           },
           vertexShader: vertexShader,
@@ -338,7 +342,8 @@ function disposeVideoElement(video) {
 //debug
 function debugMenu() {
   try {
-    debugSnow();
+    //debugSnow();
+    debugSynthwave();
   } catch (ex) {
     console.log(ex);
   }
@@ -349,4 +354,11 @@ function debugSnow() {
   gui.add(material.uniforms.u_depth, "value", 0, 10, 0.01).name("Depth");
   gui.add(material.uniforms.u_width, "value", 0, 10, 0.01).name("Width");
   gui.add(material.uniforms.u_speed, "value", 0, 10, 0.01).name("Speed");
+}
+
+function debugSynthwave() {
+  gui.add(material.uniforms.u_sun, "value", 0, 1, 0.01).name("Sun");
+  gui.add(material.uniforms.u_draw, "value", 0, 2, 0.01).name("Draw");
+  gui.add(material.uniforms.u_plane, "value", 0, 1, 0.01).name("Plane");
+  gui.add(material.uniforms.u_crt_effect, "value", 0, 2, 0.01).name("CRT");
 }

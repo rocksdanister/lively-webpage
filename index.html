@@ -80,6 +80,11 @@
               <div>Snow</div>
             </li>
 
+            <li id="synthwave" class="library">
+              <img src="assets/synthwave_preview.jpg" width="600" height="400" />
+              <div>Synthwave</div>
+            </li>
+
             <!-- <li id="clouds" class="library">
               <img src="assets/clouds_preview.jpg" width="600" height="400" />
               <div>Cloud</div>
@@ -230,6 +235,44 @@
                 <label class="checkbox-label">Post processing</label>
               </div>
             </div>
+
+            <div id="ui-app-customise-controls-synthwave" style="display: none">
+              <p class="slider-label">Draw</p>
+              <input
+                style="background-size: 50% 100%"
+                type="range"
+                min="0"
+                max="2"
+                value="1.0"
+                step="0.01"
+                oninput="setProperty('u_draw',this.value)"
+              />
+              <p class="slider-label">Plane</p>
+              <input
+                style="background-size: 70% 100%"
+                type="range"
+                min="0"
+                max="1"
+                value="0.7"
+                step="0.01"
+                oninput="setProperty('u_plane',this.value)"
+              />
+              <p class="slider-label">Sun</p>
+              <input
+                style="background-size: 50% 100%"
+                type="range"
+                min="0"
+                max="1"
+                value="0.5"
+                step="0.01"
+                oninput="setProperty('u_sun',this.value)"
+              />
+              <br />
+              <div>
+                <input type="checkbox" unchecked onchange="setProperty('u_crt_effect',this.checked ? true : false)" />
+                <label class="checkbox-label">CRT</label>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -272,9 +315,9 @@
       <p>Here are some cool desktops..</p>
       <div class="gallery-container">
         <div class="gallery-wrap">
-          <div class="item item-1"><p>Fluid</p></div>
+          <div class="item item-1"><p>Fluid Simulation</p></div>
           <div class="item item-2"><p>Music TV</p></div>
-          <div class="item item-3"><p>Great Wave</p></div>
+          <div class="item item-3"><p>The Great Wave</p></div>
           <div class="item item-4"><p>Simple System</p></div>
           <div class="item item-5"><p>Outrun</p></div>
         </div>
