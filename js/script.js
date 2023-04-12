@@ -97,7 +97,7 @@ async function init() {
 
   //preload default shader texture for transition effect
   shaderUniforms[1].u_tex0_resolution.value = new THREE.Vector2(1920, 1080);
-  shaderUniforms[1].u_tex0.value = await new THREE.TextureLoader().loadAsync("media/snow_landscape.jpg");
+  shaderUniforms[1].u_tex0.value = await new THREE.TextureLoader().loadAsync("media/snow_landscape.webp");
 
   await setScene("rain");
   render(); //since init is async
@@ -129,7 +129,7 @@ function setTexture(texName, value, isBlur = false) {
     }
   }
 
-  if (ext == "jpg" || ext == "jpeg" || ext == "png") {
+  if (ext == "jpg" || ext == "jpeg" || ext == "png" || ext == "webp") {
     new THREE.TextureLoader().load(value, function (tex) {
       material.uniforms[texName].value = tex;
       if (texResolutionName != null)
@@ -184,7 +184,7 @@ async function setScene(name, geometry = quad) {
         });
 
         material.uniforms.u_tex0_resolution.value = new THREE.Vector2(1920, 1080);
-        material.uniforms.u_tex0.value = await new THREE.TextureLoader().loadAsync("media/rain_mountain.jpg");
+        material.uniforms.u_tex0.value = await new THREE.TextureLoader().loadAsync("media/rain_mountain.webp");
 
         this.onmousemove = parallax;
         function parallax(event) {
@@ -206,7 +206,7 @@ async function setScene(name, geometry = quad) {
         });
 
         material.uniforms.u_tex0_resolution.value = new THREE.Vector2(1920, 1080);
-        material.uniforms.u_tex0.value = await new THREE.TextureLoader().loadAsync("media/snow_landscape.jpg");
+        material.uniforms.u_tex0.value = await new THREE.TextureLoader().loadAsync("media/snow_landscape.webp");
       }
       break;
     case "clouds":
