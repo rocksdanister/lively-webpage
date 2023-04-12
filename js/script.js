@@ -101,7 +101,7 @@ async function init() {
 
   await setScene("rain");
   render(); //since init is async
-  
+
   window.addEventListener("resize", resizeEvent);
   //debugMenu();
 }
@@ -242,6 +242,8 @@ async function setScene(name, geometry = quad) {
       });
     }
   }
+  //making sure dimensions are up-to-date
+  material.uniforms.u_resolution.value = new THREE.Vector2(window.innerWidth, window.innerHeight);
   geometry.material = material;
 
   if (!sceneLoaded) {
