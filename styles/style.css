@@ -314,24 +314,24 @@ li.card p {
 
 .item-1 {
   border-radius: 5px 0px 0px 5px;
-  background-image: url(../assets/promo/gallery1.jpg);
+  /* background-image: url(../assets/promo/gallery1.jpg); */
 }
 
 .item-2 {
-  background-image: url(../assets/promo/gallery2.jpg);
+  /* background-image: url(../assets/promo/gallery2.jpg); */
 }
 
 .item-3 {
-  background-image: url(../assets/promo/gallery3.jpg);
+  /* background-image: url(../assets/promo/gallery3.jpg); */
 }
 
 .item-4 {
-  background-image: url(../assets/promo/gallery4.jpg);
+  /* background-image: url(../assets/promo/gallery4.jpg); */
 }
 
 .item-5 {
   border-radius: 0px 5px 5px 0px;
-  background-image: url(../assets/promo/gallery5.jpg);
+  /* background-image: url(../assets/promo/gallery5.jpg); */
 }
 
 .white-filter {
