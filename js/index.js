@@ -70,7 +70,7 @@ $(window).scroll(function () {
   }
 });
 
-//pause threejs
+//pause threejs scene when scrolled to element
 //ref: https://stackoverflow.com/questions/21561480/trigger-event-when-user-scroll-to-specific-element-with-jquery
 var element_position = $("#page-gallery").offset().top;
 var screen_height = $(window).height();
