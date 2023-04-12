@@ -91,6 +91,14 @@ async function init() {
   camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
   scene.add(quad);
 
+  //caching for textureloader
+  //ref: https://threejs.org/docs/#api/en/loaders/Cache
+  THREE.Cache.enabled = true;
+
+  //preload default shader texture for transition effect
+  shaderUniforms[1].u_tex0_resolution.value = new THREE.Vector2(1920, 1080);
+  shaderUniforms[1].u_tex0.value = await new THREE.TextureLoader().loadAsync("media/snow_landscape.jpg");
+
   await setScene("rain");
   render(); //since init is async
   //debugMenu();
@@ -173,11 +181,8 @@ async function setScene(name, geometry = quad) {
           fragmentShader: await (await fetch("shaders/rain.frag")).text(),
         });
 
-        new THREE.TextureLoader().load("media/rain_mountain.jpg", function (tex) {
-          material.uniforms.u_tex0_resolution.value = new THREE.Vector2(tex.image.width, tex.image.height);
-          material.uniforms.u_tex0.value = tex;
-          fireSceneLoaded();
-        });
+        material.uniforms.u_tex0_resolution.value = new THREE.Vector2(1920, 1080);
+        material.uniforms.u_tex0.value = await new THREE.TextureLoader().loadAsync("media/rain_mountain.jpg");
 
         this.onmousemove = parallax;
         function parallax(event) {
@@ -198,11 +203,8 @@ async function setScene(name, geometry = quad) {
           fragmentShader: await (await fetch("shaders/snow.frag")).text(),
         });
 
-        new THREE.TextureLoader().load("media/snow_landscape.jpg", function (tex) {
-          material.uniforms.u_tex0_resolution.value = new THREE.Vector2(tex.image.width, tex.image.height);
-          material.uniforms.u_tex0.value = tex;
-          fireSceneLoaded();
-        });
+        material.uniforms.u_tex0_resolution.value = new THREE.Vector2(1920, 1080);
+        material.uniforms.u_tex0.value = await new THREE.TextureLoader().loadAsync("media/snow_landscape.jpg");
       }
       break;
     case "clouds":
@@ -219,7 +221,6 @@ async function setScene(name, geometry = quad) {
           material.uniforms.u_mouse.value.z = 1;
           material.uniforms.u_mouse.value.w = 1;
         }
-        fireSceneLoaded();
       }
       break;
     case "synthwave":
@@ -229,7 +230,6 @@ async function setScene(name, geometry = quad) {
           vertexShader: vertexShader,
           fragmentShader: await (await fetch("shaders/synthwave.frag")).text(),
         });
-        fireSceneLoaded();
       }
       break;
     case "impulse": {
@@ -238,10 +238,14 @@ async function setScene(name, geometry = quad) {
         vertexShader: vertexShader,
         fragmentShader: await (await fetch("shaders/impulse.frag")).text(),
       });
-      fireSceneLoaded();
     }
   }
   geometry.material = material;
+
+  if (!sceneLoaded) {
+    sceneLoaded = true;
+    document.dispatchEvent(sceneLoadedEvent);
+  }
   document.dispatchEvent(sceneChanged);
 }
 
@@ -250,7 +254,8 @@ async function showTransition() {
 
   renderer.render(scene, camera); //WebGLRenderer.preserveDrawingBuffer is false.
   const quad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2, 1, 1));
-  const texture = new THREE.TextureLoader().load(renderer.domElement.toDataURL());
+  let screenShot = renderer.domElement.toDataURL();
+  const texture = new THREE.TextureLoader().load(screenShot);
   quad.material = new THREE.MeshBasicMaterial({ map: texture, transparent: true, opacity: 1.0 });
   scene.add(quad);
 
@@ -261,13 +266,7 @@ async function showTransition() {
 
   texture.dispose();
   scene.remove(quad);
-}
-
-function fireSceneLoaded() {
-  if (!sceneLoaded) {
-    sceneLoaded = true;
-    document.dispatchEvent(sceneLoadedEvent);
-  }
+  URL.revokeObjectURL(screenShot);
 }
 
 window.addEventListener("resize", function (e) {
