@@ -350,10 +350,10 @@ li.card p {
   margin-top: 10px;
   background-color: black;
   border-radius: 10px;
-  width: 290px;
-  height: 105px;
-  font-size: 50px;
+  width: 292px;
+  height: 104px;
   transition: 0.25s;
+  border:black;
 }
 
 .download-button:hover {
@@ -368,16 +368,16 @@ li.card p {
 
 .download-button h1 {
   display: inline-block;
-  font-size: 38px !important;
+  font-size: 34px !important;
   vertical-align: top;
   margin-left: 5px;
 }
 
 .download-button img {
+  position: relative;
   width: 65px;
+  margin-left: -40px;
   margin-top: 10px;
-  margin-left: -30px;
-  vertical-align: top;
 }
 
 /* navigation */
