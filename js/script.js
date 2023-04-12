@@ -101,6 +101,8 @@ async function init() {
 
   await setScene("rain");
   render(); //since init is async
+  
+  window.addEventListener("resize", resizeEvent);
   //debugMenu();
 }
 
@@ -269,11 +271,11 @@ async function showTransition() {
   URL.revokeObjectURL(screenShot);
 }
 
-window.addEventListener("resize", function (e) {
+function resizeEvent(e) {
   renderer.setSize(window.innerWidth, window.innerHeight, 2);
 
   material.uniforms.u_resolution.value = new THREE.Vector2(window.innerWidth, window.innerHeight);
-});
+}
 
 function render() {
   setTimeout(function () {
