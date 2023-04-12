@@ -8,11 +8,66 @@ let sceneLoaded = false;
 const sceneLoadedEvent = new Event("sceneLoaded");
 const sceneChanged = new Event("sceneChanged");
 
-const defaultFps = 24;
 let isPaused = false;
 let currentScene = null;
 let scene, camera, renderer, material;
-let settings = { fps: defaultFps, parallaxVal: 1 };
+let settings = { fps: 24, parallaxVal: 1 };
+let shaderUniforms = [
+  {
+    //rain
+    u_tex0: { type: "t" },
+    u_time: { value: 0, type: "f" },
+    u_blur: { value: false, type: "b" },
+    u_intensity: { value: 0.4, type: "f" },
+    u_speed: { value: 0.25, type: "f" },
+    u_brightness: { value: 0.75, type: "f" },
+    u_normal: { value: 0.5, type: "f" },
+    u_zoom: { value: 2.61, type: "f" },
+    u_panning: { value: false, type: "b" },
+    u_post_processing: { value: true, type: "b" },
+    u_lightning: { value: false, type: "b" },
+    u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
+    u_tex0_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
+  },
+  {
+    //snow
+    u_tex0: { type: "t" },
+    u_time: { value: 0, type: "f" },
+    u_depth: { value: 1.0, type: "f" },
+    u_width: { value: 0.3, type: "f" },
+    u_speed: { value: 0.6, type: "f" },
+    u_layers: { value: 25, type: "i" },
+    u_blur: { value: false, type: "b" },
+    u_brightness: { value: 0.75, type: "f" },
+    u_post_processing: { value: true, type: "b" },
+    u_mouse: { value: new THREE.Vector4(), type: "v4" },
+    u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
+    u_tex0_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
+  },
+  {
+    //cloud
+    u_time: { value: 0, type: "f" },
+    u_brightness: { value: 0.75, type: "f" },
+    u_mouse: { value: new THREE.Vector4(), type: "v4" },
+    u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
+  },
+  {
+    //synthwave
+    u_time: { value: 0, type: "f" },
+    u_brightness: { value: 0.75, type: "f" },
+    u_crt_effect: { value: false, type: "b" },
+    u_draw: { value: 1, type: "f" },
+    u_sun: { value: 0.5, type: "f" },
+    u_plane: { value: 0.7, type: "f" },
+    u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
+  },
+  {
+    //impulse
+    u_time: { value: 0, type: "f" },
+    u_brightness: { value: 0.75, type: "f" },
+    u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
+  },
+];
 const quad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2, 1, 1));
 let videoElement;
 
@@ -113,21 +168,7 @@ async function setScene(name, geometry = quad) {
     case "rain":
       {
         material = new THREE.ShaderMaterial({
-          uniforms: {
-            u_tex0: { type: "t" },
-            u_time: { value: 0, type: "f" },
-            u_blur: { value: false, type: "b" },
-            u_intensity: { value: 0.4, type: "f" },
-            u_speed: { value: 0.25, type: "f" },
-            u_brightness: { value: 0.75, type: "f" },
-            u_normal: { value: 0.5, type: "f" },
-            u_zoom: { value: 2.61, type: "f" },
-            u_panning: { value: false, type: "b" },
-            u_post_processing: { value: true, type: "b" },
-            u_lightning: { value: false, type: "b" },
-            u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
-            u_tex0_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
-          },
+          uniforms: shaderUniforms[0],
           vertexShader: vertexShader,
           fragmentShader: await (await fetch("shaders/rain.frag")).text(),
         });
@@ -152,20 +193,7 @@ async function setScene(name, geometry = quad) {
     case "snow":
       {
         material = new THREE.ShaderMaterial({
-          uniforms: {
-            u_tex0: { type: "t" },
-            u_time: { value: 0, type: "f" },
-            u_depth: { value: 1.0, type: "f" },
-            u_width: { value: 0.3, type: "f" },
-            u_speed: { value: 0.6, type: "f" },
-            u_layers: { value: 25, type: "i" },
-            u_blur: { value: false, type: "b" },
-            u_brightness: { value: 0.75, type: "f" },
-            u_post_processing: { value: true, type: "b" },
-            u_mouse: { value: new THREE.Vector4(), type: "v4" },
-            u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
-            u_tex0_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
-          },
+          uniforms: shaderUniforms[1],
           vertexShader: vertexShader,
           fragmentShader: await (await fetch("shaders/snow.frag")).text(),
         });
@@ -180,12 +208,7 @@ async function setScene(name, geometry = quad) {
     case "clouds":
       {
         material = new THREE.ShaderMaterial({
-          uniforms: {
-            u_time: { value: 0, type: "f" },
-            u_brightness: { value: 0.75, type: "f" },
-            u_mouse: { value: new THREE.Vector4(), type: "v4" },
-            u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
-          },
+          uniforms: shaderUniforms[2],
           vertexShader: vertexShader,
           fragmentShader: await (await fetch("shaders/clouds.frag")).text(),
         });
@@ -202,15 +225,7 @@ async function setScene(name, geometry = quad) {
     case "synthwave":
       {
         material = new THREE.ShaderMaterial({
-          uniforms: {
-            u_time: { value: 0, type: "f" },
-            u_brightness: { value: 0.75, type: "f" },
-            u_crt_effect: { value: false, type: "b" },
-            u_draw: { value: 1, type: "f" },
-            u_sun: { value: 0.5, type: "f" },
-            u_plane: { value: 0.7, type: "f" },
-            u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
-          },
+          uniforms: shaderUniforms[3],
           vertexShader: vertexShader,
           fragmentShader: await (await fetch("shaders/synthwave.frag")).text(),
         });
@@ -219,11 +234,7 @@ async function setScene(name, geometry = quad) {
       break;
     case "impulse": {
       material = new THREE.ShaderMaterial({
-        uniforms: {
-          u_time: { value: 0, type: "f" },
-          u_brightness: { value: 0.75, type: "f" },
-          u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
-        },
+        uniforms: shaderUniforms[4],
         vertexShader: vertexShader,
         fragmentShader: await (await fetch("shaders/impulse.frag")).text(),
       });
