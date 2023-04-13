@@ -116,6 +116,8 @@ function setProperty(property, value) {
 }
 
 function setTexture(texName, value, isBlur = false) {
+  showTransition();
+  
   let ext = getExtension(value);
   disposeVideoElement(videoElement);
   material.uniforms[texName].value?.dispose();
@@ -150,8 +152,8 @@ function setTexture(texName, value, isBlur = false) {
       false
     );
     material.uniforms.u_tex0.value = videoTexture;
-    material.uniforms.u_blur.value = isBlur;
   }
+  material.uniforms.u_blur.value = isBlur;
 }
 
 //Pause rendering

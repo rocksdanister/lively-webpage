@@ -238,6 +238,7 @@ li.library div {
   text-align: left;
   margin: -25px 0 0 5px;
   text-shadow: 1px 1px 2px rgb(0, 0, 0);
+  pointer-events: none;
 }
 
 /* features */
@@ -375,7 +376,7 @@ li.card p {
   width: 292px;
   height: 104px;
   transition: 0.25s;
-  border:black;
+  border: black;
 }
 
 .download-button:hover {
@@ -480,6 +481,39 @@ li.card p {
   opacity: 1;
 }
 
+/*loading progressbar*/
+.indeterminate-progress-bar {
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 1);
+  background-color: #d1d5db;
+  height: 5px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 100;
+  animation: fade-in 1s ease;
+}
+
+.indeterminate-progress-bar__progress {
+  background-color: #5e42a6;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  width: 50%;
+
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-name: indeterminate-progress-bar;
+}
+
+@keyframes indeterminate-progress-bar {
+  from {
+    left: -50%;
+  }
+  to {
+    left: 100%;
+  }
+}
+
 @-moz-keyframes spin {
   100% {
     -moz-transform: rotate(360deg);
@@ -518,39 +552,16 @@ li.card p {
   .ui-app {
     display: none !important;
   }
+
+  .nav {
+    display: none !important;
+  }
+
+  .card {
+    min-height: 310px;
+  }
+
   #page-home {
     min-height: 800px;
-  }
-}
-
-.indeterminate-progress-bar {
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 1);
-  background-color: #d1d5db;
-  height: 5px;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  z-index: 100;
-  animation: fade-in 1s ease;
-}
-
-.indeterminate-progress-bar__progress {
-  background-color: #5e42a6;
-  position: absolute;
-  bottom: 0;
-  top: 0;
-  width: 50%;
-
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
-  animation-name: indeterminate-progress-bar;
-}
-
-@keyframes indeterminate-progress-bar {
-  from {
-    left: -50%;
-  }
-  to {
-    left: 100%;
   }
 }
