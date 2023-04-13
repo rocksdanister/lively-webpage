@@ -71,6 +71,20 @@ label {
   margin-top: 50px;
 }
 
+.heading p {
+  color: white;
+  font-size: 16px !important;
+  text-shadow: 2px 2px 5px #111111;
+  animation: fade-in 2s ease;
+}
+
+.heading a {
+  color: white;
+  font-size: 16px !important;
+  text-shadow: 2px 2px 5px #111111;
+  animation: fade-in 2s ease;
+}
+
 #page-home {
   min-height: 1600px;
 }
@@ -81,13 +95,6 @@ label {
 
 #page-home h3 {
   text-shadow: 5px 5px 10px #111111;
-}
-
-#page-home p, a {
-  color: white;
-  font-size: 16px !important;
-  text-shadow: 2px 2px 5px #111111;
-  animation: fade-in 2s ease;
 }
 
 /* https://stackoverflow.com/questions/35681829/transformscale-breaking-my-z-index-order */
