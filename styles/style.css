@@ -67,7 +67,6 @@ label {
   display: flex;
   justify-content: center;
   text-align: center;
-  user-select: none;
   margin-top: 50px;
 }
 
@@ -104,6 +103,7 @@ label {
   padding: 50px;
   min-height: 500px;
   text-align: center;
+  /* overflow-x:hidden; */
 }
 
 #page-gallery {
@@ -136,6 +136,10 @@ label {
 
 #footer div {
   text-align: center;
+}
+
+#footer-attribution {
+  margin-top: 20px;
 }
 
 #footer h4 {
@@ -254,6 +258,8 @@ li.library div {
 li.card {
   font-size: 14px;
   margin: 10px;
+  position: relative;
+  left: -22px; /*I don't know why this is needed*/
   float: left;
   width: 368px;
   height: 207px;
@@ -557,8 +563,25 @@ li.card p {
     display: none !important;
   }
 
-  .card {
-    min-height: 310px;
+  .cards {
+    flex-direction: column;
+  }
+
+  li.card {
+    width: 90%;
+    height: 100%;
+  }
+
+  #page-gallery {
+    padding: 5px;
+  }
+
+  .gallery-container {
+    margin: 0px;
+  }
+
+  .item:hover {
+    flex: 20;
   }
 
   #page-home {
