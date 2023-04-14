@@ -93,7 +93,7 @@ label {
 }
 
 #page-home h3 {
-  text-shadow: 5px 5px 10px #111111;
+  text-shadow: 2px 2px 5px #111111;
 }
 
 /* https://stackoverflow.com/questions/35681829/transformscale-breaking-my-z-index-order */
