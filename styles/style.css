@@ -490,12 +490,12 @@ li.card p {
 
 /*loading progressbar*/
 .indeterminate-progress-bar {
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 1);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   background-color: #d1d5db;
   height: 5px;
   position: fixed;
   width: 100%;
-  bottom: 0;
+  top: 0;
   z-index: 100;
   animation: fade-in 1s ease;
 }
