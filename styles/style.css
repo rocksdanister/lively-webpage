@@ -72,14 +72,14 @@ label {
 
 .heading p {
   color: white;
-  font-size: 16px !important;
+  font-size: 16px;
   text-shadow: 2px 2px 5px #111111;
   animation: fade-in 2s ease;
 }
 
 .heading a {
   color: white;
-  font-size: 16px !important;
+  font-size: 16px;
   text-shadow: 2px 2px 5px #111111;
   animation: fade-in 2s ease;
 }
@@ -490,12 +490,12 @@ li.card p {
 
 /*loading progressbar*/
 .indeterminate-progress-bar {
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 1);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   background-color: #d1d5db;
   height: 5px;
   position: fixed;
   width: 100%;
-  bottom: 0;
+  top: 0;
   z-index: 100;
   animation: fade-in 1s ease;
 }
@@ -510,6 +510,49 @@ li.card p {
   animation-duration: 2s;
   animation-iteration-count: infinite;
   animation-name: indeterminate-progress-bar;
+}
+
+/*animated down arrow*/
+/*ref: https://unused-css.com/blog/animated-down-arrow */
+.down-arrow {
+  position: fixed;
+  color: white;
+  opacity: 0.4;
+  bottom: 0;
+  margin-left: 405px;
+  left: 50%;
+  width: 0;
+  z-index: 1;
+  height: 30px;
+  border: 2px solid;
+  border-radius: 2px;
+  cursor: pointer;
+  animation: jumpInfinite 3s infinite;
+}
+
+.down-arrow:after {
+  content: " ";
+  position: absolute;
+  top: 12px;
+  left: -10px;
+  width: 16px;
+  height: 16px;
+  border-bottom: 4px solid;
+  border-right: 4px solid;
+  border-radius: 4px;
+  transform: rotateZ(45deg);
+}
+
+@keyframes jumpInfinite {
+  0% {
+    margin-bottom: 5px;
+  }
+  50% {
+    margin-bottom: 20px;
+  }
+  100% {
+    margin-bottom: 5px;
+  }
 }
 
 @keyframes indeterminate-progress-bar {
@@ -591,5 +634,22 @@ li.card p {
 
   .item:hover {
     flex: 14;
+  }
+
+  /*home font*/
+  .heading {
+    padding: 10px;
+  }
+
+  .heading h1 {
+    font-size: 30px;
+  }
+
+  .heading h3 {
+    font-size: 18px;
+  }
+
+  .heading p {
+    font-size: 14px;
   }
 }
