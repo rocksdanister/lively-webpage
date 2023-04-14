@@ -3,7 +3,7 @@
 .acrylic-button {
   align-items: center;
   backdrop-filter: blur(5px);
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 5px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
@@ -16,7 +16,7 @@
 }
 
 .acrylic-button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 

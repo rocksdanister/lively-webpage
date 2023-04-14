@@ -277,7 +277,7 @@ li.card:hover {
 
 li.card img {
   position: relative;
-  width: 25%;
+  width: 20%;
   padding: 10px;
   margin: 0% 35% 0% 35%;
 }
@@ -554,24 +554,32 @@ li.card p {
   }
 }
 
+/*portrait tweaks*/
 @media screen and (max-width: 768px) {
+  /*hide ui, background customise*/
   .ui-app {
     display: none !important;
   }
 
+  #page-home {
+    min-height: 700px;
+  }
+
+  /*hide navbar for now*/
   .nav {
     display: none !important;
   }
 
+  /*vertical feature list*/
   .cards {
     flex-direction: column;
   }
 
   li.card {
     width: 90%;
-    height: 100%;
   }
 
+  /*expand more and closer to edge*/
   #page-gallery {
     padding: 5px;
   }
@@ -582,9 +590,5 @@ li.card p {
 
   .item:hover {
     flex: 20;
-  }
-
-  #page-home {
-    min-height: 800px;
   }
 }
