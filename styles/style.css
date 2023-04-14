@@ -72,14 +72,14 @@ label {
 
 .heading p {
   color: white;
-  font-size: 16px !important;
+  font-size: 16px;
   text-shadow: 2px 2px 5px #111111;
   animation: fade-in 2s ease;
 }
 
 .heading a {
   color: white;
-  font-size: 16px !important;
+  font-size: 16px;
   text-shadow: 2px 2px 5px #111111;
   animation: fade-in 2s ease;
 }
@@ -634,5 +634,22 @@ li.card p {
 
   .item:hover {
     flex: 14;
+  }
+
+  /*home font*/
+  .heading {
+    padding: 10px;
+  }
+
+  .heading h1 {
+    font-size: 30px;
+  }
+
+  .heading h3 {
+    font-size: 18px;
+  }
+
+  .heading p {
+    font-size: 14px;
   }
 }
