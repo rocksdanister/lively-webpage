@@ -454,6 +454,7 @@ li.card p {
   font-size: 1.2rem;
   margin: 0.2rem 0.5rem;
   position: relative;
+  color: white;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
@@ -481,7 +482,7 @@ li.card p {
   transition: opacity 0.5s;
 }
 .nav li a:not(.active) {
-  opacity: 0.7;
+  opacity: 0.5;
 }
 .nav li a:hover:not(.active) {
   opacity: 1;
@@ -589,6 +590,6 @@ li.card p {
   }
 
   .item:hover {
-    flex: 20;
+    flex: 14;
   }
 }
