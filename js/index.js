@@ -95,8 +95,8 @@ document.addEventListener("sceneLoaded", () => {
   if (container.style.opacity == 0) setVisible(container);
   $(".indeterminate-progress-bar").css("display", "none");
 
-  $(".item").each(function(){
-    $(this).css("background-image", $(this).data('delayedsrc'));
+  $(".item").each(function () {
+    $(this).css("background-image", $(this).data("delayedsrc"));
   });
 });
 
