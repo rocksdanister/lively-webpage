@@ -146,6 +146,11 @@ label {
   margin: 0px;
 }
 
+.avatar {
+  width: 125px;
+  border-radius: 50%;
+}
+
 /* app ui */
 .ui-app {
   animation: zoom-in 1.5s ease;
