@@ -1,6 +1,7 @@
 const container = document.getElementById("container");
 let clock = new THREE.Clock();
 const gui = new dat.GUI();
+gui.hide();
 
 //custom events
 let sceneLoaded = false;
@@ -106,6 +107,7 @@ async function init() {
 
   if (isDebug) {
     debugMenu();
+    gui.show();
   } else {
     gui.hide();
   }
