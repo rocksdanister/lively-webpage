@@ -1,17 +1,17 @@
 const container = document.getElementById("container");
 let clock = new THREE.Clock();
 const gui = new dat.GUI();
-gui.hide();
 
 //custom events
 let sceneLoaded = false;
 const sceneLoadedEvent = new Event("sceneLoaded");
 const sceneChanged = new Event("sceneChanged");
 
+let isDebug = false;
 let isPaused = false;
 let currentScene = null;
 let scene, camera, renderer, material;
-let settings = { fps: 24, parallaxVal: 1 };
+let settings = { fps: 24, scale: 1, parallaxVal: 1 };
 let shaderUniforms = [
   {
     //rain
@@ -84,8 +84,8 @@ async function init() {
     antialias: false,
     preserveDrawingBuffer: false,
   });
-  renderer.setSize(window.innerWidth, window.innerHeight, 2);
-  //renderer.setPixelRatio(0.5);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(settings.scale);
   container.appendChild(renderer.domElement);
   scene = new THREE.Scene();
   camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
@@ -103,7 +103,12 @@ async function init() {
   render(); //since init is async
 
   window.addEventListener("resize", (e) => resize());
-  //debugMenu();
+
+  if (isDebug) {
+    debugMenu();
+  } else {
+    gui.hide();
+  }
 }
 
 //Example: setProperty("u_intensity", 0.5);
@@ -159,6 +164,15 @@ function setTexture(texName, value, isBlur = false) {
 //Pause rendering
 function setPause(val) {
   isPaused = val;
+}
+
+function setScale(value) {
+  settings.scale = value;
+  renderer.setPixelRatio(settings.scale);
+  material.uniforms.u_resolution.value = new THREE.Vector2(
+    window.innerWidth * settings.scale,
+    window.innerHeight * settings.scale
+  );
 }
 
 function openFilePicker() {
@@ -275,8 +289,11 @@ async function showTransition() {
 }
 
 function resize() {
-  renderer.setSize(window.innerWidth, window.innerHeight, 2);
-  material.uniforms.u_resolution.value = new THREE.Vector2(window.innerWidth, window.innerHeight);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  material.uniforms.u_resolution.value = new THREE.Vector2(
+    window.innerWidth * settings.scale,
+    window.innerHeight * settings.scale
+  );
 }
 
 function render() {
@@ -357,10 +374,17 @@ function disposeVideoElement(video) {
 function debugMenu() {
   try {
     //debugSnow();
-    debugSynthwave();
+    //debugSynthwave();
+    debugScale();
   } catch (ex) {
     console.log(ex);
   }
+}
+
+function debugScale() {
+  gui.add(settings, "scale", 0.1, 2, 0.01).onChange(function () {
+    setScale(settings.scale);
+  });
 }
 
 function debugSnow() {
