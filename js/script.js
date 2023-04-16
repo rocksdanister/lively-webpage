@@ -1,17 +1,17 @@
 const container = document.getElementById("container");
 let clock = new THREE.Clock();
 const gui = new dat.GUI();
-gui.hide();
 
 //custom events
 let sceneLoaded = false;
 const sceneLoadedEvent = new Event("sceneLoaded");
 const sceneChanged = new Event("sceneChanged");
 
+let isDebug = false;
 let isPaused = false;
 let currentScene = null;
 let scene, camera, renderer, material;
-let settings = { fps: 24, parallaxVal: 1 };
+let settings = { fps: 24, scale: 1, parallaxVal: 1 };
 let shaderUniforms = [
   {
     //rain
@@ -84,8 +84,8 @@ async function init() {
     antialias: false,
     preserveDrawingBuffer: false,
   });
-  renderer.setSize(window.innerWidth, window.innerHeight, 2);
-  //renderer.setPixelRatio(0.5);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(settings.scale);
   container.appendChild(renderer.domElement);
   scene = new THREE.Scene();
   camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
@@ -103,7 +103,12 @@ async function init() {
   render(); //since init is async
 
   window.addEventListener("resize", (e) => resize());
-  //debugMenu();
+
+  if (isDebug) {
+    debugMenu();
+  } else {
+    gui.hide();
+  }
 }
 
 //Example: setProperty("u_intensity", 0.5);
@@ -161,6 +166,15 @@ function setPause(val) {
   isPaused = val;
 }
 
+function setScale(value) {
+  settings.scale = value;
+  renderer.setPixelRatio(settings.scale);
+  material.uniforms.u_resolution.value = new THREE.Vector2(
+    window.innerWidth * settings.scale,
+    window.innerHeight * settings.scale
+  );
+}
+
 function openFilePicker() {
   document.getElementById("filePicker").click();
 }
@@ -184,7 +198,7 @@ async function setScene(name, geometry = quad) {
           vertexShader: vertexShader,
           fragmentShader: await (await fetch("shaders/rain.frag")).text(),
         });
-
+        if (settings.scale != 1) setScale(1);
         material.uniforms.u_tex0_resolution.value = new THREE.Vector2(1920, 1080);
         material.uniforms.u_tex0.value = await new THREE.TextureLoader().loadAsync("media/rain_mountain.webp");
 
@@ -206,7 +220,7 @@ async function setScene(name, geometry = quad) {
           vertexShader: vertexShader,
           fragmentShader: await (await fetch("shaders/snow.frag")).text(),
         });
-
+        if (settings.scale != 1) setScale(1);
         material.uniforms.u_tex0_resolution.value = new THREE.Vector2(1920, 1080);
         material.uniforms.u_tex0.value = await new THREE.TextureLoader().loadAsync("media/snow_landscape.webp");
       }
@@ -218,6 +232,8 @@ async function setScene(name, geometry = quad) {
           vertexShader: vertexShader,
           fragmentShader: await (await fetch("shaders/clouds.frag")).text(),
         });
+        setScale(0.25); //performance
+        
         //this.onmousedown = mouseClick;
         function mouseClick(e) {
           material.uniforms.u_mouse.value.x = e.pageX;
@@ -234,6 +250,7 @@ async function setScene(name, geometry = quad) {
           vertexShader: vertexShader,
           fragmentShader: await (await fetch("shaders/synthwave.frag")).text(),
         });
+        if (settings.scale != 1) setScale(1);
       }
       break;
     case "impulse": {
@@ -242,6 +259,7 @@ async function setScene(name, geometry = quad) {
         vertexShader: vertexShader,
         fragmentShader: await (await fetch("shaders/impulse.frag")).text(),
       });
+      if (settings.scale != 1) setScale(1);
     }
   }
   geometry.material = material;
@@ -275,8 +293,11 @@ async function showTransition() {
 }
 
 function resize() {
-  renderer.setSize(window.innerWidth, window.innerHeight, 2);
-  material.uniforms.u_resolution.value = new THREE.Vector2(window.innerWidth, window.innerHeight);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  material.uniforms.u_resolution.value = new THREE.Vector2(
+    window.innerWidth * settings.scale,
+    window.innerHeight * settings.scale
+  );
 }
 
 function render() {
@@ -357,10 +378,17 @@ function disposeVideoElement(video) {
 function debugMenu() {
   try {
     //debugSnow();
-    debugSynthwave();
+    //debugSynthwave();
+    debugScale();
   } catch (ex) {
     console.log(ex);
   }
+}
+
+function debugScale() {
+  gui.add(settings, "scale", 0.1, 2, 0.01).onChange(function () {
+    setScale(settings.scale);
+  });
 }
 
 function debugSnow() {
