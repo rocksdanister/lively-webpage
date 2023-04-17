@@ -48,6 +48,11 @@ let shaderUniforms = [
   {
     //cloud
     u_time: { value: 0, type: "f" },
+    u_fog: { value: true, type: "b" },
+    u_speed: { value: 10, type: "f" },
+    u_scale: { value: 0.61, type: "f" },
+    u_color1: { value: new THREE.Color("#87b0b7"), type: "c" },
+    u_color2: { value: new THREE.Color(0.005, 0.045, 0.075), type: "c" },
     u_brightness: { value: 0.75, type: "f" },
     u_mouse: { value: new THREE.Vector4(), type: "v4" },
     u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
@@ -116,7 +121,11 @@ async function init() {
 //Example: setProperty("u_intensity", 0.5);
 function setProperty(property, value) {
   try {
-    material.uniforms[property].value = value;
+    if (material.uniforms[property].type == "v3") {
+      var rgb = hexToRgb(value);
+      material.uniforms[property].value = new THREE.Vector3(rgb.r, rgb.g, rgb.b);
+    } else if (material.uniforms[property].type == "c") material.uniforms[property].value = new THREE.Color(value);
+    else material.uniforms[property].value = value;
   } catch (ex) {
     console.log(`Property not found ${ex}`);
   }
@@ -235,7 +244,7 @@ async function setScene(name, geometry = quad) {
           fragmentShader: await (await fetch("shaders/clouds.frag")).text(),
         });
         setScale(0.25); //performance
-        
+
         //this.onmousedown = mouseClick;
         function mouseClick(e) {
           material.uniforms.u_mouse.value.x = e.pageX;
@@ -350,6 +359,17 @@ document.getElementById("filePicker").addEventListener("change", function () {
 });
 
 //helpers
+function hexToRgb(hex) {
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result
+    ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16),
+      }
+    : null;
+}
+
 function getExtension(filePath) {
   return filePath.substring(filePath.lastIndexOf(".") + 1, filePath.length) || filePath;
 }
@@ -379,18 +399,22 @@ function disposeVideoElement(video) {
 //debug
 function debugMenu() {
   try {
+    debugScale();
     //debugSnow();
     //debugSynthwave();
-    debugScale();
+    debugCloud();
   } catch (ex) {
     console.log(ex);
   }
 }
 
 function debugScale() {
-  gui.add(settings, "scale", 0.1, 2, 0.01).onChange(function () {
-    setScale(settings.scale);
-  });
+  gui
+    .add(settings, "scale", 0.1, 2, 0.01)
+    .name("Display Scale")
+    .onChange(function () {
+      setScale(settings.scale);
+    });
 }
 
 function debugSnow() {
@@ -405,4 +429,10 @@ function debugSynthwave() {
   gui.add(material.uniforms.u_draw, "value", 0, 2, 0.01).name("Draw");
   gui.add(material.uniforms.u_plane, "value", 0, 1, 0.01).name("Plane");
   gui.add(material.uniforms.u_crt_effect, "value", 0, 2, 0.01).name("CRT");
+}
+
+function debugCloud() {
+  gui.add(material.uniforms.u_fog, "value").name("Fog");
+  //gui.add(material.uniforms.u_color1.value, "r").name("Color1 R");
+  gui.add(material.uniforms.u_scale, "value", 0, 2, 0.01).name("Scale P");
 }
