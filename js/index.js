@@ -70,17 +70,23 @@ $(window).scroll(function () {
 //ref: https://stackoverflow.com/questions/27462306/css3-animate-elements-if-visible-in-viewport-page-scroll/
 function callbackFunc(entries, observer) {
   entries.forEach((entry) => {
-    if (entry.target.id == "page-home") {
-      //pause threejs scene when scrolled outside of view
-      setPause(!entry.isIntersecting);
-    } else if (entry.target.id == "page-features") {
-      if (entry.isIntersecting) {
-         $(".card").addClass("fade-in-start-2s");
-      }
-    } else if (entry.target.id == "page-gallery") {
-      if (entry.isIntersecting) {
-        // $(".gallery-container").addClass("fade-in-start-2s");
-      }
+    switch (entry.target.id) {
+      case "page-home":
+        setPause(!entry.isIntersecting); //pause threejs
+        break;
+      case "page-features":
+        if (entry.isIntersecting) {
+          $(".cards").addClass("fade-in-start-2s");
+        }
+        break;
+      case "page-gallery":
+        if (entry.isIntersecting) {
+          $(".gallery-container").addClass("fade-in-start-2s");
+        }
+        break;
+      case "page-download":
+        //todo
+        break;
     }
   });
 }
@@ -96,6 +102,7 @@ let observer = new IntersectionObserver(
 observer.observe($("#page-home")[0]);
 observer.observe($("#page-features")[0]);
 observer.observe($("#page-gallery")[0]);
+observer.observe($("#page-download")[0]);
 
 //threejs scene first run
 document.addEventListener("sceneLoaded", () => {
