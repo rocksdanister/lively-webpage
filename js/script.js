@@ -403,7 +403,7 @@ function debugMenu() {
     debugScale();
     //debugSnow();
     //debugSynthwave();
-    debugCloud();
+    //debugCloud();
   } catch (ex) {
     console.log(ex);
   }
