@@ -52,7 +52,6 @@ let shaderUniforms = [
     u_speed: { value: 10, type: "f" },
     u_scale: { value: 0.61, type: "f" },
     u_color1: { value: new THREE.Color("#87b0b7"), type: "c" },
-    u_color2: { value: new THREE.Color(0.005, 0.045, 0.075), type: "c" },
     u_brightness: { value: 0.75, type: "f" },
     u_mouse: { value: new THREE.Vector4(), type: "v4" },
     u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
