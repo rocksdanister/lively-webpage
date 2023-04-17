@@ -66,28 +66,36 @@ $(window).scroll(function () {
   }
 });
 
-//pause threejs scene when scrolled to element
-//ref: https://stackoverflow.com/questions/21561480/trigger-event-when-user-scroll-to-specific-element-with-jquery
-var element_position = $("#page-gallery").offset().top;
-var screen_height = $(window).height();
-var activation_offset = 0.5; //determines how far up the the page the element needs to be before triggering the function
-var activation_point = element_position - screen_height * activation_offset;
-var max_scroll_height = $("body").height() - screen_height - 5; //-5 for a little bit of buffer
+//listen to element visibility change
+//ref: https://stackoverflow.com/questions/27462306/css3-animate-elements-if-visible-in-viewport-page-scroll/
+function callbackFunc(entries, observer) {
+  entries.forEach((entry) => {
+    if (entry.target.id == "page-home") {
+      //pause threejs scene when scrolled outside of view
+      setPause(!entry.isIntersecting);
+    } else if (entry.target.id == "page-features") {
+      if (entry.isIntersecting) {
+         $(".card").addClass("fade-in-start-2s");
+      }
+    } else if (entry.target.id == "page-gallery") {
+      if (entry.isIntersecting) {
+        // $(".gallery-container").addClass("fade-in-start-2s");
+      }
+    }
+  });
+}
 
-//does something when user scrolls to it OR
-//does it when user has reached the bottom of the page and hasn't triggered the function yet
-$(window).on("scroll", function () {
-  var y_scroll_pos = window.pageYOffset;
-
-  var element_in_view = y_scroll_pos > activation_point;
-  var has_reached_bottom_of_page = max_scroll_height <= y_scroll_pos && !element_in_view;
-
-  if (element_in_view || has_reached_bottom_of_page) {
-    setPause(true);
-  } else {
-    setPause(false);
-  }
-});
+let observer = new IntersectionObserver(
+  callbackFunc,
+  (options = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.0,
+  })
+);
+observer.observe($("#page-home")[0]);
+observer.observe($("#page-features")[0]);
+observer.observe($("#page-gallery")[0]);
 
 //threejs scene first run
 document.addEventListener("sceneLoaded", () => {
