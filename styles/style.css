@@ -551,6 +551,10 @@ li.card p {
   animation: fade-in 1s ease;
 }
 
+.fade-in-start-1-5s {
+  animation: fade-in 1.5s ease;
+}
+
 .fade-in-start-2s {
   animation: fade-in 2s ease;
 }
