@@ -177,6 +177,8 @@ function setPause(val) {
 }
 
 function setScale(value) {
+  if (settings.scale == value) return;
+
   settings.scale = value;
   renderer.setPixelRatio(settings.scale);
   material.uniforms.u_resolution.value = new THREE.Vector2(
@@ -208,7 +210,7 @@ async function setScene(name, geometry = quad) {
           vertexShader: vertexShader,
           fragmentShader: await (await fetch("shaders/rain.frag")).text(),
         });
-        if (settings.scale != 1) setScale(1);
+        setScale(1);
         material.uniforms.u_tex0_resolution.value = new THREE.Vector2(1920, 1080);
         material.uniforms.u_tex0.value = await new THREE.TextureLoader().loadAsync("media/rain_mountain.webp");
 
@@ -230,7 +232,7 @@ async function setScene(name, geometry = quad) {
           vertexShader: vertexShader,
           fragmentShader: await (await fetch("shaders/snow.frag")).text(),
         });
-        if (settings.scale != 1) setScale(1);
+        setScale(0.75);
         material.uniforms.u_tex0_resolution.value = new THREE.Vector2(1920, 1080);
         material.uniforms.u_tex0.value = await new THREE.TextureLoader().loadAsync("media/snow_landscape.webp");
       }
@@ -260,7 +262,7 @@ async function setScene(name, geometry = quad) {
           vertexShader: vertexShader,
           fragmentShader: await (await fetch("shaders/synthwave.frag")).text(),
         });
-        if (settings.scale != 1) setScale(1);
+        setScale(0.75);
       }
       break;
     case "impulse": {
@@ -269,7 +271,7 @@ async function setScene(name, geometry = quad) {
         vertexShader: vertexShader,
         fragmentShader: await (await fetch("shaders/impulse.frag")).text(),
       });
-      if (settings.scale != 1) setScale(1);
+      setScale(1);
     }
   }
   geometry.material = material;
