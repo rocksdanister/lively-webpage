@@ -72,13 +72,7 @@ let shaderUniforms = [
     u_time: { value: 0, type: "f" },
     u_brightness: { value: 0.75, type: "f" },
     u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
-  },
-  {
-    //seascape
-    u_time: { value: 0, type: "f" },
-    u_brightness: { value: 0.75, type: "f" },
-    u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
-  },
+  }
 ];
 const quad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2, 1, 1));
 let videoElement;
@@ -282,14 +276,6 @@ async function setScene(name, geometry = quad) {
         setScale(1);
       }
       break;
-    case "seascape": {
-      material = new THREE.ShaderMaterial({
-        uniforms: shaderUniforms[5],
-        vertexShader: vertexShader,
-        fragmentShader: await (await fetch("shaders/seascape.frag")).text(),
-      });
-      setScale(0.5);
-    }
   }
   geometry.material = material;
   resize(); //update view
