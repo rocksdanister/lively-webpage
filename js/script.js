@@ -74,7 +74,7 @@ let shaderUniforms = [
     u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
   },
   {
-    //sea
+    //seascape
     u_time: { value: 0, type: "f" },
     u_brightness: { value: 0.75, type: "f" },
     u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight), type: "v2" },
@@ -282,11 +282,11 @@ async function setScene(name, geometry = quad) {
         setScale(1);
       }
       break;
-    case "sea": {
+    case "seascape": {
       material = new THREE.ShaderMaterial({
         uniforms: shaderUniforms[5],
         vertexShader: vertexShader,
-        fragmentShader: await (await fetch("shaders/sea.frag")).text(),
+        fragmentShader: await (await fetch("shaders/seascape.frag")).text(),
       });
       setScale(0.5);
     }
