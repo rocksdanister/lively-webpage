@@ -258,9 +258,12 @@ async function setScene(name, geometry = quad) {
           isDrag = false;
         }
         function mouseDown(e) {
-          isDrag = true;
-          startX = e.pageX;
-          startY = e.pageY;
+          if (e.target.id =="page-home")
+          {
+            isDrag = true;
+            startX = e.pageX;
+            startY = e.pageY;
+          }
         }
         function mouseMove(e) {
           if ((Math.abs(e.pageX - startX) < delta && Math.abs(e.pageY - startY) < delta) || !isDrag) {
