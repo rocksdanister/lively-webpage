@@ -222,6 +222,8 @@ async function setScene(name, geometry = quad) {
   material?.dispose();
   disposeVideoElement(videoElement);
   resetMouse();
+  //resets the transform to remove the jerkiness when changing scenes
+  container.style.transform = `scale(1.09)`;
 
   switch (name) {
     case "rain":
@@ -341,11 +343,20 @@ function setMouseMove() {
 
 function setMouseParallax() {
   this.onmousemove = mouseMove;
+  //makes the paralax be a relative function to the location of the mouse first on the page
+  let originX = -1;
+  let originY = -1;
   function mouseMove(event) {
     if (settings.parallaxVal == 0) return;
-
-    const x = (window.innerWidth - event.pageX * settings.parallaxVal) / 90;
-    const y = (window.innerHeight - event.pageY * settings.parallaxVal) / 90;
+    
+    if(originX == -1 && originY == -1){
+      originX = event.pageX;
+      originY = event.pageY;
+    }
+  
+    //relative parallax by changing window.innerWidth and window.innerHeight to originX and originY
+    const x = ( originX - event.pageX * settings.parallaxVal) / 90;
+    const y = ( originY - event.pageY * settings.parallaxVal) / 90;
 
     container.style.transform = `translateX(${x}px) translateY(${y}px) scale(1.09)`;
   }
