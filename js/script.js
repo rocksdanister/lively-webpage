@@ -222,6 +222,8 @@ async function setScene(name, geometry = quad) {
   material?.dispose();
   disposeVideoElement(videoElement);
   resetMouse();
+  //resets the transform to remove the jerkiness when changing scenes
+  container.style.transform = `scale(1.09)`;
 
   switch (name) {
     case "rain":
