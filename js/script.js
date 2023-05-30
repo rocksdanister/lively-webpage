@@ -350,7 +350,6 @@ function setMouseParallax() {
     if(originX == -1 && originY == -1){
       originX = event.pageX;
       originY = event.pageY;
-      console.log(event)
     }
   
     //relative parallax by changing window.innerWidth and window.innerHeight to originX and originY
