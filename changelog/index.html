@@ -25,12 +25,15 @@
       border-radius: 5px;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     }
+
     h2 {
       font-weight: 700;
     }
+
     h3 {
       font-weight: 600;
     }
+
     a {
       color: #77cbf9;
     }
@@ -43,6 +46,7 @@
       position: relative;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     }
+
     .video {
       position: relative;
       width: 825px;
@@ -131,11 +135,12 @@
     let videos = document.getElementsByClassName("video");
     function callbackFunc(entries, observer) {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          Array.prototype.forEach.call(videos, (x) => {
-            if (entry.target.id != x.id) x.pause();
-            else x.play();
-          });
+        for (let i = 0; i < videos.length; i++) {
+          if (entry.target.id != videos[i].id) continue;
+
+          //If more than half of video visible, play
+          if (entry.intersectionRatio >= 0.5) videos[i].play();
+          else videos[i].pause();
         }
       });
     }
@@ -145,9 +150,9 @@
       (options = {
         root: null,
         rootMargin: "0px",
-        threshold: 0.9,
+        threshold: [0.25, 0.5, 0.75],
       })
     );
-    Array.prototype.forEach.call(videos, (x) => observer.observe(x));
+    [...videos].forEach((x) => observer.observe(x));
   </script>
 </html>
