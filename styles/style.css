@@ -31,6 +31,7 @@ h1 {
   font-size: 48px;
   font-weight: 700;
   color: white;
+  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
   animation: fade-in 2s ease;
 }
 
@@ -38,6 +39,7 @@ h2 {
   font-size: 32px;
   font-weight: 700;
   color: white;
+  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
   animation: fade-in 2s ease;
 }
 
@@ -45,28 +47,30 @@ h3 {
   font-size: 24px;
   font-weight: 400;
   color: white;
+  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
   animation: fade-in 2s ease;
 }
 
 h4 {
   font-size: 17px;
   color: white;
+  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
   animation: fade-in 2s ease;
 }
 
 p {
   font-size: 17px;
-  color: rgb(175, 175, 175);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 a {
   font-size: 14px;
-  color: rgb(175, 175, 175);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 label {
   font-size: 14px;
-  color: rgb(175, 175, 175);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .heading {
