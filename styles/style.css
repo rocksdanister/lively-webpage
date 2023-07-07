@@ -2,6 +2,8 @@
   --color1: #5e42a6;
   --color2: #a425a0;
   --color3: #493382;
+  --color-font1: white;
+  --color-font2: rgba(255, 255, 255, 0.8);
 }
 
 body {
@@ -30,43 +32,47 @@ body {
 h1 {
   font-size: 48px;
   font-weight: 700;
-  color: white;
+  color: var(--color-font1);
+  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
   animation: fade-in 2s ease;
 }
 
 h2 {
   font-size: 32px;
   font-weight: 700;
-  color: white;
+  color: var(--color-font1);
+  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
   animation: fade-in 2s ease;
 }
 
 h3 {
   font-size: 24px;
   font-weight: 400;
-  color: white;
+  color: var(--color-font1);
+  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
   animation: fade-in 2s ease;
 }
 
 h4 {
   font-size: 17px;
-  color: white;
+  color: var(--color-font1);
+  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
   animation: fade-in 2s ease;
 }
 
 p {
   font-size: 17px;
-  color: rgb(175, 175, 175);
+  color: var(--color-font2);
 }
 
 a {
   font-size: 14px;
-  color: rgb(175, 175, 175);
+  color: var(--color-font2);
 }
 
 label {
   font-size: 14px;
-  color: rgb(175, 175, 175);
+  color: var(--color-font2);
 }
 
 .heading {
@@ -77,14 +83,14 @@ label {
 }
 
 .heading p {
-  color: white;
+  color: var(--color-font1);
   font-size: 16px;
   text-shadow: 2px 2px 5px #111111;
   animation: fade-in 2s ease;
 }
 
 .heading a {
-  color: white;
+  color: var(--color-font1);
   font-size: 16px;
   text-shadow: 2px 2px 5px #111111;
   animation: fade-in 2s ease;
@@ -319,7 +325,7 @@ li.library img {
 
 li.library div {
   position: relative;
-  color: white;
+  color: var(--color-font1);
   padding: 0px;
   text-align: left;
   margin: -25px 0 0 5px;
@@ -365,7 +371,7 @@ li.card img {
 
 li.card div {
   position: relative;
-  color: white;
+  color: var(--color-font1);
   padding: 0px;
   text-align: left;
   text-align: center;
@@ -416,7 +422,7 @@ li.card p {
   margin: 25px;
   padding: 15px;
   display: none;
-  color: white;
+  color: var(--color-font1);
   filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.5));
   min-width: 250px;
   text-align: left;
@@ -543,7 +549,7 @@ li.card p {
   font-size: 1.2rem;
   margin: 0.2rem 0.5rem;
   position: relative;
-  color: white;
+  color: var(--color-font1);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
@@ -609,7 +615,7 @@ li.card p {
 /*ref: https://unused-css.com/blog/animated-down-arrow */
 .down-arrow {
   position: fixed;
-  color: white;
+  color: var(--color-font1);
   opacity: 0.4;
   bottom: 0;
   margin-left: 405px;
