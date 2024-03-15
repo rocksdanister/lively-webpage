@@ -424,7 +424,7 @@ function showTransition() {
   quad.material = new THREE.MeshBasicMaterial({ map: texture, transparent: true, opacity: 1.0 });
   scene.add(quad);
 
-  let duration = 500;
+  let duration = 1000;
   let startTime = null;
 
   function animate(timestamp) {
