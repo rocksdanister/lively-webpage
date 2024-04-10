@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+body {
+  /* background-color: #000; */
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.tagcloud {
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  width: 50%;
+}
+
+@media screen and (max-width: 768px) {
+  .tagcloud {
+    font-size: 10px;
+  }
+}
