@@ -1,7 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
+html {
+  color-scheme: dark;
+}
+
 body {
-  /* background-color: #000; */
+  background-color: #202020;
   overflow: hidden;
   pointer-events: none;
 }
@@ -22,5 +26,24 @@ body {
 @media screen and (max-width: 768px) {
   .tagcloud {
     font-size: 10px;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    background-color: #f3f3f3;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: #202020;
   }
 }
