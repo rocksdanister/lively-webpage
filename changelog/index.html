@@ -45,7 +45,7 @@
       color: #77cbf9;
     }
 
-    .video-border {
+    .media-border {
       width: 825px;
       height: 459px;
       border-radius: 5px;
@@ -81,6 +81,29 @@
       body {
         color: white;
         background-color: #272727;
+        margin: 1rem 1.5rem;
+      }
+    }
+    @media screen and (max-width: 900px) {
+      html {
+        max-width: 100vw;
+      }
+
+      .hero {
+        width: 100%;
+        height: 100%;
+      }
+
+      .media-border {
+        width: 90vw;
+        height: 50vw;
+        margin: 0 auto;
+      }
+
+      .video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     }
   </style>
@@ -116,7 +139,7 @@
 
     <h2>My new app just got released! 🥳</h2>
     <!-- <img class="hero" src="assets/hero_weather.webp" /> -->
-    <div class="video-border">
+    <div class="media-border">
       <video id="hero-weather" class="video" loop muted>
         <source src="assets/hero_weather.mp4" type="video/mp4" />
       </video>
@@ -129,11 +152,13 @@
     <!-- Section 2 -->
     <h3 style="opacity: 0.75">28 Jun 2023 | Lively v2.0.7.0 Update</h3>
     <h1>A New Smarter Lively</h1>
-    <img class="hero" src="assets/hero_art.webp" />
+    <div class="media-border">
+      <img class="hero" src="assets/hero_art.webp" />
+    </div>
     <p>Lively just got smarter with AI.. introducing first of many to come AI feature "Depth Wallpapers"</p>
 
     <h3 id="ai-depth-wallpapers">AI Depth Wallpapers</h3>
-    <div class="video-border">
+    <div class="media-border">
       <video id="promo-depth-wallpapers" class="video" loop muted>
         <source src="assets/promo_depthwallpaper.mp4" type="video/mp4" />
       </video>
@@ -152,7 +177,7 @@
     </p>
 
     <h3 id="new-wallpapers">New "Living Room" Wallpaper</h3>
-    <div class="video-border">
+    <div class="media-border">
       <video id="promo-new-wallpaper" class="video" loop muted>
         <source src="assets/promo_livingroom.mp4" type="video/mp4" />
       </video>
@@ -164,7 +189,7 @@
     </p>
 
     <h3 id="color-picker">Fancy ColorPicker</h3>
-    <div class="video-border">
+    <div class="media-border">
       <video id="promo-color-picker" class="video" loop muted>
         <source src="assets/promo_colorpicker.mp4" type="video/mp4" />
       </video>
