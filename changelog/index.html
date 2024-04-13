@@ -5,7 +5,10 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <style>
     html {
@@ -45,7 +48,7 @@
       color: #77cbf9;
     }
 
-    .video-border {
+    .media-border {
       width: 825px;
       height: 459px;
       border-radius: 5px;
@@ -81,13 +84,39 @@
       body {
         color: white;
         background-color: #272727;
+        margin: 1rem 1.5rem;
+      }
+    }
+    @media screen and (max-width: 850px) {
+      html {
+        max-width: 100vw;
+      }
+
+      .hero {
+        width: 100%;
+        height: 100%;
+      }
+
+      .media-border {
+        width: 90vw;
+        height: 50vw;
+        margin: 0 auto;
+      }
+
+      .video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     }
   </style>
   <body>
     <h3 style="opacity: 0.75">26 Oct 2023 | Lively v2.0.7.4 Update</h3>
     <h1>Windows 11 22H2 Support</h1>
-    <p>This update includes patches for Windows 11 22H2 update and other critical bugfixes.</p>
+    <p>
+      This update includes patches for Windows 11 22H2 update and other critical
+      bugfixes.
+    </p>
 
     <h3>Fixes</h3>
     <p>Patches for Windows 11 22H2 update.</p>
@@ -102,7 +131,9 @@
 
     <h3>Performance</h3>
     <ul>
-      <li>Refactoring and updates results in improved UI and Core performance.</li>
+      <li>
+        Refactoring and updates results in improved UI and Core performance.
+      </li>
     </ul>
 
     <h3>Updates</h3>
@@ -116,55 +147,74 @@
 
     <h2>My new app just got released! 🥳</h2>
     <!-- <img class="hero" src="assets/hero_weather.webp" /> -->
-    <div class="video-border">
+    <div class="media-border">
       <video id="hero-weather" class="video" loop muted>
         <source src="assets/hero_weather.mp4" type="video/mp4" />
       </video>
     </div>
-    <p>Check out my new native weather app "Lively Weather" powered by DirectX effects:</p>
-    <a href="https://rocksdanister.com/weather" target="_blank">https://rocksdanister.com/weather</a>
+    <p>
+      Check out my new native weather app "Lively Weather" powered by DirectX
+      effects:
+    </p>
+    <a href="https://rocksdanister.com/weather" target="_blank"
+      >https://rocksdanister.com/weather</a
+    >
 
     <hr style="opacity: 0.25; margin-top: 25px" />
 
     <!-- Section 2 -->
     <h3 style="opacity: 0.75">28 Jun 2023 | Lively v2.0.7.0 Update</h3>
     <h1>A New Smarter Lively</h1>
-    <img class="hero" src="assets/hero_art.webp" />
-    <p>Lively just got smarter with AI.. introducing first of many to come AI feature "Depth Wallpapers"</p>
+    <div class="media-border">
+      <img class="hero" src="assets/hero_art.webp" />
+    </div>
+    <p>
+      Lively just got smarter with AI.. introducing first of many to come AI
+      feature "Depth Wallpapers"
+    </p>
 
     <h3 id="ai-depth-wallpapers">AI Depth Wallpapers</h3>
-    <div class="video-border">
+    <div class="media-border">
       <video id="promo-depth-wallpapers" class="video" loop muted>
         <source src="assets/promo_depthwallpaper.mp4" type="video/mp4" />
       </video>
     </div>
     <p>
-      Using Machine Learning to predict distance of objects from the camera and then use GPU shaders to create 3D image!
+      Using Machine Learning to predict distance of objects from the camera and
+      then use GPU shaders to create 3D image!
     </p>
     <p>
-      When it comes to privacy, everything is run 100% local. No network required to run the model, no data sent to the
-      cloud.
+      When it comes to privacy, everything is run 100% local. No network
+      required to run the model, no data sent to the cloud.
     </p>
     <p>
-      In my testing works best with scenery, dont be afraid to try different things out and share with the community
-      what you find. You can get some stock images to try here:
-      <a href="https://www.pexels.com" target="_blank">https://www.pexels.com</a>
+      In my testing works best with scenery, dont be afraid to try different
+      things out and share with the community what you find. You can get some
+      stock images to try here:
+      <a href="https://www.pexels.com" target="_blank"
+        >https://www.pexels.com</a
+      >
     </p>
 
     <h3 id="new-wallpapers">New "Living Room" Wallpaper</h3>
-    <div class="video-border">
+    <div class="media-border">
       <video id="promo-new-wallpaper" class="video" loop muted>
         <source src="assets/promo_livingroom.mp4" type="video/mp4" />
       </video>
     </div>
-    <p>Stylish isometric room showing currently playing music, dynamic lighting that reacts to music bass and more!</p>
+    <p>
+      Stylish isometric room showing currently playing music, dynamic lighting
+      that reacts to music bass and more!
+    </p>
     <p>
       Preview:
-      <a href="https://youtube.com/watch?v=aIy7hUrmHf4" target="_blank">https://youtube.com/watch?v=aIy7hUrmHf4</a>
+      <a href="https://youtube.com/watch?v=aIy7hUrmHf4" target="_blank"
+        >https://youtube.com/watch?v=aIy7hUrmHf4</a
+      >
     </p>
 
     <h3 id="color-picker">Fancy ColorPicker</h3>
-    <div class="video-border">
+    <div class="media-border">
       <video id="promo-color-picker" class="video" loop muted>
         <source src="assets/promo_colorpicker.mp4" type="video/mp4" />
       </video>
@@ -173,28 +223,42 @@
     <h3 id="ui-ux">UI/UX</h3>
     <ul>
       <li>Tray customize menu now takes display scaling into account.</li>
-      <li>Refactoring and improvements should yield better performance and consistency.</li>
+      <li>
+        Refactoring and improvements should yield better performance and
+        consistency.
+      </li>
     </ul>
     <h3 id="enhancements">Enhancements</h3>
     <ul>
       <li>Added .JFIF image support.</li>
-      <li>LivelyProperties now support tooltips, display helpful information about the setting on hover.</li>
+      <li>
+        LivelyProperties now support tooltips, display helpful information about
+        the setting on hover.
+      </li>
       Learn more:
-      <a href="https://github.com/rocksdanister/lively/wiki/Web-Guide-IV-:-Interaction" target="_blank"
+      <a
+        href="https://github.com/rocksdanister/lively/wiki/Web-Guide-IV-:-Interaction"
+        target="_blank"
         >https://github.com/rocksdanister/lively/wiki/Web-Guide-IV-:-Interaction</a
       >
     </ul>
     <h3 id="fixes">Fixes</h3>
     <ul>
-      <li>Fixed wallpaper FileDialog not opening when the program is Run as administrator.</li>
-      <li>Fixed media not changing in music wallpapers when the new track is from the same artist.</li>
+      <li>
+        Fixed wallpaper FileDialog not opening when the program is Run as
+        administrator.
+      </li>
+      <li>
+        Fixed media not changing in music wallpapers when the new track is from
+        the same artist.
+      </li>
     </ul>
     <h3 id="translation">Translation</h3>
     <ul>
       <li>Updated translations.</li>
       <li>
-        The new features may not be translated to all the languages on first release due to the nature of community
-        translations.
+        The new features may not be translated to all the languages on first
+        release due to the nature of community translations.
       </li>
       You can help translating, learn more:
       <a href="https://crowdin.com/project/lively-wallpaper" target="_blank"
@@ -210,7 +274,11 @@
     </ul>
   </body>
   <div class="footer">
-    <a href="https://rocksdanister.com/lively" title="https://rocksdanister.com/lively">Home</a>
+    <a
+      href="https://rocksdanister.com/lively"
+      title="https://rocksdanister.com/lively"
+      >Home</a
+    >
   </div>
   <script>
     let videos = document.getElementsByClassName("video");
