@@ -22,6 +22,12 @@ body {
   object-fit: cover;
 }
 
+.subheader {
+  opacity: 0.75;
+  font-weight: 600;
+  font-size: 1.2em;
+}
+
 p, li {
   color: rgb(220, 220, 220);
 }
