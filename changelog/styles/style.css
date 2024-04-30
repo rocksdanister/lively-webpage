@@ -22,6 +22,10 @@ body {
   object-fit: cover;
 }
 
+p, li {
+  color: rgb(220, 220, 220);
+}
+
 h2 {
   font-weight: 700;
 }
@@ -40,7 +44,7 @@ a {
   border-radius: 5px;
   overflow: hidden;
   position: relative;
-  box-shadow: 0px 0px 1rem rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
 }
 
 .video {
@@ -63,6 +67,10 @@ a {
     color: black;
     background-color: #f9f9f9;
   }
+
+  p, li {
+    color: rgb(75, 75, 75);
+  }
 }
 @media (prefers-color-scheme: dark) {
   html {
@@ -74,8 +82,13 @@ a {
     background-color: #272727;
     margin: 1rem 1.5rem;
   }
+
   .media-border {
-    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.75);
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  }
+
+  p, li {
+    color: rgb(220, 220, 220);
   }
 }
 @media screen and (max-width: 900px) {
