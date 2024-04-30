@@ -41,6 +41,7 @@ function handleSourceParameter() {
     const source = urlParams.get("source");
     if (source === "app") {
       hideContent("footer");
+      document.body.style.userSelect = "none";
     } else {
       console.log("Unknown source param " + urlParams);
     }
