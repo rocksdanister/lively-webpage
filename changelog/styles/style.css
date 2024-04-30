@@ -9,6 +9,7 @@ body {
   color: white;
   background-color: #272727;
   font-family: "Noto Sans", sans-serif;
+  user-select: none;
 }
 
 .footer {
