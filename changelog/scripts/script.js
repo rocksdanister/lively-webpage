@@ -69,3 +69,26 @@ function hideContent(className) {
 window.onload = function () {
   handleSourceParameter();
 };
+
+const cachedTheme = localStorage.getItem('theme');
+if (cachedTheme) {
+  document.documentElement.dataset['theme'] = cachedTheme;
+}
+window.onload = () => {
+  const themePicker = document.getElementById('theme-picker');
+  if (!themePicker) return;
+
+  const initialTheme = cachedTheme ?? 'dark';
+  themePicker.checked = initialTheme == 'dark' ? true : false;
+
+  themePicker.addEventListener('change', (e) => {
+    const theme = e.target.checked == true ? 'dark' : 'light';
+    if (theme === 'auto') {
+      delete document.documentElement.dataset['theme'];
+      localStorage.removeItem('theme');
+    } else {
+      document.documentElement.dataset['theme'] = theme;
+      localStorage.setItem('theme', theme);
+    }
+  });
+};
