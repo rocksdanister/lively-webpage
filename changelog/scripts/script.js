@@ -42,11 +42,22 @@ function handleSourceParameter() {
     if (source === "app") {
       hideContent("footer");
       document.body.style.userSelect = "none";
+      document.getElementById("theme-picker").parentElement.style.display =
+        "none";
     } else {
       console.log("Unknown source param " + urlParams);
     }
-  } else {
-    // Default
+  }
+
+  if (urlParams.has("theme")) {
+    const theme = urlParams.get("theme");
+    if (theme === "light") {
+      document.documentElement.dataset["theme"] = theme;
+    } else if (theme === "dark") {
+      document.documentElement.dataset["theme"] = theme;
+    } else {
+      console.log("Unknown source param " + urlParams);
+    }
   }
 }
 
@@ -66,29 +77,30 @@ function hideContent(className) {
 
 //#endregion
 
-window.onload = function () {
-  handleSourceParameter();
-};
-
-const cachedTheme = localStorage.getItem('theme');
+const cachedTheme = localStorage.getItem("theme");
 if (cachedTheme) {
-  document.documentElement.dataset['theme'] = cachedTheme;
+  document.documentElement.dataset["theme"] = cachedTheme;
 }
-window.onload = () => {
-  const themePicker = document.getElementById('theme-picker');
+function handleThemes() {
+  const themePicker = document.getElementById("theme-picker");
   if (!themePicker) return;
 
-  const initialTheme = cachedTheme ?? 'dark';
-  themePicker.checked = initialTheme == 'dark' ? true : false;
+  const initialTheme = cachedTheme ?? "dark";
+  themePicker.checked = initialTheme == "dark" ? true : false;
 
-  themePicker.addEventListener('change', (e) => {
-    const theme = e.target.checked == true ? 'dark' : 'light';
-    if (theme === 'auto') {
-      delete document.documentElement.dataset['theme'];
-      localStorage.removeItem('theme');
+  themePicker.addEventListener("change", (e) => {
+    const theme = e.target.checked == true ? "dark" : "light";
+    if (theme === "auto") {
+      delete document.documentElement.dataset["theme"];
+      localStorage.removeItem("theme");
     } else {
-      document.documentElement.dataset['theme'] = theme;
-      localStorage.setItem('theme', theme);
+      document.documentElement.dataset["theme"] = theme;
+      localStorage.setItem("theme", theme);
     }
   });
+}
+
+window.onload = () => {
+  handleThemes();
+  handleSourceParameter();
 };
