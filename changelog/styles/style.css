@@ -1,3 +1,25 @@
+/* Light theme */
+html[data-theme="light"] {
+  color-scheme: light;
+
+  --bodyColor: black;
+  --backgroundColor: #f9f9f9;
+
+  --pColor: rgb(75, 75, 75);
+  --boxShadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+}
+
+/* Dark theme override */
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bodyColor: white;
+  --backgroundColor: #272727;
+
+  --pColor: rgb(220, 220, 220);
+  --boxShadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+}
+
 html {
   max-width: 900px;
   margin: auto;
@@ -6,9 +28,16 @@ html {
 
 body {
   font-size: 15px;
-  color: white;
-  background-color: #272727;
+  color: var(--bodyColor);
+  background-color: var(--backgroundColor);
   font-family: "Noto Sans", sans-serif;
+  margin: 1rem 1.5rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .footer {
@@ -28,8 +57,9 @@ body {
   font-size: 1.2em;
 }
 
-p, li {
-  color: rgb(220, 220, 220);
+p,
+li {
+  color: var(--pColor);
 }
 
 h2 {
@@ -45,12 +75,11 @@ a {
 }
 
 .media-border {
-  width: 825px;
   height: 459px;
   border-radius: 5px;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  box-shadow: var(--boxShadow);
 }
 
 .video {
@@ -67,36 +96,25 @@ a {
 @media (prefers-color-scheme: light) {
   html {
     color-scheme: light;
-  }
 
-  body {
-    color: black;
-    background-color: #f9f9f9;
-  }
+    --bodyColor: black;
+    --backgroundColor: #f9f9f9;
 
-  p, li {
-    color: rgb(75, 75, 75);
+    --pColor: rgb(75, 75, 75);
+    --boxShadow: 0 0 1rem rgba(0, 0, 0, 0.5);
   }
 }
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
-  }
+    --bodyColor: white;
+    --backgroundColor: #272727;
 
-  body {
-    color: white;
-    background-color: #272727;
-    margin: 1rem 1.5rem;
-  }
-
-  .media-border {
-    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
-  }
-
-  p, li {
-    color: rgb(220, 220, 220);
+    --pColor: rgb(220, 220, 220);
+    --boxShadow: 0 0 1rem rgba(0, 0, 0, 0.5);
   }
 }
+
 @media screen and (max-width: 900px) {
   html {
     max-width: 100vw;
@@ -107,4 +125,87 @@ a {
     height: 50vw;
     margin: 0 auto;
   }
+}
+
+/* Theme switch container */
+.switch {
+  --transition: 300ms;
+  --color-dark: #0c0f14;
+  --color-darkGray: #272727;
+  --color-gray: #52555a;
+  --color-offWhite: #959595;
+  --shadow-color: var(--color-dark);
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 60px;
+  height: fit-content;
+  background-color: var(--color-offWhite);
+  border-radius: 5px;
+  padding: 2px;
+  transition: var(--transition);
+  user-select: none;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* Svg styles */
+.switch .svg {
+  transition: var(--transition);
+  position: absolute;
+  left: 5px;
+}
+.switch .moon {
+  width: 24px;
+  fill: white;
+  opacity: 0;
+}
+
+.switch .sun {
+  width: 24px;
+  height: 24px;
+  left: calc(100% - 30px);
+  fill: var(--color-dark);
+  opacity: 1;
+}
+
+/*checkbox styles */
+.switch .circle {
+  appearance: none;
+  position: relative;
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  left: 0;
+  margin-left: 1px;
+  background-color: white;
+  border: 1px solid white;
+  transition: var(--transition);
+  box-shadow: 1px 1px 20px 3px white;
+}
+
+.switch:has(.circle:checked) {
+  background: var(--color-dark);
+}
+
+.switch .circle:hover {
+  margin-left: 4px;
+}
+.switch .circle:checked:hover {
+  margin-left: -3px;
+}
+
+.switch .circle:checked {
+  left: calc(100% - 27px);
+  background: var(--color-darkGray);
+  border-color: var(--color-darkGray);
+  box-shadow: 1px 1px 30px 12px var(--color-darkGray);
+}
+
+.switch:has(.circle:checked) > .sun {
+  opacity: 0;
+}
+
+.switch:has(.circle:checked) > .moon {
+  opacity: 1;
 }
