@@ -41,7 +41,7 @@ body {
 }
 
 .footer {
-  text-align: right;
+  text-align: center;
   padding: 40px;
 }
 
@@ -132,7 +132,6 @@ a {
   --transition: 300ms;
   --color-dark: #0c0f14;
   --color-darkGray: #272727;
-  --color-gray: #52555a;
   --color-offWhite: #959595;
   --shadow-color: var(--color-dark);
   position: relative;
@@ -177,7 +176,7 @@ a {
   height: 25px;
   border-radius: 5px;
   left: 0;
-  margin-left: 1px;
+  margin-left: 5px;
   background-color: white;
   border: 1px solid white;
   transition: var(--transition);
@@ -189,14 +188,15 @@ a {
 }
 
 .switch .circle:hover {
-  margin-left: 4px;
+  margin-left: 8px;
 }
 .switch .circle:checked:hover {
-  margin-left: -3px;
+  margin-left: -5px;
 }
 
 .switch .circle:checked {
   left: calc(100% - 27px);
+  margin-left: -2px;
   background: var(--color-darkGray);
   border-color: var(--color-darkGray);
   box-shadow: 1px 1px 30px 12px var(--color-darkGray);
