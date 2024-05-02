@@ -48,17 +48,6 @@ function handleSourceParameter() {
       console.log("Unknown source param " + urlParams);
     }
   }
-
-  if (urlParams.has("theme")) {
-    const theme = urlParams.get("theme");
-    if (theme === "light") {
-      document.documentElement.dataset["theme"] = theme;
-    } else if (theme === "dark") {
-      document.documentElement.dataset["theme"] = theme;
-    } else {
-      console.log("Unknown source param " + urlParams);
-    }
-  }
 }
 
 // Hide the contents while keeping its space reserved
