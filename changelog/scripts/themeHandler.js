@@ -31,33 +31,28 @@ function handleThemes() {
   // gets the initial theme from the theme set by the param or the cache
   // if theme is light the toggle should be unchecked,
   // if the theme is dark then the toggle should be checked
-  // if the theme wasn't set by either default to window match media
-  // if that fails set to true which means dark
-  const initialTheme =
-    document.documentElement.dataset["theme"] == "light"
-      ? false
-      : true ??
-        window.matchMedia("(prefers-color-scheme: dark)").matches ??
-        true;
+  // if the theme wasn't set by either use prefer color
+  const initialTheme = document.documentElement.dataset["theme"] ?? "auto";
 
-  themePicker.checked = initialTheme;
-
-  // sets the theme if a cached one exists
-  // and it wasn't set by the params
-  // or the cached theme
-  if (!document.documentElement.dataset["theme"]) {
-    document.documentElement.dataset["theme"] =
-      themePicker.checked == true ? "dark" : "light";
-  }
+  themePicker.checked =
+    initialTheme !== "auto"
+      ? initialTheme == "dark"
+        ? true
+        : false
+      : window.matchMedia("(prefers-color-scheme: dark)").matches;
 
   themePicker.addEventListener("change", (e) => {
     const theme = e.target.checked == true ? "dark" : "light";
-    if (theme === "auto") {
-      delete document.documentElement.dataset["theme"];
-      localStorage.removeItem("theme");
-    } else {
-      document.documentElement.dataset["theme"] = theme;
-      localStorage.setItem("theme", theme);
-    }
+    document.documentElement.dataset["theme"] = theme;
+    localStorage.setItem("theme", theme);
   });
+
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", (e) => {
+      if (!document.documentElement.dataset["theme"])
+        themePicker.checked = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+    });
 }
