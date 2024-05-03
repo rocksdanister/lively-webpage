@@ -95,6 +95,36 @@ a {
   opacity: 1;
 }
 
+/* 
+Ref: https://uiverse.io/ArturCodeCraft/fresh-hound-11
+Copyright - 2024 ArturCodeCraft (Artur) MIT License
+*/
+/* <main-style> ============================ */
+.menu__link {
+  text-decoration: none;
+  color: #fff;
+  line-height: 2;
+  position: relative;
+  padding-right: 4px;
+}
+
+.menu__link:hover {
+  text-decoration: underline;
+}
+
+.menu__link::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-top: solid 2px #fff;
+  border-right: solid 2px #fff;
+  border-radius: 2px;
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
 @media (prefers-color-scheme: light) {
   html {
     color-scheme: light;
