@@ -100,7 +100,7 @@ Ref: https://uiverse.io/ArturCodeCraft/fresh-hound-11
 Copyright - 2024 ArturCodeCraft (Artur) MIT License
 */
 /* <main-style> ============================ */
-.menu__link {
+a.menu__link {
   text-decoration: none;
   color: var(--pColor);
   line-height: 2;
@@ -125,7 +125,7 @@ Copyright - 2024 ArturCodeCraft (Artur) MIT License
   position: absolute;
   top: 50%;
   left: 100%;
-  transition: transform 200ms ease;
+  transition: transform 300ms ease;
 
   transform: translateY(-50%) rotate(45deg);
 }
@@ -169,6 +169,10 @@ Copyright - 2024 ArturCodeCraft (Artur) MIT License
   }
 }
 
+/* Original https://uiverse.io/3bdel3ziz-T/honest-deer-30 */
+/* Copyright - 2024 3bdel3ziz-T (3bdel3zizT)  MIT License */
+/* Heavily modified */
+/* Uses Svgs provided by Material Design Icons Apache 2.0 License */
 /* Theme switch container */
 .switch {
   --transition: 300ms ease;
