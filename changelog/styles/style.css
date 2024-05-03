@@ -102,10 +102,12 @@ Copyright - 2024 ArturCodeCraft (Artur) MIT License
 /* <main-style> ============================ */
 .menu__link {
   text-decoration: none;
-  color: #fff;
+  color: var(--pColor);
   line-height: 2;
   position: relative;
   padding-right: 4px;
+  /* font-style: italic;
+  font-weight: 600; */
 }
 
 .menu__link:hover {
@@ -113,19 +115,23 @@ Copyright - 2024 ArturCodeCraft (Artur) MIT License
 }
 
 .menu__link::before {
+  /* content: '➤'; */
   content: '';
   width: 6px;
   height: 6px;
-  border-top: solid 2px #fff;
-  border-right: solid 2px #fff;
-  border-radius: 2px;
+  border-top: solid 2px var(--pColor); 
+  border-right: solid 2px var(--pColor);
+
   position: absolute;
   top: 50%;
   left: 100%;
+  transition: transform 200ms ease;
+
   transform: translateY(-50%) rotate(45deg);
 }
 
 .menu__link:hover::before {
+  /* transform: translateX(4px); */
   transform: translateX(4px) translateY(-50%) rotate(45deg);
 }
 
