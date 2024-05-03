@@ -125,6 +125,10 @@ Copyright - 2024 ArturCodeCraft (Artur) MIT License
   transform: translateY(-50%) rotate(45deg);
 }
 
+.menu__link:hover::before {
+  transform: translateX(4px) translateY(-50%) rotate(45deg);
+}
+
 @media (prefers-color-scheme: light) {
   html {
     color-scheme: light;
