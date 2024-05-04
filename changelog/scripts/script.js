@@ -36,17 +36,24 @@ function handleSourceParameter() {
   // Get the URL of the current page
   const urlParams = new URLSearchParams(window.location.search);
 
-  // Check if the "source" parameter exists
+  // Get source (browser/app)
   if (urlParams.has("source")) {
     const source = urlParams.get("source");
     if (source === "app") {
       hideContent("footer");
       document.body.style.userSelect = "none";
-      document.getElementById("theme-picker").parentElement.style.display =
-        "none";
+      document.getElementById("theme-picker").parentElement.style.display = "none";
     } else {
       console.log("Unknown source param " + urlParams);
     }
+  }
+  // Get accent color
+  if (urlParams.has("color")) {
+    const color = urlParams.get("color");
+    var menuLinks = document.querySelectorAll(".menu__link");
+    menuLinks.forEach(function (link) {
+      link.style.color = "#" + color;
+    });
   }
 }
 

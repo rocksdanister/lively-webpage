@@ -1,19 +1,4 @@
-// sets the theme if a param exists
-const urlParams = new URLSearchParams(window.location.search);
-if (urlParams.has("theme")) {
-  const theme = urlParams.get("theme");
-  if (theme === "light") {
-    document.documentElement.dataset["theme"] = theme;
-  } else if (theme === "dark") {
-    document.documentElement.dataset["theme"] = theme;
-  } else {
-    console.log("Unknown source param " + urlParams);
-  }
-}
-
 let tagCloud;
-let light_colors = ["#34A853", "#FBBC05", "#4285F4", "#7FBC00"];
-let dark_colors = ["#239742", "#815e00", "#3174E4", "#6EAD00"];
 const names = [
   "jesse grima",
   "Frank alexis cruz Marmolejos",
@@ -153,27 +138,27 @@ function updateCloud() {
 window.addEventListener("resize", updateCloud);
 window.addEventListener("load", updateCloud);
 
-window
-  .matchMedia("(prefers-color-scheme: dark)")
-  .addEventListener("change", (e) => {
-    if (!document.documentElement.dataset["theme"]) updateCloudColor();
-  });
+function handleSourceParameter() {
+  const urlParams = new URLSearchParams(window.location.search);
 
-function updateCloudColor() {
-  const forcedTheme = document.documentElement.dataset["theme"];
-  const darkTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  let colors;
-
-  if (forcedTheme) {
-    if (forcedTheme === "light") colors = dark_colors;
-    else colors = light_colors;
-  } else {
-    if (!darkTheme) colors = dark_colors;
-    else colors = light_colors;
+    // sets the theme if a param exists
+  if (urlParams.has("theme")) {
+    const theme = urlParams.get("theme");
+    if (theme === "light") {
+      document.documentElement.dataset["theme"] = theme;
+    } else if (theme === "dark") {
+      document.documentElement.dataset["theme"] = theme;
+    } else {
+      console.log("Unknown source param " + urlParams);
+    }
   }
-
-  document.querySelector(".content").style.color =
-    colors[Math.floor(Math.random() * colors.length)];
+  // sets accent color
+  if (urlParams.has("color")) {
+    const color = urlParams.get("color");
+    document.querySelector(".content").style.color = "#" + color;
+  }
 }
 
-updateCloudColor();
+window.onload = () => {
+  handleSourceParameter();
+};
