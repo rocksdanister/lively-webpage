@@ -1,4 +1,5 @@
 let tagCloud;
+let accentColor = null;
 const names = [
   "jesse grima",
   "Frank alexis cruz Marmolejos",
@@ -138,10 +139,18 @@ function updateCloud() {
 window.addEventListener("resize", updateCloud);
 window.addEventListener("load", updateCloud);
 
+window.onload = () => {
+  handleSourceParameter();
+};
+
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+  if (!document.documentElement.dataset["theme"]) setAccentColor();
+});
+
 function handleSourceParameter() {
   const urlParams = new URLSearchParams(window.location.search);
 
-    // sets the theme if a param exists
+  // sets the theme if a param exists
   if (urlParams.has("theme")) {
     const theme = urlParams.get("theme");
     if (theme === "light") {
@@ -154,11 +163,60 @@ function handleSourceParameter() {
   }
   // sets accent color
   if (urlParams.has("color")) {
-    const color = urlParams.get("color");
-    document.querySelector(".content").style.color = "#" + color;
+    setAccentColor("#" + urlParams.get("color"));
   }
 }
 
-window.onload = () => {
-  handleSourceParameter();
-};
+function setAccentColor(color =  accentColor) {
+  if (color == null) return;
+
+  accentColor = color;
+  var factor = getCurrentTheme() == "light" ? -25 : 25;
+  var tempColor = changeBrightness(color, factor);
+  document.querySelector(".content").style.color = tempColor;
+}
+
+// ref: https://stackoverflow.com/questions/6443990/javascript-calculate-brighter-colour
+function changeBrightness(hex, percent) {
+  // strip the leading # if it's there
+  hex = hex.replace(/^\s*#|\s*$/g, "");
+
+  // convert 3 char codes --> 6, e.g. `E0F` --> `EE00FF`
+  if (hex.length == 3) {
+    hex = hex.replace(/(.)/g, "$1$1");
+  }
+
+  var r = parseInt(hex.substr(0, 2), 16),
+    g = parseInt(hex.substr(2, 2), 16),
+    b = parseInt(hex.substr(4, 2), 16);
+
+  if (percent > 0) {
+    return (
+      "#" +
+      (0 | ((1 << 8) + r + ((256 - r) * percent) / 100)).toString(16).substr(1) +
+      (0 | ((1 << 8) + g + ((256 - g) * percent) / 100)).toString(16).substr(1) +
+      (0 | ((1 << 8) + b + ((256 - b) * percent) / 100)).toString(16).substr(1)
+    );
+  } else {
+    percent *= -1;
+    return (
+      "#" +
+      (0 | ((1 << 8) + (r * (100 - percent)) / 100)).toString(16).substr(1) +
+      (0 | ((1 << 8) + (g * (100 - percent)) / 100)).toString(16).substr(1) +
+      (0 | ((1 << 8) + (b * (100 - percent)) / 100)).toString(16).substr(1)
+    );
+  }
+}
+
+function getCurrentTheme() {
+  const forcedTheme = document.documentElement.dataset["theme"];
+  const darkTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  if (forcedTheme) {
+    if (forcedTheme == "light") return "light";
+    else "dark";
+  } else {
+    if (!darkTheme) return "light";
+    else "dark";
+  }
+}
