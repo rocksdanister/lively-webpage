@@ -27,8 +27,8 @@ html {
   margin: auto;
   color-scheme: dark;
 
-  --accentColorLight: var(--pColor);
-  --accentColorDark: var(--pColor);
+  --accentColorLight: #77cbf9;
+  --accentColorDark: #3b84ac;
 }
 
 body {
