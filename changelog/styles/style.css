@@ -7,6 +7,7 @@ html[data-theme="light"] {
 
   --pColor: rgb(75, 75, 75);
   --boxShadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  --accentColor: var(--accentColorDark);
 }
 
 /* Dark theme override */
@@ -18,12 +19,16 @@ html[data-theme="dark"] {
 
   --pColor: rgb(220, 220, 220);
   --boxShadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  --accentColor: var(--accentColorLight);
 }
 
 html {
   max-width: 900px;
   margin: auto;
   color-scheme: dark;
+
+  --accentColorLight: var(--pColor);
+  --accentColorDark: var(--pColor);
 }
 
 body {
@@ -102,12 +107,12 @@ Copyright - 2024 ArturCodeCraft (Artur) MIT License
 /* <main-style> ============================ */
 a.menu__link {
   text-decoration: none;
-  color: var(--pColor);
+  color: var(--accentColor);
   line-height: 2;
   position: relative;
   padding-right: 4px;
-  /* font-style: italic;
-  font-weight: 600; */
+  /* font-style: italic;*/
+  font-weight: 600;
 }
 
 .menu__link:hover {
@@ -116,11 +121,11 @@ a.menu__link {
 
 .menu__link::before {
   /* content: '➤'; */
-  content: '';
+  content: "";
   width: 6px;
   height: 6px;
-  border-top: solid 2px var(--pColor); 
-  border-right: solid 2px var(--pColor);
+  border-top: solid 2px var(--accentColor);
+  border-right: solid 2px var(--accentColor);
 
   position: absolute;
   top: 50%;
@@ -144,6 +149,7 @@ a.menu__link {
 
     --pColor: rgb(75, 75, 75);
     --boxShadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+    --accentColor: var(--accentColorDark);
   }
 }
 @media (prefers-color-scheme: dark) {
@@ -154,6 +160,7 @@ a.menu__link {
 
     --pColor: rgb(220, 220, 220);
     --boxShadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+    --accentColor: var(--accentColorLight);
   }
 }
 
