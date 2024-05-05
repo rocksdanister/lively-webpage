@@ -10,6 +10,19 @@ if (urlParams.has("theme")) {
     console.log("Unknown source param " + urlParams);
   }
 }
+// Get accent color
+if (urlParams.has("colorLight")) {
+  document.documentElement.style.setProperty(
+    "--accentColorLight",
+    "#" + urlParams.get("colorLight")
+  );
+}
+if (urlParams.has("colorDark")) {
+  document.documentElement.style.setProperty(
+    "--accentColorDark",
+    "#" + urlParams.get("colorDark")
+  );
+}
 
 // sets the theme if a cached one exists
 // and it wasn't set by the params
@@ -51,9 +64,10 @@ function handleThemes() {
   window
     .matchMedia("(prefers-color-scheme: dark)")
     .addEventListener("change", (e) => {
-      if (!document.documentElement.dataset["theme"])
-        themePicker.checked = window.matchMedia(
-          "(prefers-color-scheme: dark)"
-        ).matches;
+      if (document.documentElement.dataset["theme"]) return;
+
+      themePicker.checked = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
     });
 }
