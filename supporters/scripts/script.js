@@ -1,5 +1,35 @@
+const light_colors = ["#34A853", "#FBBC05", "#4285F4", "#7FBC00"];
+const dark_colors = ["#239742", "#815e00", "#3174E4", "#6EAD00"];
+//All these are css changes that can take place
+//before the body finish loading
+(() => {
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.has("theme")) {
+    const theme = urlParams.get("theme");
+    if (theme === "light") {
+      document.documentElement.dataset["theme"] = theme;
+    } else if (theme === "dark") {
+      document.documentElement.dataset["theme"] = theme;
+    } else {
+      console.log("Unknown source param " + urlParams);
+    }
+  }
+  if (urlParams.has("colorLight")) {
+    document.documentElement.style.setProperty(
+      "--accentColorLight",
+      "#" + urlParams.get("colorLight")
+    );
+  }
+  if (urlParams.has("colorDark")) {
+    document.documentElement.style.setProperty(
+      "--accentColorDark",
+      "#" + urlParams.get("colorDark")
+    );
+  }
+  setAccentColor();
+})();
+
 let tagCloud;
-let accentColor = null;
 const names = [
   "jesse grima",
   "Frank alexis cruz Marmolejos",
@@ -139,84 +169,27 @@ function updateCloud() {
 window.addEventListener("resize", updateCloud);
 window.addEventListener("load", updateCloud);
 
-window.onload = () => {
-  handleSourceParameter();
-};
+window
+  .matchMedia("(prefers-color-scheme: dark)")
+  .addEventListener("change", (e) => {
+    if (!document.documentElement.dataset["theme"]) setAccentColor();
+  });
 
-window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
-  if (!document.documentElement.dataset["theme"]) setAccentColor();
-});
-
-function handleSourceParameter() {
-  const urlParams = new URLSearchParams(window.location.search);
-
-  // sets the theme if a param exists
-  if (urlParams.has("theme")) {
-    const theme = urlParams.get("theme");
-    if (theme === "light") {
-      document.documentElement.dataset["theme"] = theme;
-    } else if (theme === "dark") {
-      document.documentElement.dataset["theme"] = theme;
-    } else {
-      console.log("Unknown source param " + urlParams);
-    }
-  }
-  // sets accent color
-  if (urlParams.has("color")) {
-    setAccentColor("#" + urlParams.get("color"));
-  }
-}
-
-function setAccentColor(color =  accentColor) {
-  if (color == null) return;
-
-  accentColor = color;
-  var factor = getCurrentTheme() == "light" ? -25 : 25;
-  var tempColor = changeBrightness(color, factor);
-  document.querySelector(".content").style.color = tempColor;
-}
-
-// ref: https://stackoverflow.com/questions/6443990/javascript-calculate-brighter-colour
-function changeBrightness(hex, percent) {
-  // strip the leading # if it's there
-  hex = hex.replace(/^\s*#|\s*$/g, "");
-
-  // convert 3 char codes --> 6, e.g. `E0F` --> `EE00FF`
-  if (hex.length == 3) {
-    hex = hex.replace(/(.)/g, "$1$1");
-  }
-
-  var r = parseInt(hex.substr(0, 2), 16),
-    g = parseInt(hex.substr(2, 2), 16),
-    b = parseInt(hex.substr(4, 2), 16);
-
-  if (percent > 0) {
-    return (
-      "#" +
-      (0 | ((1 << 8) + r + ((256 - r) * percent) / 100)).toString(16).substr(1) +
-      (0 | ((1 << 8) + g + ((256 - g) * percent) / 100)).toString(16).substr(1) +
-      (0 | ((1 << 8) + b + ((256 - b) * percent) / 100)).toString(16).substr(1)
-    );
-  } else {
-    percent *= -1;
-    return (
-      "#" +
-      (0 | ((1 << 8) + (r * (100 - percent)) / 100)).toString(16).substr(1) +
-      (0 | ((1 << 8) + (g * (100 - percent)) / 100)).toString(16).substr(1) +
-      (0 | ((1 << 8) + (b * (100 - percent)) / 100)).toString(16).substr(1)
-    );
-  }
-}
-
-function getCurrentTheme() {
+function setAccentColor() {
   const forcedTheme = document.documentElement.dataset["theme"];
   const darkTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  let colors;
 
   if (forcedTheme) {
-    if (forcedTheme == "light") return "light";
-    else "dark";
+    if (forcedTheme === "light") colors = dark_colors;
+    else colors = light_colors;
   } else {
-    if (!darkTheme) return "light";
-    else "dark";
+    if (!darkTheme) colors = dark_colors;
+    else colors = light_colors;
   }
+
+  document.documentElement.style.setProperty(
+    "--pColor",
+    colors[Math.floor(Math.random() * colors.length)]
+  );
 }
