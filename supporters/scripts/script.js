@@ -10,6 +10,8 @@ const dark_colors = ["#239742", "#815e00", "#3174E4", "#6EAD00"];
       document.documentElement.dataset["theme"] = theme;
     } else if (theme === "dark") {
       document.documentElement.dataset["theme"] = theme;
+    } else if (theme === "auto") {
+      // Default
     } else {
       console.log("Unknown source param " + urlParams);
     }

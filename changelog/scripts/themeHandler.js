@@ -6,6 +6,8 @@ if (urlParams.has("theme")) {
     document.documentElement.dataset["theme"] = theme;
   } else if (theme === "dark") {
     document.documentElement.dataset["theme"] = theme;
+  } else if (theme === "auto") {
+    // Default
   } else {
     console.log("Unknown source param " + urlParams);
   }
