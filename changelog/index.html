@@ -29,7 +29,7 @@
     <div class="media-border">
       <img class="hero" src="assets/latest/hero_art.webp" />
     </div>
-    <p style="display: inline-block">This update has been cooking for months.. lots of features and fixes.</p>
+    <p style="display: inline-block">This update has been cooking for months.. lots of features and fixes🥳</p>
     <h3 id="new-wallpapers">New "Music Tunnel" Wallpaper</h3>
     <div class="media-border">
       <video id="promo-new-wallpaper" class="video" loop muted>
@@ -122,20 +122,33 @@
       <li>Modernized the interface with new Segmented control.</li>
     </ul>
 
-    <h3 id="24h2">Windows 24H2 Support and 64bit Architecture</h3>
+    <h3 id="24h2">Windows 24H2 Support</h3>
     <ul>
-      <li>Upgrades have been made to support upcoming Windows 11 24H2.</li>
-      <li>Lively has started transitiong from 32bit to 64bit process architecture.<br>
-        If the current installation is admin you may get a prompt asking install location, this is normal.</br>
-        At the end of Installation restart maybe requested, this is not strictly required.
+      <li>
+        Upgrades have been implemented to ensure compatibility with the upcoming Windows 11 24H2 release.
+        <br />Additionally, these enhancements are expected to function with insider versions of Windows; however,
+        please note that insider builds are not officially supported.<br />
+      </li>
+    </ul>
+
+    <h3 id="64bit">x64/64bit Architecture</h3>
+    <ul>
+      <li>Lively is transitioning from x86 to x64 process architecture.</li>
+      <li>
+        This change will enhance application performance by better utilizing system resources.<br />
+        If your current installation has admin privileges, you may receive a one-time prompt asking for the install
+        type. This is normal.<br />
+        A restart may be requested at the end of the installation process. While not strictly required, it is
+        recommended.<br />
+        For backward compatibility, the installer filename remains listed as x86.<br />
       </li>
     </ul>
 
     <h3 id="commandline">Commandline</h3>
     <ul>
-      <li>New random option for setting wallpaper.</li>
+      <li>New random setwp option which sets a random wallpaper from library.</li>
       <a class="menu__link" href="https://github.com/rocksdanister/lively/wiki/Command-Line-Controls#set-wallpaper"
-        >https://github.com/rocksdanister/lively/wiki/Command-Line-Controls#set-wallpaper</a
+        >Learn more</a
       >
       <li>Setting wallpaper not present in library will now get auto imported if its media file.</li>
       <li>Removed 1 second delay when sending commands directly through application executable.</li>
@@ -143,7 +156,6 @@
 
     <h3 id="fixes">Fixes</h3>
     <ul>
-      <li>Fixed blank app screen issue due to region format settings in some systems.</li>
       <li>Fixed close wallpaper button disabled in span layout when non-primary display was selected previously.</li>
       <li>Fixed video wallpaper position not synchronized on startup in duplicate layout.</li>
       <li>Fixed Customize wallpaper not applying to selected screen if wallpaper is not running.</li>
@@ -161,7 +173,6 @@
         Optional <code>TaskbarCrashTimeOutDelay</code> settings variable to configure the check time between Taskbar
         Explorer process crash.
       </li>
-      <li>Exit Screensaver using touch or keyboard input.</li>
     </ul>
     <h3 id="translation">Translation</h3>
     <ul>

@@ -1,6 +1,7 @@
 const container = document.getElementById("container");
 let clock = new THREE.Clock();
 const gui = new dat.GUI();
+let devicePixelRatio = window.devicePixelRatio || 1;
 gui.hide();
 
 //custom events
@@ -115,7 +116,7 @@ async function init() {
     preserveDrawingBuffer: false,
   });
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(settings.scale);
+  renderer.setPixelRatio(settings.scale * devicePixelRatio);
   container.appendChild(renderer.domElement);
   scene = new THREE.Scene();
   camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
@@ -201,14 +202,15 @@ function setPause(val) {
   isPaused = val;
 }
 
-function setScale(value) {
-  if (settings.scale == value) return;
+function setScale(userScale) {
+  settings.scale = userScale;
+  const finalScale = devicePixelRatio * settings.scale;
+  if (renderer.getPixelRatio() == finalScale) return;
 
-  settings.scale = value;
-  renderer.setPixelRatio(settings.scale);
+  renderer.setPixelRatio(finalScale);
   material.uniforms.u_resolution.value = new THREE.Vector2(
-    window.innerWidth * settings.scale,
-    window.innerHeight * settings.scale
+    window.innerWidth * finalScale,
+    window.innerHeight * finalScale
   );
 }
 
@@ -448,10 +450,16 @@ function showTransition() {
 }
 
 function resize() {
+  if (window.devicePixelRatio !== devicePixelRatio) {
+    devicePixelRatio = window.devicePixelRatio || 1;
+    setScale(settings.scale);
+  }
+  const finalScale = devicePixelRatio * settings.scale;
+
   renderer.setSize(window.innerWidth, window.innerHeight);
   material.uniforms.u_resolution.value = new THREE.Vector2(
-    window.innerWidth * settings.scale,
-    window.innerHeight * settings.scale
+    window.innerWidth * finalScale,
+    window.innerHeight * finalScale
   );
 }
 
