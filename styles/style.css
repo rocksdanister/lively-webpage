@@ -484,12 +484,12 @@ li.card p {
 
 .download-button {
   margin-top: 10px;
-  background-color: black;
+  background-color: #202020;
   border-radius: 10px;
-  width: 292px;
-  height: 104px;
+  width: 332px;
+  height: 94px;
   transition: 0.25s;
-  border: black;
+  filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.5));
   text-decoration: none;
   display: inline-block;
   font-family: var(--font2);
@@ -507,16 +507,16 @@ li.card p {
 
 .download-button h1 {
   display: inline-block;
-  font-size: 34px !important;
+  font-size: 32px !important;
   vertical-align: top;
   margin-left: 5px;
-  margin-top: 30px;
+  margin-top: 34px;
 }
 
 .download-button img {
   position: relative;
-  width: 65px;
-  margin-left: -40px;
+  width: 55px;
+  margin-left: -25px;
   margin-top: 15px;
 }
 
