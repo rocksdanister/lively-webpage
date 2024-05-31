@@ -466,7 +466,8 @@ li.card p {
 }
 
 .white-filter {
-  filter: invert(100%) sepia(31%) saturate(0%) hue-rotate(148deg) brightness(110%) contrast(101%);
+  filter: invert(100%) sepia(31%) saturate(0%) hue-rotate(148deg)
+    brightness(110%) contrast(101%);
 }
 
 .logo {
@@ -489,10 +490,37 @@ li.card p {
   width: 332px;
   height: 94px;
   transition: 0.25s;
-  filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.5));
   text-decoration: none;
   display: inline-block;
   font-family: var(--font2);
+  box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.1);
+}
+
+.download-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  position: relative;
+  bottom: 21px;
+  height: 100%;
+}
+
+.download-wrapper > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 14px;
+  font-family: system-ui, auto;
+}
+
+.download-wrapper span {
+  font-size: 18px;
+}
+
+.download-button-wrapper {
+  display: flex;
+  justify-content: center;
 }
 
 .download-button:hover {
@@ -509,15 +537,16 @@ li.card p {
   display: inline-block;
   font-size: 32px !important;
   vertical-align: top;
-  margin-left: 5px;
-  margin-top: 34px;
+  margin: 0;
+  line-height: 27px;
+  font-weight: 600;
+  text-shadow: none;
 }
 
 .download-button img {
   position: relative;
-  width: 55px;
-  margin-left: -25px;
-  margin-top: 15px;
+  width: 50px;
+  margin-left: 20px;
 }
 
 /* navigation */
