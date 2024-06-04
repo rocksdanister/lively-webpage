@@ -488,7 +488,7 @@ li.card p {
   background-color: black;
   border-radius: 10px;
   width: 292px;
-  height: 94px;
+  height: 102px;
   transition: 0.25s;
   text-decoration: none;
   display: inline-block;
@@ -500,7 +500,7 @@ li.card p {
   justify-content: flex-start;
   align-items: flex-end;
   position: relative;
-  bottom: 21px;
+  bottom: 25px;
   height: 100%;
 }
 
