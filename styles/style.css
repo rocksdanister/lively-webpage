@@ -485,15 +485,14 @@ li.card p {
 
 .download-button {
   margin-top: 10px;
-  background-color: #202020;
+  background-color: black;
   border-radius: 10px;
-  width: 332px;
+  width: 292px;
   height: 94px;
   transition: 0.25s;
   text-decoration: none;
   display: inline-block;
   font-family: var(--font2);
-  box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.1);
 }
 
 .download-wrapper {
