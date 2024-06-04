@@ -4,7 +4,7 @@
   --color3: #493382;
   --color-font1: white;
   --color-font2: rgba(255, 255, 255, 0.8);
-  --font1: "Averia Sans Libre", cursive;
+  --font1: "Nunito", sans-serif;
   --font2: "Noto Sans", sans-serif;
 }
 
@@ -486,7 +486,7 @@ li.card p {
 .download-button {
   margin-top: 10px;
   background-color: black;
-  border-radius: 10px;
+  border-radius: 15px;
   width: 292px;
   height: 102px;
   transition: 0.25s;
