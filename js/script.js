@@ -6,6 +6,7 @@ gui.hide();
 
 //custom events
 let sceneLoaded = false;
+let webglContextCreated = false;
 const sceneLoadedEvent = new Event("sceneLoaded");
 const sceneChanged = new Event("sceneChanged");
 
@@ -111,35 +112,44 @@ void main() {
 `;
 
 async function init() {
-  renderer = new THREE.WebGLRenderer({
-    antialias: false,
-    preserveDrawingBuffer: false,
-  });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(settings.scale * devicePixelRatio);
-  container.appendChild(renderer.domElement);
-  scene = new THREE.Scene();
-  camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-  scene.add(quad);
+  try {
+    renderer = new THREE.WebGLRenderer({
+      antialias: false,
+      preserveDrawingBuffer: false,
+    });
+    webglContextCreated = true;
 
-  //caching for textureloader
-  //ref: https://threejs.org/docs/#api/en/loaders/Cache
-  THREE.Cache.enabled = true;
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(settings.scale * devicePixelRatio);
+    container.appendChild(renderer.domElement);
+    scene = new THREE.Scene();
+    camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+    scene.add(quad);
 
-  //preload default shader texture for transition effect
-  shaders[1].uniform.u_tex0_resolution.value = new THREE.Vector2(1920, 1080);
-  shaders[1].uniform.u_tex0.value = await new THREE.TextureLoader().loadAsync("media/snow_tree.webp");
+    //caching for textureloader
+    //ref: https://threejs.org/docs/#api/en/loaders/Cache
+    THREE.Cache.enabled = true;
 
-  await setScene("rain");
-  render(); //since init is async
+    //preload default shader texture for transition effect
+    shaders[1].uniform.u_tex0_resolution.value = new THREE.Vector2(1920, 1080);
+    shaders[1].uniform.u_tex0.value = await new THREE.TextureLoader().loadAsync("media/snow_tree.webp");
 
-  window.addEventListener("resize", (e) => resize());
+    await setScene("rain");
+    render(); //since init is async
 
-  if (isDebug) {
-    debugMenu();
-    gui.show();
-  } else {
-    gui.hide();
+    window.addEventListener("resize", (e) => resize());
+
+    if (isDebug) {
+      debugMenu();
+      gui.show();
+    } else {
+      gui.hide();
+    }
+  } catch (e) {
+    console.log(e);
+    
+    sceneLoaded = true;
+    document.dispatchEvent(sceneLoadedEvent);
   }
 }
 
