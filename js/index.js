@@ -111,15 +111,34 @@ observer.observe($("#page-gallery")[0]);
 observer.observe($("#page-download")[0]);
 observer.observe($("#footer")[0]);
 
-//threejs scene first run
-document.addEventListener("sceneLoaded", () => {
+// threejs scene first run
+if (sceneLoaded) {
+  handleSceneLoaded();
+} else {
+  document.addEventListener("sceneLoaded", handleSceneLoaded);
+}
+
+function handleSceneLoaded() {
   if (container.style.opacity == 0) setVisible(container);
   $(".indeterminate-progress-bar").css("display", "none");
 
   $(".item").each(function () {
     $(this).css("background-image", $(this).data("delayedsrc"));
   });
-});
+
+  if (!webglContextCreated) {
+    const $fallbackVideo = $("#fallbackVideo");
+    $fallbackVideo.attr("src", "../assets/fallback_background.webm");
+    $fallbackVideo.css("display", "block");
+    $fallbackVideo[0].play().catch((err) => console.error("Video play failed", err));
+
+    const $uiApp = $(".ui-app");
+    $uiApp.hide();
+
+    const $pageHome = $("#page-home");
+    $pageHome.css("min-height", "1000px");
+  }
+}
 
 //helpers
 async function setVisible(element) {

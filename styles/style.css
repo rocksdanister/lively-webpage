@@ -31,6 +31,18 @@ body {
   opacity: 0; /*set to 1 after sceneLoaded event*/
 }
 
+.fallback-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  filter: brightness(85%);
+  display: none; /* Hidden by default */
+}
+
 button {
   font-family: var(--font1);
 }
