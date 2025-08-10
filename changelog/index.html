@@ -22,17 +22,16 @@
   <body>
     <div class="header">
       <div>
-        <p class="subheader">xx xx 2025 | Lively v2.1.1.0 Update</p>
-        <h1>Better, Smarter, New Defaults</h1>
+        <p class="subheader">10 Aug 2025 | Lively v2.2.0.0 Update</p>
+        <h1>Better and Smarter</h1>
       </div>
     </div>
     <div class="media-border">
       <img class="hero" src="assets/latest/hero_art.webp" />
     </div>
     <p>
-      This update brings a smarter wallpaper pausing system,
-      <strong>WebView2</strong> as the new default browser engine, improved localization, enhanced screensaver
-      experience, and many refinements under the hood — including full compatibility with
+      This update packs a leaner install size, smarter wallpaper pausing, better localization, improved videos and
+      screensavers and lots of refinements under the hood — including full compatibility with
       <strong>Windows 11 24H2</strong>.
     </p>
 
@@ -116,7 +115,7 @@
     </div>
     <ul>
       <li>WebView2 is now the default browser engine for website wallpapers.</li>
-      <li>This change helps reduce the app’s install size by XX MB.</li>
+      <li>This change helps reduce the app’s install size by ~45%.</li>
       <li>Now website wallpapers support H.264 (x264) media playback out of the box.</li>
       <li>New debug DevTools — opens in a separate window.</li>
       <li>
@@ -139,6 +138,13 @@
         "lock on resume" is enabled).
       </li>
       <li>Screensaver settings have been reorganized and are now part of the main settings page for easier access.</li>
+    </ul>
+
+    <h3 id="video-enhancements">Video Enhancements</h3>
+    <ul>
+      <li>Upgraded to MPV player’s new <code>gpu-next</code> video backend.</li>
+      <li>Better performance and smoother playback with improved video quality.</li>
+      <li>Enhances color accuracy and HDR passthrough support.</li>
     </ul>
 
     <h3 id="win11">Windows 11 24H2 Compatibility</h3>
@@ -177,6 +183,8 @@
       <li>Improved MPV error messages for file loading and unknown arguments.</li>
       <li>Added system tray tooltip for wallpaper errors when UI is closed.</li>
       <li>Optimized page navigation for smoother and faster UI performance.</li>
+      <li>Website wallpapers now follow application theme (dark/light.)</li>
+      <li>Website wallpapers now show dark color instead of white while loading.</li>
       <li>Made the screensaver setup message dismissible.</li>
       <li>Reload command-line control now supports optional monitor argument.</li>
       <a
@@ -208,10 +216,6 @@
       <li>Improved performance of video wallpaper screenshot capture (app theme and desktop picture).</li>
       <li>Added WebView2 install prompt when selecting it in settings if the runtime is missing.</li>
       <li>Added in-app notification when WebView2 runtime is missing while selecting a wallpaper.</li>
-      <li>
-        MPV now uses sRGB colorspace by default; can be changed via the <code>VideoD3D11OutputColorSpace</code> settings
-        flag.
-      </li>
       <li>
         Changed wallpaper directory UI: address bar now opens the folder, side button allows selecting a new folder.
       </li>
