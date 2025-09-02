@@ -23,15 +23,15 @@
     <div class="header">
       <div>
         <p class="subheader">10 Aug 2025 | Lively v2.2.0.0 Update</p>
-        <h1>Better and Smarter</h1>
+        <h1>Big Update</h1>
       </div>
     </div>
     <div class="media-border">
       <img class="hero" src="assets/latest/hero_art.webp" />
     </div>
     <p>
-      This update packs a leaner install size, smarter wallpaper pausing, better localization, improved videos and
-      screensavers and lots of refinements under the hood — including full compatibility with
+      This is the biggest update in a long time and comes with better wallpaper pausing, better localization, better
+      screensavers and over 20+ fixes and improvements - including full compatibility with
       <strong>Windows 11 24H2</strong>.
     </p>
 
@@ -43,20 +43,42 @@
     </div>
     <ul>
       <li>
-        Replaced the default foreground window-based pause detection with a grid-based screen coverage algorithm — the
-        screen is now divided into a grid (tiles), and mathematical intersection is used to check if windows are
-        visually covering the display.
+        Replaced the default foreground window based pause detection with a grid based screen coverage algorithm - the
+        screen is now divided into a grid (tiles), and intersection calculation is used to check if windows are visually
+        covering the display.
       </li>
       <p>Solves several edge cases where the previous logic failed:</p>
       <ul>
         <li>Multiple windows (example: side by side), now correctly trigger pause.</li>
         <li>Works even if a background window, not the foreground one, is covering the wallpaper.</li>
-        <li>Improved desktop detection.</li>
+        <l1>Each display can now pause independently in per-display mode.</l1>
+        <li>Reliable desktop detection.</li>
       </ul>
       <p></p>
       <li>Now when duplicate layout is selected all wallpapers are paused.</li>
-      <li>New All Process algorithm available in settings.</li>
+      <li>New All Process algorithm available in settings - scans all windows and check for fullscreen.</li>
+      <a
+        class="menu__link"
+        target="_blank"
+        href="https://github.com/rocksdanister/lively/wiki/Performance#pause-algorithms"
+      >
+        Learn more
+      </a>
     </ul>
+    <p>Note: Some performance related settings will be reset to default after this update.</p>
+
+    <h3 id="language">Animated WebP Support</h3>
+    <div class="media-border">
+      <video id="promo-webp" class="video" loop muted>
+        <source src="assets/latest/webp.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <ul>
+      <li>Added support for animated WebP format.</li>
+      <li>WebP files are converted to WebM during import.</li>
+      <li>Wallpaper customisation is supported.</li>
+    </ul>
+    <p>This is an initial experiment, planning on adding conversion support for more formats in the future.</p>
 
     <h3 id="language">Language Selection</h3>
     <div class="media-border">
@@ -65,13 +87,13 @@
       </video>
     </div>
     <ul>
-      <li>Added custom language selection — preferred language can be selected from settings.</li>
-      <li>Language change applies instantly without requiring an app restart.</li>
+      <li>Added custom language selection - preferred language can be selected from settings.</li>
+      <li>[Experimental] Language change applies instantly without requiring an app restart.</li>
       <li>
         Added localization support for:
         <ul>
-          <li>LivelyProperties (wallpaper customization UI).</li>
-          <li>LivelyInfo (wallpaper metadata like title and description).</li>
+          <li>LivelyProperties (wallpaper customization.)</li>
+          <li>LivelyInfo (wallpaper metadata.)</li>
         </ul>
       </li>
       <a
@@ -91,19 +113,18 @@
     </div>
     <ul>
       <li>
-        Improved wallpaper import system: now copies wallpaper file(s) to the app’s internal install location instead of
-        just referencing the original path.
+        Changed wallpaper import system: now copies wallpaper file(s) to the wallpaper library location instead of just
+        referencing the original path.
         <ul>
-          <li>Previously imported wallpapers remain unaffected — to migrate them, use the Edit option in library.</li>
+          <li>Previously imported wallpapers remain unaffected - to migrate them, use the Edit option in library.</li>
           <li>
-            For multi-file wallpaper projects, a confirmation dialog now shows the expected folder structure before
-            importing.
+            For wallpaper projects with multiple files, a confirmation dialog now shows the expected folder structure
+            before importing.
           </li>
         </ul>
       </li>
       <li>
-        Faster bulk imports: multiple media wallpapers are imported significantly faster by utilizing system thumbnail
-        cache.
+        Faster bulk imports: multiple media wallpapers are now imported faster by utilizing system thumbnail cache.
       </li>
     </ul>
 
@@ -116,14 +137,15 @@
     <ul>
       <li>WebView2 is now the default browser engine for website wallpapers.</li>
       <li>This change helps reduce the app’s install size by ~45%.</li>
-      <li>Now website wallpapers support H.264 (x264) media playback out of the box.</li>
-      <li>New debug DevTools — opens in a separate window.</li>
+      <li>Now website wallpapers support H.264 media playback out of the box.</li>
+      <li>New debug DevTools, opens in a separate window.</li>
       <li>
-        Improved handling of media elements — when a wallpaper is paused, any playing video or audio elements on the
+        Improved handling of media elements - when a wallpaper is paused, any playing video or audio elements on the
         page are also paused automatically.
       </li>
-      <li>Fixed website login not persisting across wallpaper restarts.</li>
+      <li>Previous CefSharp player is provided as additional download on release page.</li>
     </ul>
+    <p>Note: Some browser related settings will be reset to default after this update.</p>
 
     <h3 id="screensaver">Screensaver Enhancements</h3>
     <div class="media-border">
@@ -132,7 +154,7 @@
       </video>
     </div>
     <ul>
-      <li>Fade-in animation when screensaver starts — any user input during this phase cancels activation.</li>
+      <li>Fade-in animation when screensaver starts, any user input during this phase cancels activation.</li>
       <li>
         Introduced a grace period: if input is received shortly after screensaver starts, system lock is skipped (when
         "lock on resume" is enabled).
@@ -143,8 +165,8 @@
     <h3 id="video-enhancements">Video Enhancements</h3>
     <ul>
       <li>Upgraded to MPV player’s new <code>gpu-next</code> video backend.</li>
-      <li>Better performance and smoother playback with improved video quality.</li>
-      <li>Enhances color accuracy and HDR passthrough support.</li>
+      <li>Better performance and improved video quality.</li>
+      <li>Enhances color accuracy and HDR passthrough support in settings.</li>
     </ul>
 
     <h3 id="win11">Windows 11 24H2 Compatibility</h3>
@@ -153,14 +175,21 @@
     <ul>
       <li>Fixed a critical issue where wallpapers could enter a restart loop on this version of Windows.</li>
     </ul>
+    <p>Special thanks to Microsoft engineers and community members who reached out and helped.</p>
 
     <h3 id="fixes">Fixes</h3>
     <ul>
+      <li>
+        Fixed unwanted border appearing on top-left of video wallpapers. If you previously added border=no to mpv.conf
+        as a workaround, it's recommended to remove it now.
+      </li>
+      <li>
+        Fixed website login not persisting across wallpaper restarts, requires disk cache to be enabled in settings.
+      </li>
+      <li>Fixed website wallpaper having wrong display scale.</li>
       <li>Fixed screensaver plugin required message not updating.</li>
-      <li>Fixed website login not persisting across wallpaper restarts.</li>
       <li>Fixed missing wallpaper art in screensaver dialog when preview file is absent.</li>
       <li>Fixed screensaver stopping early with "lock on resume" enabled.</li>
-      <li>Fixed unwanted border appearing on top-left of video wallpapers.</li>
       <li>Fixed on-screen controls showing in video screensavers.</li>
       <li>Fixed local file wallpapers not loading in WebView2.</li>
       <li>Fixed "Restore Default" button not visible when LivelyProperty is empty.</li>
@@ -170,7 +199,7 @@
       <li>Fixed webpage wallpaper briefly ignoring mute setting on startup.</li>
       <li>Fixed incorrect layout in screensaver dialog when using mirror mode.</li>
       <li>Fixed unnecessary error messages on first startup if config files are missing.</li>
-      <li>Fixed customise tray-menu not fitting on screen in some system configurations.</li>
+      <li>Fixed customize tray-menu not fitting on screen in some system configurations.</li>
       <li>Fixed FileNotFound exception when using absolute path URL wallpapers.</li>
       <li>Fixed MPV player screenshot feature crashing on some systems.</li>
       <li>Fixed file save dialog not opening when app is run elevated.</li>
@@ -221,21 +250,21 @@
       </li>
       <li>Switched from ListView to Segmented control in active wallpaper dialog.</li>
       <li>New Grid visualizer debug tool in Diagnostic page.</li>
-      <li>Lots and lots of refactoring.</li>
+      <li>Lots of code refactoring.</li>
     </ul>
 
     <h3 id="updates">Updates</h3>
     <ul>
-      <li>Updated Mpv player.</li>
-      <li>Updated .NET runtime v8.0.18.</li>
+      <li>Updated MPV player.</li>
+      <li>Updated to .NET 9.</li>
       <li>Updated WindowsAppSDK.</li>
-      <li>Updated dependencies.</li>
+      <li>Updated dependencies (includes important security patches.)</li>
       <li>Updated community translations.</li>
     </ul>
 
     <h3 id="developer-message">From the Developer</h3>
     <p>
-      It’s been a while since the last Lively update — I took a health break and have been gradually easing back into
+      It’s been a while since the last Lively update - I took a health break and have been gradually easing back into
       development. During this time, I also worked on a few side projects.. cue promotion 😁
     </p>
 
