@@ -22,7 +22,7 @@
   <body>
     <div class="header">
       <div>
-        <p class="subheader">10 Aug 2025 | Lively v2.2.0.0 Update</p>
+        <p class="subheader">3 Sept 2025 | Lively v2.2.0.0 Update</p>
         <h1>Big Update</h1>
       </div>
     </div>
@@ -80,7 +80,7 @@
     </ul>
     <p>This is an initial experiment, planning on adding conversion support for more formats in the future.</p>
 
-    <h3 id="language">Language Selection</h3>
+    <h3 id="language">Language Enhancements</h3>
     <div class="media-border">
       <video id="promo-localization" class="video" loop muted>
         <source src="assets/latest/localization.mp4" type="video/mp4" />
@@ -105,7 +105,7 @@
       </a>
     </ul>
 
-    <h3 id="wallpaper-creation">Wallpaper Creation</h3>
+    <h3 id="wallpaper-creation">Wallpaper Enhancements</h3>
     <div class="media-border">
       <video id="promo-wallpaper-creation" class="video" loop muted>
         <source src="assets/latest/wallpaper_creation.mp4" type="video/mp4" />
@@ -116,11 +116,12 @@
         Changed wallpaper import system: now copies wallpaper file(s) to the wallpaper library location instead of just
         referencing the original path.
         <ul>
-          <li>Previously imported wallpapers remain unaffected - to migrate them, use the Edit option in library.</li>
+          <li>Previously imported wallpapers remain unaffected - to migrate them to library location, use the Edit option in library.</li>
           <li>
             For wallpaper projects with multiple files, a confirmation dialog now shows the expected folder structure
             before importing.
           </li>
+          <li>From this version onward, newly imported wallpapers no longer depend on the original file - you can safely delete it without causing file not found errors.</li>
         </ul>
       </li>
       <li>
@@ -136,7 +137,7 @@
     </div>
     <ul>
       <li>WebView2 is now the default browser engine for website wallpapers.</li>
-      <li>This change helps reduce the app’s install size by ~45%.</li>
+      <li>Since WebView2 comes pre-installed with Windows, the app no longer needs to bundle a browser engine, reducing the install size by ~50%.</li>
       <li>Now website wallpapers support H.264 media playback out of the box.</li>
       <li>New debug DevTools, opens in a separate window.</li>
       <li>
@@ -184,7 +185,7 @@
         as a workaround, it's recommended to remove it now.
       </li>
       <li>
-        Fixed website login not persisting across wallpaper restarts, requires disk cache to be enabled in settings.
+        Fixed website login not persisting across wallpaper restarts, requires "Disk cache" to be enabled in settings.
       </li>
       <li>Fixed website wallpaper having wrong display scale.</li>
       <li>Fixed screensaver plugin required message not updating.</li>
@@ -265,7 +266,7 @@
     <h3 id="developer-message">From the Developer</h3>
     <p>
       It’s been a while since the last Lively update - I took a health break and have been gradually easing back into
-      development. During this time, I also worked on a few side projects.. cue promotion 😁
+      development. During this time, I also worked on a few side projects.. cue self promotion 😁
     </p>
 
     <a class="menu__link" target="_blank" href="https://apps.microsoft.com/detail/9ntsnmsvcb5l">Screenbox</a>
@@ -282,7 +283,7 @@
     <p></p>
     <a class="menu__link" target="_blank" href="https://www.rocksdanister.com/weather">Lively Weather</a>
     <p>
-      A native DirectX powered weather app I’ve been building alongside. The latest update brings up to 50% performance
+      A native DirectX powered animated weather app I’ve been building alongside. The latest update brings up to 50% performance
       boost after rewriting to D2D1 shaders.
     </p>
     <div class="media-border">
