@@ -45,16 +45,16 @@
       <li>
         Replaced the default foreground window based pause detection with a grid based screen coverage algorithm - the
         screen is now divided into a grid (tiles), and intersection calculation is used to check if windows are visually
-        covering the display.
+        covering the display (by default 95%.)
       </li>
       <p>Solves several edge cases where the previous logic failed:</p>
       <ul>
         <li>Multiple windows (example: side by side), now correctly trigger pause.</li>
         <li>Works even if a background window, not the foreground one, is covering the wallpaper.</li>
-        <l1>Each display can now pause independently in per-display mode.</l1>
+        <li>Each display can now pause independently in per-display mode.</li>
         <li>Reliable desktop detection.</li>
       </ul>
-      <p></p>
+      <p>To see the detection in real time, right-click the Lively tray icon and choose Report Bug → Grid Detection Overlay.</p>
       <li>Now when duplicate layout is selected all wallpapers are paused.</li>
       <li>New All Process algorithm available in settings - scans all windows and check for fullscreen.</li>
       <a
