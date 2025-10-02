@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lively Wallpaper Changelog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+    <!-- styles -->
+    <link rel="stylesheet" href="styles/style.css" />
+    <meta charset="utf-8" />
+    <noscript>
+      <style>
+        label.switch {
+          display: none;
+        }
+      </style>
+    </noscript>
+    <script src="./scripts/themeHandler.js"></script>
+  </head>
+  <body>
+    <div class="header">
+      <div>
+        <p class="subheader">18 Sept 2025 | Lively v2.2.0.0 - 2.2.1.0 Update</p>
+        <h1>Big Update</h1>
+      </div>
+    </div>
+    <div class="media-border">
+      <img class="hero" src="assets/2200180925/hero_art.webp" />
+    </div>
+    <p>
+      This is the biggest update in a long time and comes with better wallpaper pausing, better localization, better
+      screensavers and over 20+ fixes and improvements - including full compatibility with
+      <strong>Windows 11 24H2</strong>.
+    </p>
+    <p>This follow-up update v2.2.1.0 builds on the previous release, bringing improvements and some bug fixes.</p>
+
+    <h3 id="grid-pause">Grid Pause Algorithm</h3>
+    <div class="media-border">
+      <video id="promo-grid-pause" class="video" loop muted>
+        <source src="assets/2200180925/grid_pause.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <ul>
+      <li>
+        Replaced the default foreground window based pause detection with a grid based screen coverage algorithm - the
+        screen is now divided into a grid (tiles), and intersection calculation is used to check if windows are visually
+        covering the display.
+      </li>
+      <p>Solves several edge cases where the previous logic failed:</p>
+      <ul>
+        <li>Multiple windows (example: side by side), now correctly trigger pause.</li>
+        <li>Works even if a background window, not the foreground one, is covering the wallpaper.</li>
+        <li>Each display can now pause independently in per-display mode.</li>
+        <li>Reliable desktop detection.</li>
+      </ul>
+      <p>
+        To see the detection in real time, right-click the Lively tray icon and choose Report Bug → Grid Detection
+        Overlay.
+      </p>
+      <li>Now when duplicate layout is selected all wallpapers are paused.</li>
+      <li>New All Process algorithm available in settings - scans all windows and check for fullscreen.</li>
+      <a
+        class="menu__link"
+        target="_blank"
+        href="https://github.com/rocksdanister/lively/wiki/Performance#pause-algorithms"
+      >
+        Learn more
+      </a>
+    </ul>
+    <p>Note: Some performance related settings will be reset to default after this update.</p>
+
+    <h3 id="language">Animated WebP Support</h3>
+    <div class="media-border">
+      <video id="promo-webp" class="video" loop muted>
+        <source src="assets/2200180925/webp_support.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <ul>
+      <li>Added support for animated WebP format.</li>
+      <li>WebP files are converted to WebM during import.</li>
+      <li>Wallpaper customisation is supported.</li>
+    </ul>
+    <p>This is an initial experiment, planning on adding conversion support for more formats in the future.</p>
+
+    <h3 id="language">Language Enhancements</h3>
+    <div class="media-border">
+      <video id="promo-localization" class="video" loop muted>
+        <source src="assets/2200180925/localization.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <ul>
+      <li>Added custom language selection - preferred language can be selected from settings.</li>
+      <li>[Experimental] Language change applies instantly without requiring an app restart.</li>
+      <li>
+        Added localization support for:
+        <ul>
+          <li>LivelyProperties (wallpaper customization.)</li>
+          <li>LivelyInfo (wallpaper metadata.)</li>
+        </ul>
+      </li>
+      <a
+        class="menu__link"
+        target="_blank"
+        href="https://github.com/rocksdanister/lively/wiki/Web-Guide-IV-:-Interaction#localization"
+      >
+        Show documentation
+      </a>
+    </ul>
+
+    <h3 id="wallpaper-creation">Wallpaper Enhancements</h3>
+    <div class="media-border">
+      <video id="promo-wallpaper-creation" class="video" loop muted>
+        <source src="assets/2200180925/wallpaper_creation.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <ul>
+      <li>
+        Changed wallpaper import system: now copies wallpaper file(s) to the wallpaper library location instead of just
+        referencing the original path.
+        <ul>
+          <li>
+            Previously imported wallpapers remain unaffected - to migrate them to library location, use the Edit option
+            in library.
+          </li>
+          <li>
+            For wallpaper projects with multiple files, a confirmation dialog now shows the expected folder structure
+            before importing.
+          </li>
+          <li>
+            From this version onward, newly imported wallpapers no longer depend on the original file - you can safely
+            delete it without causing file not found errors.
+          </li>
+        </ul>
+      </li>
+      <li>
+        Faster bulk imports: multiple media wallpapers are now imported faster by utilizing system thumbnail cache.
+      </li>
+    </ul>
+
+    <h3 id="webview2">WebView2 (Default)</h3>
+    <div class="media-border">
+      <video id="promo-webview2" class="video" loop muted>
+        <source src="assets/2200180925/webview2_install.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <ul>
+      <li>WebView2 is now the default browser engine for website wallpapers.</li>
+      <li>
+        Since WebView2 comes pre-installed with Windows, the app no longer needs to bundle a browser engine, reducing
+        the install size by ~50%.
+      </li>
+      <li>Now website wallpapers support H.264 media playback out of the box.</li>
+      <li>New debug DevTools, opens in a separate window.</li>
+      <li>
+        Improved handling of media elements - when a wallpaper is paused, any playing video or audio elements on the
+        page are also paused automatically.
+      </li>
+      <li>Previous CefSharp player is provided as additional download on release page.</li>
+    </ul>
+    <p>Note: Some browser related settings will be reset to default after this update.</p>
+
+    <h3 id="screensaver">Screensaver Enhancements</h3>
+    <div class="media-border">
+      <video id="promo-screensaver-enhancements" class="video" loop muted>
+        <source src="assets/2200180925/screensaver_fadein.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <ul>
+      <li>Fade-in animation when screensaver starts, any user input during this phase cancels activation.</li>
+      <li>
+        Introduced a grace period: if input is received shortly after screensaver starts, system lock is skipped (when
+        "lock on resume" is enabled).
+      </li>
+      <li>Screensaver settings have been reorganized and are now part of the main settings page for easier access.</li>
+    </ul>
+
+    <h3 id="audio-output">Audio by Display</h3>
+    <div class="media-border">
+      <video id="promo-audio-output" class="video" loop muted>
+        <source src="assets/2200180925/display_audio.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <ul>
+      <li>You can now choose which display's wallpaper is allowed to play audio.</li>
+      <li>In Per-screen layout, only the wallpaper on the selected display will output sound.</li>
+    </ul>
+    <p>Note: This feature is only available when using the "Grid" or "All process" pause algorithm.</p>
+
+    <h3 id="visualizer-input">Visualizer Audio Source</h3>
+    <div class="media-border">
+      <video id="promo-visualizer-input" class="video" loop muted>
+        <source src="assets/2200180925/audio_input.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <ul>
+      <li>You can now choose which audio device the wallpaper visualizer uses.</li>
+      <li>
+        The Default option follows the system's default playback device and updates automatically if the system default
+        changes.
+      </li>
+      <li>If you pick a specific device, it will stay fixed and only switch if that device is disconnected.</li>
+    </ul>
+
+    <h3 id="beta-switcher">Join the Beta Channel</h3>
+    <div class="media-border">
+      <video id="promo-beta-switcher" class="video" loop muted>
+        <source src="assets/2200180925/beta_switcher.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <p>
+      Lively has grown so much over the years that it's no longer possible for me to personally test every feature or
+      account for every way people use it. Joining the beta and reporting any issues early is a great way to help.
+    </p>
+    <ul>
+      <li>You can now switch to Beta or Testing release directly from within the application.</li>
+      <li>
+        Test releases are updated more frequently and may contain bugs - join only if you're comfortable with potential
+        issues.
+      </li>
+    </ul>
+    <p>
+      Similarly you can switch back to the stable release, but because settings or configuration may change between
+      versions, you might occasionally need to delete the settings file to fully revert.
+    </p>
+    <p>When you encounter a problem, report it in the GitHub issues and mention that you're using the beta build.</p>
+    <p>Note: This feature is not available for Microsoft Store version.</p>
+
+    <h3 id="video-enhancements">Video Enhancements</h3>
+    <ul>
+      <li>Upgraded to MPV player's new <code>gpu-next</code> video backend.</li>
+      <li>Better performance and improved video quality.</li>
+      <li>Enhances color accuracy and HDR passthrough support in settings.</li>
+    </ul>
+
+    <h3 id="win11">Windows 11 24H2 Compatibility</h3>
+    <p>Core components were fully rewritten to adapt to platform changes introduced in Windows 11 24H2.</p>
+
+    <ul>
+      <li>Fixed a critical issue where wallpapers could enter a restart loop on this version of Windows.</li>
+      <li>No more wallpaper restarts during some system changes - a limitation of older versions has been removed.</li>
+    </ul>
+    <p>Special thanks to Microsoft engineers and community members who reached out and helped.</p>
+
+    <h3 id="misc">Enhancements</h3>
+    <ul>
+      <li>Added new Choose a Fit option for scaling desktop picture wallpaper.</li>
+      <li>Improved MPV error messages for file loading and unknown arguments.</li>
+      <li>Added system tray tooltip for wallpaper errors when UI is closed.</li>
+      <li>Optimized page navigation for smoother and faster UI performance.</li>
+      <li>Website wallpapers now follow application theme (dark/light.)</li>
+      <li>Website wallpapers now show theme color (dark/light) while loading for the first time.</li>
+      <li>Made the screensaver setup message dismissible.</li>
+      <li>Reload command-line control now supports optional monitor argument.</li>
+      <a
+        class="menu__link"
+        target="_blank"
+        href="https://github.com/rocksdanister/lively/wiki/Command-Line-Controls#set-wallpaper"
+        >Show documentation</a
+      >
+      <li>Volume command-line control now supports increment/decrement.</li>
+      <a
+        class="menu__link"
+        target="_blank"
+        href="https://github.com/rocksdanister/lively/wiki/Command-Line-Controls#wallpaper-volume"
+        >Show documentation</a
+      >
+      <li>Added new <code>fadeIn</code> command-line argument for starting the screensaver with a fade effect.</li>
+      <a
+        class="menu__link"
+        target="_blank"
+        href="https://github.com/rocksdanister/lively/wiki/Command-Line-Controls#screen-saver"
+        >Show documentation</a
+      >
+      <li>
+        <code>set wallpaper</code> command-line control <code>random</code> argument now selects a different wallpaper
+        if the current one is already running.
+      </li>
+      <li>Improved error presentation in the wallpaper customize dialog.</li>
+      <li>Improved file downloader with better error handling and performance.</li>
+      <li>Improved performance of video wallpaper screenshot capture (app theme and desktop picture).</li>
+      <li>Added WebView2 install prompt when selecting it in settings if the runtime is missing.</li>
+      <li>Added in-app notification when WebView2 runtime is missing while selecting a wallpaper.</li>
+      <li>
+        Changed wallpaper directory UI: address bar now opens the folder, side button allows selecting a new folder.
+      </li>
+      <li>Switched from ListView to Segmented control in active wallpaper dialog.</li>
+      <li>New Grid visualizer debug tool in Diagnostic page.</li>
+      <li>(v2.2.1.0) In Span layout, wallpaper pausing depends on the "Display pause rule":</li>
+      <ul>
+        <li>Per screen: pauses only when windows cover all screens.</li>
+        <li>All screen: pauses when a window covers any screen.</li>
+      </ul>
+      <li>Lots of code refactoring.</li>
+    </ul>
+
+    <h3 id="fixes">Fixes</h3>
+    <ul>
+      <li>
+        Fixed unwanted border appearing on top-left of video wallpapers. If you previously added border=no to mpv.conf
+        as a workaround, it's recommended to remove it now.
+      </li>
+      <li>
+        Fixed website login not persisting across wallpaper restarts, requires "Disk cache" to be enabled in settings.
+      </li>
+      <li>Fixed website wallpaper having wrong display scale.</li>
+      <li>Fixed screensaver plugin required message not updating.</li>
+      <li>Fixed missing wallpaper art in screensaver dialog when preview file is absent.</li>
+      <li>Fixed screensaver stopping early with "lock on resume" enabled.</li>
+      <li>Fixed on-screen controls showing in video screensavers.</li>
+      <li>Fixed local file wallpapers not loading in WebView2.</li>
+      <li>Fixed "Restore Default" button not visible when LivelyProperty is empty.</li>
+      <li>Fixed input issues in newer CefSharp player versions.</li>
+      <li>Fixed file picker allowing multiple selections where only one was expected.</li>
+      <li>Fixed screenshot capture, theme and desktop picture not working in WebView2 player.</li>
+      <li>Fixed webpage wallpaper briefly ignoring mute setting on startup.</li>
+      <li>Fixed incorrect layout in screensaver dialog when using mirror mode.</li>
+      <li>Fixed unnecessary error messages on first startup if config files are missing.</li>
+      <li>Fixed customize tray-menu not fitting on screen in some system configurations.</li>
+      <li>Fixed FileNotFound exception when using absolute path URL wallpapers.</li>
+      <li>Fixed MPV player screenshot feature crashing on some systems.</li>
+      <li>Fixed file save dialog not opening when app is run elevated.</li>
+      <li>Fixed missing app icon in WebView2 wallpaper player.</li>
+      <li>Fixed video not looping in VLC player.</li>
+      <li>(v2.2.1.0) Fixed wallpapers not being cleaned up when a crash occurred during import.</li>
+      <li>(v2.2.1.0) Fixed incorrect update notifications inside the app.</li>
+      <li>(v2.2.1.0) Fixed application pause rules not applying correctly.</li>
+      <li>(v2.2.1.0) Fixed language translation link not working.</li>
+    </ul>
+
+    <h3 id="updates">Updates</h3>
+    <ul>
+      <li>Updated MPV player.</li>
+      <li>Updated to .NET 9.</li>
+      <li>Updated WindowsAppSDK.</li>
+      <li>Updated dependencies (includes important security patches.)</li>
+      <li>Updated community translations.</li>
+      <li>(v2.2.1.0) Updated CefSharp player.</li>
+    </ul>
+
+    <h3 id="issues">Known Issues</h3>
+    <ul>
+      <li>
+        When keyboard input is enabled for wallpapers, key presses may be duplicated because the wallpaper also captures
+        input when focused. As a workaround, switch to mouse input mode when typing.
+      </li>
+    </ul>
+
+    <h3 id="developer-message">From the Developer</h3>
+    <p>
+      It's been a while since the last Lively update - I took a health break and have been gradually easing back into
+      development. During this time, I also worked on a few side projects.. cue self promotion 😁
+    </p>
+
+    <a class="menu__link" target="_blank" href="https://apps.microsoft.com/detail/9ntsnmsvcb5l">Screenbox</a>
+    <p>
+      An open-source media player based on VLC created by Tung Huynh. I contributed a real-time audio visualizer, based
+      on Lively’s own wallpaper visualizer.
+    </p>
+    <div class="media-border">
+      <video id="promo-screenbox" class="video" loop muted>
+        <source src="assets/2200180925/screenbox_15s_demo.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <p></p>
+    <a class="menu__link" target="_blank" href="https://www.rocksdanister.com/weather">Lively Weather</a>
+    <p>
+      A native DirectX powered animated weather app I’ve been building alongside. The latest update brings up to 50%
+      performance boost after rewriting to D2D1 shaders.
+    </p>
+    <div class="media-border">
+      <video id="promo-livelyweather" class="video" loop muted>
+        <source src="assets/2200180925/lw_renderer.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <div class="footer">
+      <a class="menu__link" href="home.html">Previous releases</a>
+    </div>
+    <script src="scripts/script.js"></script>
+  </body>
+</html>
